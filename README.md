@@ -9,3 +9,6 @@ Report: https://docs.google.com/document/d/1HUIwJgCMgLEU437n6r-Wp93YoNLgzMiCQMgC
 To set standard journal language to python so it stays between start ups of NX:
 
 file - > utilities - > customer defaults - > gateway - > user interface - > journal tab
+
+---
+Contributors to this project: Hallvard Bjørgen, Johanne Glende, and Sigve Sjøvold. Under supervision of Andrei Lobov.
