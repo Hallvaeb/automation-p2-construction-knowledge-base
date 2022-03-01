@@ -1,1 +1,20 @@
-tester Git commands
+Git commands
+
+Fra den mappen du vil ha git repoet lokalt skriver du:
+
+git clone https://github.com/Hallvaeb/kbe-a2.git
+
+
+Så kan du skrive:
+
+cd kbe_a2
+
+for å komme inn i repoet.
+
+Så skal alt fungere som før med følgende for å legge til og pushe filer:
+
+git add .
+
+git commit -m "commit-message"
+
+git push
