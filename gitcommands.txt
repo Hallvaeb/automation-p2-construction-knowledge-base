@@ -1,7 +1,6 @@
 Git commands
 
 Fra den mappen du vil ha git repoet lokalt skriver du:
-
 git clone https://github.com/Hallvaeb/kbe-a2.git
 
 
