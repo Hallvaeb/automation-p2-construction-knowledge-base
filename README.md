@@ -1,4 +1,4 @@
-# kbe-a2
+# kbe-a2 Construction Knowledge Base
 
 Course folder: https://drive.google.com/drive/folders/1afoecYjkEUNYffElpkdefxB12xqTl53I?usp=sharing
 
