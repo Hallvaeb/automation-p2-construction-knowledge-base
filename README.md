@@ -1,4 +1,4 @@
-# kbe-a2 Construction Knowledge Base
+# kbe-a2 Construction Knowledge Base "Automated Building"
 
 Course folder: https://drive.google.com/drive/folders/1afoecYjkEUNYffElpkdefxB12xqTl53I?usp=sharing
 
