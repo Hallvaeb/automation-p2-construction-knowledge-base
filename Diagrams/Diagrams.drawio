@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-02T15:01:05.981Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="ST6mzH6MAbCWbTh47JMm" version="16.6.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2022-03-02T15:01:31.417Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="sFrxFkLzGlKZYRSeCsGg" version="16.6.4" type="github" pages="4">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="782" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -328,11 +328,8 @@
         <mxCell id="j1qEbfoUlTZBVxtR7gkI-57" value="&lt;span style=&quot;background-color: rgb(230 , 230 , 230)&quot;&gt;Next&lt;/span&gt;" style="labelPosition=center;verticalLabelPosition=middle;align=center;html=1;shape=mxgraph.basic.shaded_button;dx=10;fillColor=#E6E6E6;strokeColor=none;labelBackgroundColor=#FFFFFF;fontSize=14;" vertex="1" parent="j1qEbfoUlTZBVxtR7gkI-51">
           <mxGeometry x="456" y="249.76000000000002" width="114.61" height="48.81" as="geometry" />
         </mxCell>
-        <mxCell id="j1qEbfoUlTZBVxtR7gkI-58" value="&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;Number of storeys&lt;/span&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.text.textBox;fontColor=#666666;align=left;fontSize=17;spacingLeft=4;spacingTop=-3;strokeColor=#666666;mainText=;labelBackgroundColor=#E6E6E6;" vertex="1" parent="j1qEbfoUlTZBVxtR7gkI-51">
+        <mxCell id="j1qEbfoUlTZBVxtR7gkI-58" value="&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;spaces requires&lt;/span&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.text.textBox;fontColor=#666666;align=left;fontSize=17;spacingLeft=4;spacingTop=-3;strokeColor=#666666;mainText=;labelBackgroundColor=#E6E6E6;" vertex="1" parent="j1qEbfoUlTZBVxtR7gkI-51">
           <mxGeometry x="193" y="190" width="172" height="29.76" as="geometry" />
-        </mxCell>
-        <mxCell id="j1qEbfoUlTZBVxtR7gkI-59" value="All storeys identical" style="rounded=1;fillColor=#F0F2F5;strokeColor=#D8DCE3;align=left;verticalAlign=middle;fontStyle=0;fontSize=12;labelPosition=right;verticalLabelPosition=middle;spacingLeft=10;html=1;shadow=0;dashed=0;labelBackgroundColor=none;" vertex="1" parent="j1qEbfoUlTZBVxtR7gkI-51">
-          <mxGeometry x="193" y="237.76" width="12" height="12" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
