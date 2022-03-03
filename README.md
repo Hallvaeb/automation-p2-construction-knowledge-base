@@ -4,6 +4,8 @@ Course folder: https://drive.google.com/drive/folders/1afoecYjkEUNYffElpkdefxB12
 
 Report: https://docs.google.com/document/d/1HUIwJgCMgLEU437n6r-Wp93YoNLgzMiCQMgCSR5b6Ss/edit?usp=sharing
 
+Bot turtle OWL file for input in protege: https://w3c-lbd-cg.github.io/bot/bot.ttl
+
 ---
 
 To set standard journal language to python so it stays between start ups of NX:
