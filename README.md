@@ -6,6 +6,8 @@ Report: https://docs.google.com/document/d/1HUIwJgCMgLEU437n6r-Wp93YoNLgzMiCQMgC
 
 Bot turtle OWL file for input in protege: https://w3c-lbd-cg.github.io/bot/bot.ttl
 
+Diagram: https://app.diagrams.net/#HHallvaeb%2Fkbe-a2%2Fmaster%2FDiagrams%2FDiagrams.drawio
+
 ---
 
 To set standard journal language to python so it stays between start ups of NX:
