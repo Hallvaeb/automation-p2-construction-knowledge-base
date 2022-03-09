@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-09T14:32:41.241Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="Mn88Kdi2l63141wm-gYj" version="17.0.0" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2022-03-09T14:34:35.375Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="u0rgNK_VgaRQEmgJTkVu" version="17.0.0" type="github" pages="8">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="1489" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1619,6 +1619,9 @@
             <mxPoint x="65.06761904761925" y="1006" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="QVzqyyeyv-tXGW0h4-y8-22" value="Sequence: Construct building and extract solution" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+          <mxGeometry x="200" y="20" width="260" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
