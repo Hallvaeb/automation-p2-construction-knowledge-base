@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-09T14:31:14.207Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="k7kwNth_yu6oGfFVxPYf" version="17.0.0" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2022-03-09T14:32:41.241Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="Mn88Kdi2l63141wm-gYj" version="17.0.0" type="github" pages="8">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="1489" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1436,7 +1436,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="_Q2vFka47BPhuHWOpkWZ-45" value="Save .dfa file" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+        <mxCell id="_Q2vFka47BPhuHWOpkWZ-45" value="&lt;font style=&quot;font-size: 11px&quot;&gt;Save .dfa file&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
           <mxGeometry x="920" y="480" width="80" height="20" as="geometry" />
         </mxCell>
         <mxCell id="R_yne8D_tF6Cigq2hJTN-0" value="run imager in NX" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-32" target="_Q2vFka47BPhuHWOpkWZ-30">
@@ -1494,10 +1494,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="QVzqyyeyv-tXGW0h4-y8-4" value="Save journalfile" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
-          <mxGeometry x="1121.5" y="565" width="100" height="20" as="geometry" />
+        <mxCell id="QVzqyyeyv-tXGW0h4-y8-4" value="&lt;font style=&quot;font-size: 11px&quot;&gt;Save journalfile&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+          <mxGeometry x="1126.5" y="565" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="QVzqyyeyv-tXGW0h4-y8-5" value="Give params" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+        <mxCell id="QVzqyyeyv-tXGW0h4-y8-5" value="send notification by email" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="479.7307692307693" y="643" as="sourcePoint" />
             <mxPoint x="1434.51" y="643" as="targetPoint" />
