@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-09T14:34:35.375Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="u0rgNK_VgaRQEmgJTkVu" version="17.0.0" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2022-03-09T14:36:34.733Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="Aikh36IPCI6CColPEhd8" version="17.0.0" type="github" pages="8">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="1489" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1255,7 +1255,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="D1OGU5lnin2fRSIAJd6G" name="SeqConstruct">
-    <mxGraphModel dx="1752" dy="869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1145" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="Sd0uoY8ExHPBHscK6wbj-0" />
         <mxCell id="Sd0uoY8ExHPBHscK6wbj-1" parent="Sd0uoY8ExHPBHscK6wbj-0" />
@@ -1460,8 +1460,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="R_yne8D_tF6Cigq2hJTN-2" value="Save image" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
-          <mxGeometry x="1323" y="681" width="80" height="20" as="geometry" />
+        <mxCell id="R_yne8D_tF6Cigq2hJTN-2" value="&lt;font style=&quot;font-size: 11px&quot;&gt;Save image&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+          <mxGeometry x="1328" y="681" width="70" height="20" as="geometry" />
         </mxCell>
         <mxCell id="QVzqyyeyv-tXGW0h4-y8-0" value="return 0 (success)&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-26">
           <mxGeometry relative="1" as="geometry">
@@ -1494,8 +1494,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="QVzqyyeyv-tXGW0h4-y8-4" value="&lt;font style=&quot;font-size: 11px&quot;&gt;Save journalfile&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
-          <mxGeometry x="1126.5" y="565" width="90" height="20" as="geometry" />
+        <mxCell id="QVzqyyeyv-tXGW0h4-y8-4" value="&lt;font style=&quot;font-size: 11px&quot;&gt;Save .py journalfile&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
+          <mxGeometry x="1116.5" y="565" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="QVzqyyeyv-tXGW0h4-y8-5" value="send notification by email" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
           <mxGeometry width="80" relative="1" as="geometry">
