@@ -1,0 +1,29 @@
+#! NX/KF 4.0
+DefClass: Storey (ug_base_part);
+    (number parameter) my_height: <SIDE>;
+    (number parameter) my_width: <SIDE>;
+    (number parameter) my_length: <SIDE>; 
+
+
+(child) block1: 
+    {
+        class, ug_block;
+        length, my_length:;
+        width, my_width:;
+        height, my_height:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {block1:};  
+  Layer, 1; 
+  color, ug_askClosestColor(SPRING_SPRING_YELLOW);  
+};
+
+# Methods of the class
+(Method Number) getVolume:(Number $length, Number $width, Number $height) 
+  @{
+     $length * $width * $height;
+  };
