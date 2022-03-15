@@ -1,8 +1,8 @@
 #! NX/KF 4.0
 DefClass: Space (ug_base_part);
-    (number parameter) my_height: <SIDE>;
-    (number parameter) my_width: <SIDE>;
-    (number parameter) my_length: <SIDE>; 
+    (number parameter) my_height: <HEIGHT>;
+    (number parameter) my_width: <WIDTH>;
+    (number parameter) my_length: <LENGTH>;  
 
 
 (child) block1: 
