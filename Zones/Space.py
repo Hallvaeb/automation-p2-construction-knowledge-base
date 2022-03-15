@@ -3,10 +3,11 @@ from Zones.Zone import Zone
 
 class Space(Zone):
 
-    def create():
-        # TODO: Implement create
-
-        pass
+    def create(self, height, width, length):
+        self.type = "Space"
+        self.height = height
+        self.width = width
+        self.length = length
 
     def addToKB():
         pass

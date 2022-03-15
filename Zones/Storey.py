@@ -3,10 +3,11 @@ from Zones.Zone import Zone
 
 class Storey(Zone):
 
-    def create():
-        # TODO: Implement create
-
-        pass
+    def create(self, height, width, length):
+        self.type = "Storey"
+        self.height = height
+        self.width = width
+        self.length = length
 
     def addToKB():
         pass
