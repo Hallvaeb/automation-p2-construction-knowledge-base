@@ -8,7 +8,7 @@ class Site(Zone):
         self.height = height
         self.width = width
         self.length = length
-        
+        self.containsZone = list
 
     def addToKB():
         pass

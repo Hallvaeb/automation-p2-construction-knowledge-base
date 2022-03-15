@@ -18,5 +18,34 @@ class Zone(ABC):
         pass
 
     @abstractmethod
+    def addZone():
+        pass
+    @abstractmethod
+    def getZones():
+        pass
+
+    @abstractmethod
     def getID():
         pass
+
+    @abstractmethod
+    def getType():
+        pass
+
+    @abstractmethod
+    def getHeight():
+        pass
+
+    @abstractmethod
+    def getWidth():
+        pass
+
+    @abstractmethod
+    def getLength():
+        pass
+
+    @abstractmethod
+    def getVolume():
+        pass
+        
+
