@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-15T15:10:05.056Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="S1CPdDX3nJmC-mlQLbGq" version="17.1.2" type="github" pages="9">
+<mxfile host="app.diagrams.net" modified="2022-03-15T15:17:07.621Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="0aCVEC6kmHWqqLCmmymx" version="17.1.2" type="github" pages="9">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="614" dy="731" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1715,7 +1715,7 @@
         <mxCell id="iOfivlzItaynl7F_WYpg-21" value="+ height: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="9WFan7QUYj94DXyUyqUR-6" vertex="1">
           <mxGeometry y="156" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="iOfivlzItaynl7F_WYpg-22" value="+ hasBuildings: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="9WFan7QUYj94DXyUyqUR-6" vertex="1">
+        <mxCell id="iOfivlzItaynl7F_WYpg-22" value="+ hasStoreys: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="9WFan7QUYj94DXyUyqUR-6" vertex="1">
           <mxGeometry y="182" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="9WFan7QUYj94DXyUyqUR-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="9WFan7QUYj94DXyUyqUR-6" vertex="1">
@@ -1813,7 +1813,7 @@
         <mxCell id="iOfivlzItaynl7F_WYpg-30" value="+ height: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="6jfJWCbIWlmxStdYxn2T-0" vertex="1">
           <mxGeometry y="130" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="iOfivlzItaynl7F_WYpg-11" value="+ hasZones: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="6jfJWCbIWlmxStdYxn2T-0" vertex="1">
+        <mxCell id="iOfivlzItaynl7F_WYpg-11" value="+ hasBuildings: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="6jfJWCbIWlmxStdYxn2T-0" vertex="1">
           <mxGeometry y="156" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="6jfJWCbIWlmxStdYxn2T-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="6jfJWCbIWlmxStdYxn2T-0" vertex="1">
@@ -1846,7 +1846,7 @@
         <mxCell id="iOfivlzItaynl7F_WYpg-24" value="+ width: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-0" vertex="1">
           <mxGeometry y="182" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="iOfivlzItaynl7F_WYpg-28" value="+ hasZones: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-0" vertex="1">
+        <mxCell id="iOfivlzItaynl7F_WYpg-28" value="+ hasSpaces: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-0" vertex="1">
           <mxGeometry y="208" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="Yz7_ipygCzsJuI3uBNeu-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-0" vertex="1">
@@ -1885,10 +1885,10 @@
         <mxCell id="iOfivlzItaynl7F_WYpg-33" value="+ height: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
           <mxGeometry y="182" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="iOfivlzItaynl7F_WYpg-32" value="+ hasZones: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
+        <mxCell id="iOfivlzItaynl7F_WYpg-32" value="+ hasSpaces: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
           <mxGeometry y="208" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="iOfivlzItaynl7F_WYpg-40" value="+ hasAdjacentZones: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
+        <mxCell id="iOfivlzItaynl7F_WYpg-40" value="+ hasAdjacentSpaces: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
           <mxGeometry y="234" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="Yz7_ipygCzsJuI3uBNeu-10" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
@@ -1900,11 +1900,11 @@
         <mxCell id="Yz7_ipygCzsJuI3uBNeu-15" value="+ getStorey(): Storey" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
           <mxGeometry y="294" width="310" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-B0aeoaYGb8_IlvaVsEi-1" value="+ getAdjecentZone():" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
+        <mxCell id="-B0aeoaYGb8_IlvaVsEi-1" value="+ getAdjecentSpace():" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Yz7_ipygCzsJuI3uBNeu-8" vertex="1">
           <mxGeometry y="320" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="B8ltDsjh6e_T4el2f_jC-0" value="&lt;b&gt;Comments&lt;/b&gt;: Zone abstract, is implemented of classes&lt;br&gt;They dictate abstract methods that must be implemented by subclass.&lt;br&gt;You can still treat all zone subclasses as zones. You use same method on all.&lt;br&gt;Zone is cool to have: you give a point in space; who has it. SPARQL query can be made at zone level. Make sparqø queries.&amp;nbsp;&lt;br&gt;&lt;br&gt;Zone still can have specific methods like add, create. Knowing what type of object it i. Explicit or implicit ways.. Explicit: tell building what space and such. Explicit: site building storey. Sequence.&lt;br&gt;implicit outsource to space to figure out its memebership. where am I. Make sure it is run at correct time.&lt;br&gt;&lt;br&gt;Dedicated modules: space filler.&lt;br&gt;Its like lego. standard building blocks. creating templates to be standard sixes. space filletr only aranging rectangles.&lt;br&gt;Genetic algorithms is necessary.&lt;br&gt;Run optimization loop.." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="YmMAVgloEdo1Mfvw9tdq-1" vertex="1">
-          <mxGeometry x="1210" y="-990" width="1040" height="170" as="geometry" />
+          <mxGeometry x="1160" y="-1010" width="1040" height="170" as="geometry" />
         </mxCell>
         <mxCell id="wMhnPG_QP2P_DUDsHzAo-0" value="Zone" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=default;fillColor=default;" parent="YmMAVgloEdo1Mfvw9tdq-1" vertex="1">
           <mxGeometry x="420" y="-600" width="310" height="320" as="geometry" />
@@ -2023,8 +2023,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="mvld_jwwvQsI5AdJgRtA-0" value="&lt;b&gt;Comments:&lt;/b&gt;&amp;nbsp;the list hasBuildings only &lt;br&gt;contains zone of the type&amp;nbsp;&lt;i&gt;storeys&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="YmMAVgloEdo1Mfvw9tdq-1">
-          <mxGeometry x="1150" y="-600" width="220" height="30" as="geometry" />
+        <mxCell id="mvld_jwwvQsI5AdJgRtA-0" value="&lt;b&gt;Comments:&lt;/b&gt;&amp;nbsp;the list hasStoreys only &lt;br&gt;contains zone of the type&amp;nbsp;&lt;i&gt;storeys&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="YmMAVgloEdo1Mfvw9tdq-1">
+          <mxGeometry x="1155" y="-600" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mvld_jwwvQsI5AdJgRtA-1" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;b&gt;T&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;he list hasBuildings only&lt;/span&gt;&lt;br style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250)&quot;&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;contains zone of the type&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250)&quot;&gt;buildings&lt;/i&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="YmMAVgloEdo1Mfvw9tdq-1">
+          <mxGeometry x="1160" y="-840" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mvld_jwwvQsI5AdJgRtA-2" value="&lt;b&gt;Comments:&lt;/b&gt;&amp;nbsp;the list hasSpaces only &lt;br&gt;contains zone of the type&amp;nbsp;&lt;i&gt;spaces&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="YmMAVgloEdo1Mfvw9tdq-1">
+          <mxGeometry x="1155" y="-290" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mvld_jwwvQsI5AdJgRtA-3" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;b&gt;Comments:&lt;/b&gt;&lt;span&gt;&amp;nbsp;the list hasSpaces only&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;contains zone of the type&amp;nbsp;&lt;/span&gt;&lt;i&gt;spaces.&lt;/i&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;The list hasAdjacentSpaces only&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;contains zones of the type &lt;/span&gt;&lt;i&gt;spaces&lt;/i&gt;&lt;/div&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="YmMAVgloEdo1Mfvw9tdq-1">
+          <mxGeometry x="1155" y="55" width="210" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
