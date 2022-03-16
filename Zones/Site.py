@@ -1,6 +1,6 @@
 from Zones.Zone import Zone
 import requests
-
+from IDGenerator import IDGenerator
 
 URL = "http://127.0.0.1:3030/bot"
 
@@ -12,7 +12,7 @@ class Site(Zone):
         self.height = args[1]         
         self.width = args[2]          
         self.length = args[3]
-        self.site_id = IDgenerator.createID(type)         
+        self.site_id = IDGenerator.createID(type)         
         self.hasBuildings = args[4]   #List
 
     def addToKB(self, args):
@@ -74,6 +74,23 @@ class Site(Zone):
             return 0
 
     
-    
+    def getZones(self):
+        return self.hasBuildings
+
     def getID(self):
-        pass
+        return self.site_id
+
+    def getType(self):
+        return self.type
+    
+    def getHeight(self):
+        return self.height
+
+    def getWidth(self):
+        return self.width
+    
+    def getLength(self):
+        return self.length
+
+    def getVolume(self):
+        return self.length*self.width*self.height
