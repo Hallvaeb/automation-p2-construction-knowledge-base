@@ -12,7 +12,7 @@ class Site(Zone):
         self.height = args[1]         
         self.width = args[2]          
         self.length = args[3]
-        self.id = Site.getID()         
+        self.site_id = Site.getID()         
         self.hasBuildings = args[4]   #List
 
     def addToKB(args):
@@ -26,9 +26,9 @@ class Site(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(site_id) + ''' a bot:Building.
-                bot:''' + str(site_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+                bot:''' + str(site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
                 bot:''' + str(site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(site_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
             '''
             )   
             for i in range(len(args[-1])):
@@ -47,8 +47,35 @@ class Site(Zone):
         except:
             return 0
 
-    def remove():
-        pass
+    def remove(args):
+        
+        site_id = Site.getID(args)
+        try:
+            UPDATE = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+			DELETE {
+                bot:''' + str(site_id) + ''' a bot:Building.
+                bot:''' + str(site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
+                bot:''' + str(site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                bot:''' + str(site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
+            ''') 
+            for i in range(len(args[-1])):
+                UPDATE += ('''
+                bot:''' + str(site_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
+                    ''')
+            UPDATE += ('''}
+            WHERE {
+            }
+            ''')
+            print(UPDATE)
+            
+            PARAMS = {"update": UPDATE}
+            r = requests.post(url = URL+"/update", data = PARAMS) 
+            return 1
+        except:
+            return 0
 
+    
+    
     def getID(self):
         pass
