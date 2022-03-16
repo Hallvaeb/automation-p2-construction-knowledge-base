@@ -10,10 +10,6 @@ PORT_NUMBER = 5000
 
 class ServerHandler(BaseHTTPRequestHandler):
 
-	def send_reponse_html(s):
-		s.send_response(200)
-		s.send_header("Content-type", "text/html")
-		s.end_headers()
 
 	def do_GET(s):
 		"""Respond to a GET request."""
@@ -23,6 +19,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 		path = s.path
 
 		if path.find("/") != -1 and len(path) == 1:
+			
 			s.send_reponse_html()
 
 			out = head+"""<body>
@@ -63,7 +60,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<label for="height">Height: </label><br>
 						<input type="number" name="height" id="height" placeholder="height"><br>
 						<label for="description">Description: </label><br>
-						<input type="number" name="description" id="description" placeholder="description"><br>
+						<input type="String" name="description" id="description" placeholder="description"><br>
 					</fieldset>
 					<input type="submit" value="Add Space" id="submit">
 					</form></section>
@@ -88,9 +85,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<form action="/construct_storeys" method="post">
 					<fieldset>
 						<legend>AUTOMATED BUILDING:</legend>
-						<label for="length">Length: </label>
+						<label for="length">Site length: </label>
 						<input type="number" name="length" id="length" placeholder="length" ><br>
-						<label for="width">Width: </label>
+						<label for="width">Site : </label>
 						<input type="number" name="width" id="width" placeholder="width"><br>
 						<label for="number_of_buildings">Number of buildings: </label>
 						<input type="number" name="number_of_buildings" id="number_of_buildings" placeholder="number of buildings"><br>
@@ -104,7 +101,24 @@ class ServerHandler(BaseHTTPRequestHandler):
 			"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
+		elif path.find("/cancel_space") != -1:
+
+			s.send_reponse_html()
+			out = head+"""
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					Space cancelled! It is fully removed and erased!
+					</p>
+				</section>
+				<a href=/add_space><button>Add another space</button></a>
+				<a href=/><button>Main menu</button></a>
+			</body>"""+footer
+			s.wfile.write(bytes(out, 'utf-8'))
+
 		elif path.find("/image.png") != -1:
+			
 			# Make right headers
 			s.send_response(200)
 			s.send_header("Content-type", "image/png")
@@ -118,6 +132,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 				print("image not found in folder")
 
 		elif path.find("/style.css") != -1:
+			
 			# Make right headers
 			s.send_response(200)
 			s.send_header("Content-type", "text/css")
@@ -129,10 +144,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.wfile.write(theImg)
 
 		elif path.find("/favicon.ico") != -1:
-			# Make right headers
-			s.send_response(200)
-			s.send_header("Content-type", "image/x-icon")
-			s.end_headers()
+
+			s.send_reponse_html()
+
 			# Read the file
 			# Write file.
 			bReader = open("UI/favicon.ico", "rb")
@@ -140,6 +154,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.wfile.write(theImg)
 
 		else:
+			
 			s.send_reponse_html()
 
 			out = head+"""
@@ -161,20 +176,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		if path.find("/space_added") != -1:
 
-			s.send_response(200)
-			s.send_header("Content-type", "text/html")
-			s.end_headers()
-
-			# Get n_visit_areas variable
-			# Input is like this before choosing 4th element
-			# ['length', '23&width', '4&height', '5&n_visit_areas', '3']
-			content_len = int(s.headers.get('Content-Length'))
+			s.send_reponse_html()
 
 			# Get the arguments
-			post_body = s.rfile.read(content_len)
-			param_line = post_body.decode()
-			pairs = param_line.split("&")
-			argument_list = [pairs[i].split("=")[1] for i in range(len(pairs))]
+			argument_pairs = s.rfile.read(
+				int(s.headers.get('Content-Length'))).decode().split("&")
+			argument_list = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
 			out = head+"""
 			<body>
@@ -198,20 +205,18 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<input type="hidden" name="description" value=\""""+argument_list[3]+"""\">"""
 			# Add submit button at the end and end form
 			out += """<input type="submit" value="OK"></form></section>
-			<a href="/"> <button>CANCEL</button> </a> 
+			<a href="/cancel_space"> <button>CANCEL</button> </a> 
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/add_space") != -1:
 
-			s.send_response(200)
-			s.send_header("Content-type", "text/html")
-			s.end_headers()
+			s.send_reponse_html()
 
 			# Get the arguments
-			pairs = s.rfile.read(
+			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
-			argument_list = [pairs[i].split("=")[1] for i in range(len(pairs))]
+			argument_list = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
 			# TODO: Call right function to add the space with the given arguments
 
@@ -228,6 +233,63 @@ class ServerHandler(BaseHTTPRequestHandler):
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
+		elif path.find("/construct_storeys") != -1:
+
+			s.send_reponse_html()
+
+			# Get the arguments
+			argument_pairs = s.rfile.read(
+				int(s.headers.get('Content-Length'))).decode().split("&")
+			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+
+			out = head + """
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					Here you can create buildings automatically! 
+					Does it require specific blocks not in the knowledge base? 
+					Contact an engineer or add it through the 'add space' option.
+					</p>
+				</section>
+				<form action="/construct_spaces" method="post" id="table_form">
+					<h2>AUTOMATED BUILDING</h2>
+					<table>
+						<tr>
+							<th> Building Number: </th>
+							<th> Length: </th>
+							<th> Width: </th>
+							<th> Height: </th>
+							<th> Energy Consumption [kWh]: </th>
+							<th> Storeys: </th>
+							<th> All storeys in this building are identical: </th>
+						</tr>"""
+			no_unique_buildings = 1
+			if(len(args) == 4):
+				# all buildings identical is checked
+				no_unique_buildings = 1
+			else: no_unique_buildings = int(args[2])
+			for i in range(0, no_unique_buildings):
+					out += """	
+						<tr>
+							<td>Building """ + str(i) + """:</td>
+							<td><input type="number" name="length" id="length" placeholder="Number"></td>
+							<td><input type="number" name="width" id="width" placeholder="Number"></td>
+							<td><input type="number" name="height" id="height" placeholder="Number"></td>
+							<td><input type="number" name="energy_consumption" id="energy_consumption" placeholder="Number"></td>
+							<td><input type="number" name="Storeys" id='building'""" + str(i) + """ placeholder='Number'></td>
+							<td><input type="checkbox" name="all_storeys_identical" id="all_storeys_identical"></td>
+						</tr>"""
+			out +="""
+					</table>
+					<input type="submit" value="Next" id="submit">
+				</form>
+				<a href=/><button>Cancel</button></a>
+			</section>
+			</body>
+			"""#+footer
+			s.wfile.write(bytes(out, 'utf-8'))
+
 		else:
 			s.send_reponse_html()
 
@@ -237,6 +299,11 @@ class ServerHandler(BaseHTTPRequestHandler):
 				</body></html>"""
 
 			s.wfile.write(bytes(out, "utf-8"))
+
+	def send_reponse_html(s):
+		s.send_response(200)
+		s.send_header("Content-type", "text/html")
+		s.end_headers()
 
 	def create_head():
 		return """
