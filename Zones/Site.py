@@ -1,6 +1,6 @@
 from Zones.Zone import Zone
 import requests
-
+from IDGenerator import IDGenerator
 
 URL = "http://127.0.0.1:3030/bot"
 
@@ -12,23 +12,22 @@ class Site(Zone):
         self.height = args[1]         
         self.width = args[2]          
         self.length = args[3]
-        self.site_id = Site.getID()         
+        self.site_id = IDGenerator.createID(type)         
         self.hasBuildings = args[4]   #List
 
-    def addToKB(args):
+    def addToKB(self, args):
          # INPUT order_list: [type, length, width, height, hasStoreys[]]
         # hasStoryes is a list containing ids for the storeys inside this building. 
  	 	# return 1 (true) when added
-        site_id = Site.getID(args)
 
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
-                bot:''' + str(site_id) + ''' a bot:Building.
-                bot:''' + str(site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
-                bot:''' + str(site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
+                bot:''' + str(self.site_id) + ''' a bot:Building.
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
             '''
             )   
             for i in range(len(args[-1])):
@@ -47,21 +46,20 @@ class Site(Zone):
         except:
             return 0
 
-    def remove(args):
+    def remove(self, args):
         
-        site_id = Site.getID(args)
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
 			DELETE {
-                bot:''' + str(site_id) + ''' a bot:Building.
-                bot:''' + str(site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
-                bot:''' + str(site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
+                bot:''' + str(self.site_id) + ''' a bot:Building.
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[3]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[1]) + '''".
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(site_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -76,6 +74,23 @@ class Site(Zone):
             return 0
 
     
-    
+    def getZones(self):
+        return self.hasBuildings
+
     def getID(self):
-        pass
+        return self.site_id
+
+    def getType(self):
+        return self.type
+    
+    def getHeight(self):
+        return self.height
+
+    def getWidth(self):
+        return self.width
+    
+    def getLength(self):
+        return self.length
+
+    def getVolume(self):
+        return self.length*self.width*self.height

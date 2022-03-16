@@ -1,6 +1,6 @@
 from Zone import Zone
 import requests
-
+from IDGenerator import IDGenerator
 
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
@@ -17,7 +17,7 @@ class Building(Zone):
         self.width = args[2]
         self.height = args[3]
         self.hasStoreys = args[-1]
-        self.id = IDGenerator.create_id(type) #building_0
+        self.building_id = IDGenerator.create_id(self.type) #building_0
         
 
     def addToKB(self, args):
@@ -25,21 +25,20 @@ class Building(Zone):
         # INPUT args: [type, length, width, height, hasStoreys[]]
         # hasStoryes is a list containing ids for the storeys inside this building. 
  	 	# return 1 (true) when added
-        building_id = Building.getID(self)
 
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
-                bot:''' + str(building_id) + ''' a bot:Building.
-                bot:''' + str(building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.building_id) + ''' a bot:Building.
+                bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
             '''
             )   
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(building_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -53,20 +52,19 @@ class Building(Zone):
             return 0
 
     def remove(self, args):
-        building_id = Building.getID(self)
         
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
 			DELETE {
-                    bot:''' + str(building_id) + ''' a bot:Building.
-                    bot:''' + str(building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                    bot:''' + str(building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                    bot:''' + str(building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                    bot:''' + str(self.building_id) + ''' a bot:Building.
+                    bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+                    bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                    bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(building_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasStorey "''' + str(args[-1][i]) + '''".
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -80,13 +78,12 @@ class Building(Zone):
             return 0
 
     def addZone(self, storey_id): #adda zones (here storeys) to the builing as well as the list hasStoreys
-        building_id = Building.getID(self)
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
-                bot:''' + str(building_id) + ''' a bot:Building.
-                bot:''' + str(building_id) + ''' bot:hasStorey "''' + str(storey_id) + '''".
+                bot:''' + str(self.building_id) + ''' a bot:Building.
+                bot:''' + str(self.building_id) + ''' bot:hasStorey "''' + str(storey_id) + '''".
                 }
             WHERE {
             }
@@ -94,7 +91,7 @@ class Building(Zone):
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
             
-            self.hasStoreys.append(storey_id)
+            self.hasStoreys.append(str(storey_id))
             return 1
         except:
             return 0
@@ -103,7 +100,7 @@ class Building(Zone):
         return self.hasStoreys
 
     def getID(self):
-        return self.id
+        return self.building_id
 
     def getType(self):
         return self.type
