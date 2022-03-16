@@ -100,7 +100,7 @@ class Building(Zone):
         return self.hasStoreys
 
     def getID(self):
-        return self.id
+        return self.building_id
 
     def getType(self):
         return self.type

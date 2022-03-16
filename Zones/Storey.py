@@ -92,7 +92,7 @@ class Storey(Zone):
         return self.hasSpaces
 
     def getID(self):
-        return self.id
+        return self.storey_id
 
     def getType(self):
         return self.type
