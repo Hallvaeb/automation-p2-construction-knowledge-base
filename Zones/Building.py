@@ -1,4 +1,4 @@
-# from Zones.Zone import Zone
+from Zone import Zone
 import requests
 
 
@@ -9,16 +9,15 @@ import requests
 
 URL = "http://127.0.0.1:3030/bot"
 
-class Building(): #class Building(Zone):
+class Building(Zone):
 
     def create(self, args):
         self.type = args[0]
-        #self.building_ID = "Building_" + building_ID_int #Not sure if this will be enough
         self.length = args[1]
         self.width = args[2]
         self.height = args[3]
         self.hasStoreys = args[-1]
-        self.id = "building_1" #IDGenerator.create_id(type)
+        self.id = IDGenerator.create_id(type) #building_0
         
 
     def addToKB(self, args):
@@ -46,7 +45,6 @@ class Building(): #class Building(Zone):
             WHERE {
             }
             ''')
-            print(UPDATE)
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
     
@@ -74,7 +72,6 @@ class Building(): #class Building(Zone):
             WHERE {
             }
             ''')
-            print(UPDATE)
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
@@ -82,27 +79,28 @@ class Building(): #class Building(Zone):
         except:
             return 0
 
-    # def addStoreyToBuilding(self, storey_id):
-    #     building_id = Building.getID(self)
-    #     try:
-    #         UPDATE = ('''
-    #         PREFIX bot:<https://w3id.org/bot#>
-    #         INSERT {
-    #             bot:''' + str(building_id) + ''' a bot:Building.
-    #             bot:''' + str(building_id) + ''' bot:hasStorey "''' + str(storey_id) + '''".
-    #             }
-    #         WHERE {
-    #         }
-    #         ''')
-    #         print(UPDATE)
-    #         PARAMS = {"update": UPDATE}
-    #         r = requests.post(url = URL+"/update", data = PARAMS) 
-    #         print(UPDATE)
-    #         return 1
-    #     except:
-    #         return 0
+    def addZone(self, storey_id): #adda zones (here storeys) to the builing as well as the list hasStoreys
+        building_id = Building.getID(self)
+        try:
+            UPDATE = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+            INSERT {
+                bot:''' + str(building_id) + ''' a bot:Building.
+                bot:''' + str(building_id) + ''' bot:hasStorey "''' + str(storey_id) + '''".
+                }
+            WHERE {
+            }
+            ''')
+            PARAMS = {"update": UPDATE}
+            r = requests.post(url = URL+"/update", data = PARAMS) 
+            
+            self.hasStoreys.append(storey_id)
+            return 1
+        except:
+            return 0
 
-        
+    def getZones(self):
+        return self.hasStoreys
 
     def getID(self):
         return self.id
@@ -122,10 +120,10 @@ class Building(): #class Building(Zone):
     def getVolume(self):
         return self.length*self.width*self.height
 
-# args1 = ['building', 75000, 900000, 10000, ['kjøkken', 'bad', 'soverom']]
-# args4 = ['bygg', 80000, 500000, 10000, ['kjøkken', 'bad', 'soverom']]
+# args1 = ['building', 7000, 90000, 10000, ['kjøkken', 'bad', 'soverom']]
+# # args4 = ['building', 80000, 500000, 10000, ['kjøkken', 'bad', 'soverom']]
 # building = Building()
 # building.create(args1)
 # print(building.addToKB(args1))
-# print(Building.remove(args4))
-# print(Building.addStoreyToBuilding("storey4"))
+# # print(Building.remove(args4))
+# print(building.addZone("storey5"))
