@@ -31,7 +31,7 @@ footer {
     text-align: right;
 }
 
-/* Header */
+/* Header
 header {
     position: static;
     left: 50%;
@@ -40,7 +40,7 @@ header {
     font-family: sans-serif;
     padding-top: 30px;
     margin-bottom: 20px;
-}
+} */
 
 h1 {
     font-size: 20pt;
@@ -57,4 +57,23 @@ form{
     /*height: 200px;*/
     margin: 0 auto;
     text-align: left;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #772929;
+}
+
+#table_form{
+    width: 80%
 }
