@@ -1,4 +1,5 @@
 from Zones.Zone import Zone
+from IDGenerator import IDGenerator
 import requests
 from Zones.Storey import Storey
 
@@ -13,8 +14,8 @@ class Space(Zone):
         self.length = args[3]
         self.role = args[4]
         self.hasSpaces = args[5]
-        self.space_id = IDgenerator.createID(self.type)
-        self.storey_id = IDgenerator.createID(self.type)
+        self.space_id = IDGenerator.createID(self.type)
+        self.storey_id = IDGenerator.createID(self.type)
 
     def addToKB(self, args):
 
@@ -79,8 +80,23 @@ class Space(Zone):
     def getStorey(self):
         return self.storey_id
 
-
-
+    def getZones(self):
+        return self.hasSpaces
 
     def getID(self):
         return self.space_id
+
+    def getType(self):
+        return self.type
+    
+    def getHeight(self):
+        return self.height
+
+    def getWidth(self):
+        return self.width
+    
+    def getLength(self):
+        return self.length
+
+    def getVolume(self):
+        return self.length*self.width*self.height

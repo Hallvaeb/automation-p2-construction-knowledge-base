@@ -1,10 +1,10 @@
 body {
-    background-color: rgb(109, 37, 37);
+    background: rgb(255, 255, 255);
     line-height: 1.5;
     margin: auto;
     font-family: Verdana;
     font-size: 14px;
-    color: #ece3e3;
+    color: #000000;
     text-align: center;
 }
 
@@ -14,33 +14,22 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 0 75px;
-    height: 170px;
-    font-size: 10px;
+    margin: 0 30px;
+    height: 140px;
+    font-size: 8px;
     color: grey;
 }
-
 #copyright {
     position: absolute;
     left: 0;
+    bottom: 0;
 }
-
 #contact_info {
     position: absolute;
     right: 0;
     text-align: right;
 }
-
-/* Header
-header {
-    position: static;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    font-family: sans-serif;
-    padding-top: 30px;
-    margin-bottom: 20px;
-} */
+/* Footer end */
 
 h1 {
     font-size: 20pt;
@@ -53,11 +42,20 @@ h3 {
 }
 
 form{
-    width: 400px;
+    width: 500px;
     /*height: 200px;*/
     margin: 0 auto;
     text-align: left;
 }
+#submit{
+    position: relative;
+    text-align: right;
+}
+
+/* input {
+    float: right;
+    clear: both;
+} */
 
 table {
     font-family: arial, sans-serif;
@@ -75,5 +73,31 @@ tr:nth-child(even) {
 }
 
 #table_form{
-    width: 80%
+    width: 80%;
+}
+
+#explanation_construct_storey{
+    width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#license{
+    color: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 30px;
+    height: 160px;
+}
+
+#illustration_will_appear{
+    position: absolute;
+    left: 700px;
+    bottom: 280px;
+    width: 150px;
+    height: 150px;
+    border: 3px solid #772929;
+    text-align: center;
 }

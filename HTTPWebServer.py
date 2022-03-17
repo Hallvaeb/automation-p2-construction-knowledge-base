@@ -29,7 +29,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<p> This is a construction knowledge base application for creating a building
 						several buildings from a set of building blocks in a knowledge base. </p>
 					<a href=/add_space><button>Add Space</button></a>
-					<a href=/construct_building><button>Construct building</button></a>
+					<a href=/construct_site><button>Construct!</button></a>
 				</section>
 			</body>
 			"""+footer
@@ -46,29 +46,32 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
 					Here you can add a space to the knowledge base skeleton for later use in a construction of the building.<br>
-					Use the description field to specify if your space is a "flat" or a specific room or object type.<br><br>
+					Use the description field to specify if your space is a "flat" or a specific room or object type.<br>
+					A space is, according to us, anything that can fit inside a storey of a building. <br><br>
 					A good name would be: "kitchen", "bedroom" or "chair".
 					</p>
 				</section>
-				<form action="/space_added" method="post">
+				<form action="/confirm_space" method="post">
 					<fieldset>
-						<legend>AUTOMATED BUILDING:</legend>
+						<legend>Space specification:</legend>
 						<label for="length">Length: </label><br>
-						<input type="number" name="length" id="length" placeholder="length" ><br>
+						<input type="number" name="length" id="length" value="20" ><br>
 						<label for="width">Width: </label><br>
-						<input type="number" name="width" id="width" placeholder="width"><br>
+						<input type="number" name="width" id="width" value="30"><br>
 						<label for="height">Height: </label><br>
-						<input type="number" name="height" id="height" placeholder="height"><br>
+						<input type="number" name="height" id="height" value="30"><br>
 						<label for="description">Description: </label><br>
-						<input type="String" name="description" id="description" placeholder="description"><br>
+						<input type="text" name="description" id="description" value="desk"><br>
+						<div id="submit">
+							<input type="submit" value="Add Space" id="submit">
+						</div>
 					</fieldset>
-					<input type="submit" value="Add Space" id="submit">
 					</form></section>
 				<br><a href=/><button>Go back</button></a>
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
-		elif path.find("/construct_building") != -1:
+		elif path.find("/construct_site") != -1:
 
 			s.send_reponse_html()
 
@@ -77,24 +80,34 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
-					Here you can create buildings automatically! 
-					Does it require specificblocks not in the knowledge base? 
-					Contact an engineer or add it through the 'add space' option.
+					Here you can create buildings automatically! <br>
+					Does it require specificblocks not in the knowledge base? <br>
+					Contact an engineer or add it through the 'add space' option. <br><br>
+					
+					<div id="license">
+						License: "free version" detected: all buildings will be identical.<br>
+					</div>
 					</p>
 				</section>
-				<form action="/construct_storeys" method="post">
+				<form action="/construct_building" method="post">
 					<fieldset>
-						<legend>AUTOMATED BUILDING:</legend>
-						<label for="length">Site length: </label>
-						<input type="number" name="length" id="length" placeholder="length" ><br>
-						<label for="width">Site : </label>
-						<input type="number" name="width" id="width" placeholder="width"><br>
-						<label for="number_of_buildings">Number of buildings: </label>
-						<input type="number" name="number_of_buildings" id="number_of_buildings" placeholder="number of buildings"><br>
-						<label for="all_buildings_identical">Are all the buildings identical?: </label>
-						<input type="checkbox" name="all_buildings_identical" id="all_buildings_identical"><br>
+						<legend>Site specifications:</legend> 
+
+						<label for="length">Site length [m]:</label><br>
+						<input type="number" name="length" id="length" value="500"><br>
+
+						<label for="width">Site width [m]:</label><br>
+						<input type="number" name="width" id="width" value="400"> <br>
+
+						<label for="number_of_buildings">Number of buildings: </label><br>
+						<input type="number" name="number_of_buildings" id="number_of_buildings" value="5"><br>
+
+						<label for="all_buildings_identical">Buildings identical:</label>
+						<input type="checkbox" name="all_buildings_identical" onclick="return false;" checked id="all_buildings_identical" ><br>
+						<div id="submit">
+							<input type="submit" value="Next" id="submit">
+						</div>
 					</fieldset>
-					<input type="submit" value="Next" id="submit">
 					</form></section>
 				<a href=/><button>Cancel</button></a>
 			</body>
@@ -112,7 +125,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					Space cancelled! It is fully removed and erased!
 					</p>
 				</section>
-				<a href=/add_space><button>Add another space</button></a>
+				<a href=/add_space><button>Add space</button></a>
 				<a href=/><button>Main menu</button></a>
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
@@ -165,7 +178,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					Start from start page!
 				</p>
 				<a href="/"><button>Go back</button></a>
-			</body></html>"""
+			</body></html>"""+footer
 			s.wfile.write(bytes(out, "utf-8"))
 
 	def do_POST(s):
@@ -174,7 +187,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 		footer = ServerHandler.create_footer()
 		path = s.path
 
-		if path.find("/space_added") != -1:
+		if path.find("/confirm_space") != -1:
 
 			s.send_reponse_html()
 
@@ -192,24 +205,26 @@ class ServerHandler(BaseHTTPRequestHandler):
 					</p>
 				</section>
 				<section>
-				<form action = "/add_space" method="post">
-					These were your inputs: <br>
-					Lenght: """ + argument_list[0] + """<br>
-					Width: """ + argument_list[1] + """<br>
-					Height: """ + argument_list[2] + """<br>
-					Description: """ + argument_list[3] + "<br>"
-			# Using hidden params to pass AUTOMATED BUILDING arguments
-			out += """<input type="hidden" name="lenght" value=\""""+argument_list[0]+"""\"">
-					<input type="hidden" name="width" value=\""""+argument_list[1]+"""\">
-					<input type="hidden" name="height" value=\""""+argument_list[2]+"""\">
-					<input type="hidden" name="description" value=\""""+argument_list[3]+"""\">"""
-			# Add submit button at the end and end form
-			out += """<input type="submit" value="OK"></form></section>
+				<form action = "/space_added" method="post">
+				<fieldset>
+					<legend>Review input</legend>
+					This is your input for space, you can still modify... <br>
+					Lenght: <br><input type="Number" name="lenght" value=\""""+argument_list[0]+"""\""> <br>
+					Width: <br><input type="Number" name="width" value=\""""+argument_list[1]+"""\"><br>
+					Height: 	<br><input type="Number" name="height" value=\""""+argument_list[2]+"""\"><br>
+					Description: <br><input type="text" name="description" value=\""""+argument_list[3]+"""\"><br>
+					<input id= "submit" type="submit" value="OK">
+					<div id="illustration_will_appear">
+								Maybe an illustration of your space will appear here some day?
+					</div>
+					</fieldset>
+				</form>
+			</section>
 			<a href="/cancel_space"> <button>CANCEL</button> </a> 
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
-		elif path.find("/add_space") != -1:
+		elif path.find("/space_added") != -1:
 
 			s.send_reponse_html()
 
@@ -233,7 +248,77 @@ class ServerHandler(BaseHTTPRequestHandler):
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
-		elif path.find("/construct_storeys") != -1:
+		elif path.find("/construct_building") != -1:
+
+					s.send_reponse_html()
+
+					# Get the arguments
+					argument_pairs = s.rfile.read(
+						int(s.headers.get('Content-Length'))).decode().split("&")
+					args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+					site_length = args[0]
+					site_width = args[1]
+					site_num_of_buildings = args[2]
+					site_all_buildings_identical = True
+					# if(len(args) == 4): site_all_buildings_identical = True
+					# else: site_all_buildings_identical = False
+					out = head + """
+					<body>
+						<section>
+							<h2>AUTOMATED BUILDING</h2>
+							<p>
+							Here you can create buildings automatically! <br>
+							Does it require specific blocks not in the knowledge base? <br>
+							Contact an engineer or add it through the 'add space' option.<br><br>
+							
+							<div id="license">
+								License: "free version" detected: all storeys will be identical.<br>
+							</div>
+							</p>
+						</section>
+						<form action="/construct_storey" method="post" id="table_form">
+							<input type="hidden" name="site_length" value=\""""+site_length+"""\">
+							<input type="hidden" name="site_width" value=\""""+site_width+"""\">
+							<input type="hidden" name="site_num_of_buildings" value=\""""+site_num_of_buildings+"""\">
+							<input type="hidden" name="site_all_buildings_identical" value=\""""+str(site_all_buildings_identical)+"""\">
+							<table>
+								<tr>
+									<th> Building Number </th>
+									<th> Length [m] </th>
+									<th> Width [m] </th>
+									<th> Height [m] </th>
+									<th> Energy Consumption [kWh]: </th>
+									<th> Storeys: </th>
+									<th> Storeys identical: </th>
+								</tr>"""
+					number_unique_buildings = 1
+					if(site_all_buildings_identical):
+						# all buildings identical is checked
+						number_unique_buildings = 1
+					else: number_unique_buildings = int(site_num_of_buildings)
+					for i in range(0, number_unique_buildings):
+							out += """	
+								<input type="hidden" name="id" value=building_"""+str(i)+""">
+								<tr>
+									<td>""" + str(i) + """</td>
+									<td><input type="number" name="length" id="length" value="40"></td>
+									<td><input type="number" name="width" id="width" value="30"></td>
+									<td><input type="number" name="height" id="height" value="30"></td>
+									<td><input type="number" name="energy_consumption" id="energy_consumption" value="60000"></td>
+									<td><input type="number" name="storeys" id='building'""" + str(i) + """ value="10"></td>
+									<td><input type="checkbox" onclick="return false;" checked name="all_storeys_identical" id="all_storeys_identical"></td>
+								</tr>"""
+					out +="""
+							</table>
+							<input type="submit" value="Next" id="submit">
+						</form>
+						<a href=/><button>Cancel</button></a>
+					</section>
+					</body>
+					"""+footer
+					s.wfile.write(bytes(out, 'utf-8'))
+
+		elif path.find("/construct_storey") != -1:
 
 			s.send_reponse_html()
 
@@ -241,54 +326,103 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+			site_length = args[0]
+			site_width = args[1]
+			site_num_of_buildings = args[2]
+			site_all_buildings_identical = True
+			building_all_storeys_identical = True
 
+			if(site_all_buildings_identical):
+				building_id = args[4]
+				building_length = args[5]
+				building_width = args[6]
+				building_height = args[7]
+				building_energy_consumption = args[8]
+				building_number_of_storeys = args[9] 
+				# building_all_storeys_identical = args[10] 
+			else:
+				print("ALL BUILDINGS NOT IDENTICAL IS NOT YET SUPPORTED.")
+
+			# Declare first row header
 			out = head + """
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
-					Here you can create buildings automatically! 
-					Does it require specific blocks not in the knowledge base? 
-					Contact an engineer or add it through the 'add space' option.
+					Here you can create buildings automatically! <br>
+					Does it require specific blocks not in the knowledge base? <br>
+					Contact an engineer or add it through the 'add space' option.<br>
 					</p>
+					<div id="explanation_construct_storey">
+						<p>
+						Specify which spaces you'd like to have for each storey.<br>
+						Must be singular form.<br>
+						Examples:<br>
+						1. flat<br>
+						2. kitchen, bedroom, bathroom, living room<br>
+						</p>
+					</div>
 				</section>
-				<form action="/construct_spaces" method="post" id="table_form">
-					<h2>AUTOMATED BUILDING</h2>
-					<table>
-						<tr>
-							<th> Building Number: </th>
-							<th> Length: </th>
-							<th> Width: </th>
-							<th> Height: </th>
-							<th> Energy Consumption [kWh]: </th>
-							<th> Storeys: </th>
-							<th> All storeys in this building are identical: </th>
-						</tr>"""
-			no_unique_buildings = 1
-			if(len(args) == 4):
-				# all buildings identical is checked
-				no_unique_buildings = 1
-			else: no_unique_buildings = int(args[2])
-			for i in range(0, no_unique_buildings):
-					out += """	
-						<tr>
-							<td>Building """ + str(i) + """:</td>
-							<td><input type="number" name="length" id="length" placeholder="Number"></td>
-							<td><input type="number" name="width" id="width" placeholder="Number"></td>
-							<td><input type="number" name="height" id="height" placeholder="Number"></td>
-							<td><input type="number" name="energy_consumption" id="energy_consumption" placeholder="Number"></td>
-							<td><input type="number" name="Storeys" id='building'""" + str(i) + """ placeholder='Number'></td>
-							<td><input type="checkbox" name="all_storeys_identical" id="all_storeys_identical"></td>
-						</tr>"""
-			out +="""
-					</table>
+				<form action="/construct_construction" method="post">
+					<input type="hidden" name="site_length" value=\""""+site_length+"""\">
+					<input type="hidden" name="site_width" value=\""""+site_width+"""\">
+					<input type="hidden" name="site_num_of_buildings" value=\""""+site_num_of_buildings+"""\">
+					<input type="hidden" name="site_all_buildings_identical" value=\""""+str(site_all_buildings_identical)+"""\">
+					<input type="hidden" name="building_id" value=\""""+str(building_id)+"""\">
+					<input type="hidden" name="building_length" value=\""""+building_length+"""\">
+					<input type="hidden" name="building_width" value=\""""+building_width+"""\">
+					<input type="hidden" name="building_height" value=\""""+building_height+"""\">
+					<input type="hidden" name="building_energy_consumption" value=\""""+building_energy_consumption+"""\">
+					<input type="hidden" name="building_number_of_storeys" value=\""""+building_number_of_storeys+"""\">
+					<input type="hidden" name="building_all_storeys_identical" value=\""""+str(building_all_storeys_identical)+"""\">
+					<fieldset>
+					<legend> Types of spaces</legend>
+					<input size="55" type="text" name="spaces" id="spaces" value="flat">
 					<input type="submit" value="Next" id="submit">
+					</fieldset>
 				</form>
 				<a href=/><button>Cancel</button></a>
 			</section>
 			</body>
-			"""#+footer
+			"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
+
+		elif path.find("/construct_construction") != -1:
+
+			s.send_reponse_html()
+
+			# Get the arguments
+			argument_pairs = s.rfile.read(
+				int(s.headers.get('Content-Length'))).decode().split("&")
+			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+			site_length = args[0]
+			site_width = args[1]
+			site_num_of_buildings = args[2]
+			site_all_buildings_identical = True
+			building_id = args[4]
+			building_length = args[5]
+			building_width = args[6]
+			building_height = args[7]
+			building_energy_consumption = args[8]
+			building_number_of_storeys = args[9] 
+			building_all_storeys_identical = True
+			storey_space_types = args[11]
+
+			[print("arg: "+ argument_pairs[i]+"\n") for i in range(len(args))]
+			
+			print(argument_pairs)
+			out = head + """
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					Congratulations! Everything is done and a construction is being created...<br>
+					Wait 10 seconds for it all to load, and then press the extract solution to retrieve the OWL file for your project.<br>
+					You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
+					Here are the arguments used (for troubleshooting pew pew): 
+					</p>"""
+			out += str(argument_pairs)+footer
+			s.wfile.write(bytes(out, "utf-8"))
 
 		else:
 			s.send_reponse_html()
@@ -296,7 +430,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 			out = head + "<body><p>The path: " + path + """ 
 				has not been implemented as a POST method.
 				Start from start page!</p> <a href="/"><button>Go back</button></a><br><br>
-				</body></html>"""
+				</body></html>"""+footer
 
 			s.wfile.write(bytes(out, "utf-8"))
 

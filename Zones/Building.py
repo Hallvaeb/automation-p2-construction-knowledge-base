@@ -1,6 +1,6 @@
 from Zone import Zone
 import requests
-
+from IDGenerator import IDGenerator
 
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
