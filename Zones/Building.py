@@ -1,6 +1,10 @@
+from numpy import array
 from Zone import Zone
 import requests
-from IDGenerator import IDGenerator
+# from IDGenerator import IDGenerator
+from Site import Site
+
+
 
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
@@ -11,14 +15,16 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Building(Zone):
 
+    site_id = None
+
     def create(self, args):
         self.type = args[0]
         self.length = args[1]
         self.width = args[2]
         self.height = args[3]
         self.hasStoreys = args[-1]
-        self.building_id = "building_5" #IDGenerator.create_id(self.type) #building_0
-        
+
+        self.building_id = "building_141" #IDGenerator.create_id(self.type) #building_0
 
     def addToKB(self, args):
         
@@ -103,7 +109,8 @@ class Building(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             SELECT ?site
             WHERE {
-                ?site bot:hasBuilding ?building
+                ?site a bot:Site.
+                ?site bot:hasBuilding ?building.
             FILTER ( 
                 EXISTS { ?site bot:hasBuilding "'''+ str(self.building_id) +'''"}
             )}
@@ -112,18 +119,13 @@ class Building(Zone):
             PARAMS = {"query": QUERY}
             r = requests.get(url = URL, params = PARAMS) 
             data = r.json()
-            print(data)
-            return 1
+            site = str(data['results']['bindings']).replace("]","").replace("}","").replace("'","").replace('"','').split('#')[-1]
+            return site
         except:
-            return 0
+            return "This building is not placed at any site"
 
-#FORTSATT IKKE RIKTIG
-        # et bygg hører til en site og ligger i site sin liste over byggninger.
-        # må finne ut hvilken site som har dette bygget i sin hasBuilding-liste.
-        # Bruker FILTER { EXIST ( er bygg i listen hasBuildings? )}
-        # dersom ja, returner site_id til den som eier denne lista. 
-        # et bygg kan kun ligge på en site.
-
+        # fungerer nå, men det er et problem dersom flere sites har bygg med samme id 
+        # på sitt område. Dette må diskuteres!
 
     def getZones(self):
         return self.hasStoreys
@@ -146,12 +148,25 @@ class Building(Zone):
     def getVolume(self):
         return self.length*self.width*self.height
 
-args1 = ['building', 7000, 90000, 10000, ['kjøkken', 'bad', 'soverom']]
-# args4 = ['building', 80000, 500000, 10000, ['kjøkken', 'bad', 'soverom']]
-building = Building()
-building.create(args1)
-print(building.addToKB(args1))
-# print(Building.remove(args4))
-print(building.addZone("storey5"))
 
-#Site1 inneholder Bygg1
+
+
+
+### ----- Tester ----- ###
+
+site_args1 = ['site', 500000, 500000, 0,[]]
+site = Site()
+# site.create(site_args1)
+# print(site.addToKB(site_args1))
+
+
+args1 = ['building', 7000, 90000, 10000, ['kjøkken', 'bad', 'soverom']]
+building = Building()
+# building.create(args1)
+# print(building.addToKB(args1))
+# print(Building.remove(args4))
+# print(site.addZone(building.building_id))
+# print(site.getID(),"sine bygg: ", site.getZones())
+# print(building.building_id,"is places at", building.getSite())
+print(site.getZones())
+
