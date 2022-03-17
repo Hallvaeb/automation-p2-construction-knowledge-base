@@ -17,7 +17,7 @@ class Building(Zone):
         self.width = args[2]
         self.height = args[3]
         self.hasStoreys = args[-1]
-        self.building_id = IDGenerator.create_id(self.type) #building_0
+        self.building_id = "building_5" #IDGenerator.create_id(self.type) #building_0
         
 
     def addToKB(self, args):
@@ -77,7 +77,7 @@ class Building(Zone):
         except:
             return 0
 
-    def addZone(self, storey_id): #adda zones (here storeys) to the builing as well as the list hasStoreys
+    def addZone(self, storey_id): #adds zones (here storeys) to the builing as well as the list hasStoreys
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -95,6 +95,35 @@ class Building(Zone):
             return 1
         except:
             return 0
+
+    def getSite(self):
+        
+        try:
+            QUERY = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+            SELECT ?site
+            WHERE {
+                ?site bot:hasBuilding ?building
+            FILTER ( 
+                EXISTS { ?site bot:hasBuilding "'''+ str(self.building_id) +'''"}
+            )}
+            ''')
+
+            PARAMS = {"query": QUERY}
+            r = requests.get(url = URL, params = PARAMS) 
+            data = r.json()
+            print(data)
+            return 1
+        except:
+            return 0
+
+#FORTSATT IKKE RIKTIG
+        # et bygg hører til en site og ligger i site sin liste over byggninger.
+        # må finne ut hvilken site som har dette bygget i sin hasBuilding-liste.
+        # Bruker FILTER { EXIST ( er bygg i listen hasBuildings? )}
+        # dersom ja, returner site_id til den som eier denne lista. 
+        # et bygg kan kun ligge på en site.
+
 
     def getZones(self):
         return self.hasStoreys
@@ -117,10 +146,12 @@ class Building(Zone):
     def getVolume(self):
         return self.length*self.width*self.height
 
-# args1 = ['building', 7000, 90000, 10000, ['kjøkken', 'bad', 'soverom']]
-# # args4 = ['building', 80000, 500000, 10000, ['kjøkken', 'bad', 'soverom']]
-# building = Building()
-# building.create(args1)
-# print(building.addToKB(args1))
-# # print(Building.remove(args4))
-# print(building.addZone("storey5"))
+args1 = ['building', 7000, 90000, 10000, ['kjøkken', 'bad', 'soverom']]
+# args4 = ['building', 80000, 500000, 10000, ['kjøkken', 'bad', 'soverom']]
+building = Building()
+building.create(args1)
+print(building.addToKB(args1))
+# print(Building.remove(args4))
+print(building.addZone("storey5"))
+
+#Site1 inneholder Bygg1
