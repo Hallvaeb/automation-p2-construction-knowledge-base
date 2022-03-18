@@ -7,3 +7,4 @@ class IDGenerator:
         self.type = type
         integer = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
         id = self.type + str(integer)
+        return id
