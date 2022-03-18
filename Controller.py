@@ -45,8 +45,8 @@ class Controller():
 		role = args[4]
 
 		space = Space([length, width, height, energyEfficiency, role])
-
-		addToKB(space)
+		print("før vi prøver å adde")
+		space.addToKB()
 
 # site_length=500
 # site_width=400

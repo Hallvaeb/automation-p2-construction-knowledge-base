@@ -24,7 +24,7 @@ class Space(Zone):
         self.width = args[1]
         self.height = args[2]
         self.energyEfficiency = args[3]
-        self.role = args[4]
+        role = args[4]
 
         i = 0
         while(Space.isRoleInKB(role)):
@@ -34,7 +34,7 @@ class Space(Zone):
         self.space_id = IDGenerator.create_space_prototype_ID(self)
 
         self.addToKB()
-        return self.space_id
+        return self
         
 
     def __init__2(self, args):
@@ -48,12 +48,12 @@ class Space(Zone):
             return -1 
         self.space_id = IDGenerator.create_space_prototype_ID(self)
         # TODO: get arguments of space with role
-        space_args = get_arguments_of_space_prototype(self.space_id)
-        self.length = space_args[0]
-        self.width = space_args[1]
-        self.height = space_args[2]
-        self.energyEfficiency = space_args[3]
-        self.role = space_args[4]
+        # space_args = get_arguments_of_space_prototype(self.space_id)
+        # self.length = space_args[0]
+        # self.width = space_args[1]
+        # self.height = space_args[2]
+        # self.energyEfficiency = space_args[3]
+        # self.role = space_args[4]
 
 
 
@@ -77,6 +77,7 @@ class Space(Zone):
         
 
     def addToKB(self):
+        print(str(self.space_id))
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -87,20 +88,12 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
                 bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
-            '''
-            )  
-            print("Her") 
-            for i in range(len(self.adjacentZones)):
-                UPDATE += ('''
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(self.adjacentZones[i]) + '''.
-                    ''')
-            UPDATE += ('''}
             WHERE {
             }
             ''')
+            print(UPDATE)
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
-    
             return 1
         except:
             return 0
