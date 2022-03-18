@@ -1,6 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 
+from Controller import Controller
+
 HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 4500
 
@@ -43,7 +45,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
 					Here you can add a space to the knowledge base skeleton for later use in a construction of the building.<br>
-					Use the description field to specify if your space is a "flat" or a specific room or object type.<br>
+					Use the role field to specify if your space is a "flat" or a specific room or object type.<br>
 					A space is, according to us, anything that can fit inside a storey of a building. <br><br>
 					A good name would be: "kitchen", "bedroom" or "chair".
 					</p>
@@ -59,8 +61,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<input type="number" name="height" id="height" value="30"><br>
 						<label for="energy">Energy consumption: </label><br>
 						<input type="number" name="energy" id="energy" value="60000"><br>
-						<label for="description">Description: </label><br>
-						<input type="text" name="description" id="description" value="desk"><br>
+						<label for="role">Role: </label><br>
+						<input type="text" name="role" id="role" value="desk"><br>
 						<div id="submit">
 							<input type="submit" value="Add Space" id="submit">
 						</div>
@@ -212,7 +214,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					Width: 				<br><input type="Number" name="width" value=\""""+argument_list[1]+"""\"><br>
 					Height: 			<br><input type="Number" name="height" value=\""""+argument_list[2]+"""\"><br>
 					Energy efficiency: 	<br><input type="Number" name="energy" value=\""""+argument_list[3]+"""\"><br>
-					Description: 		<br><input type="text" name="description" value=\""""+argument_list[4]+"""\"><br>
+					Role: 		<br><input type="text" name="role" value=\""""+argument_list[4]+"""\"><br>
 					<input id= "submit" type="submit" value="OK">
 					<div id="illustration_will_appear">
 								Maybe an illustration of your space will appear here some day?
@@ -231,9 +233,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 			# Get the arguments
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
-			argument_list = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
-			# TODO: Call right function to add the space with the given arguments
+			Controller.add_space_prototype(args)
 
 			out = head+"""
 			<body>

@@ -24,10 +24,10 @@ class Space(Zone):
         self.role = args[4]
         # self.adjacentZones = args[5]
 
-        self.space_id = IDGenerator.create_ID(self.type)
+        self.space_id = IDGenerator.create_ID(self)
         # self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
-        self.isRoleInKB(self.role)
+        Space.isRoleInKB(self.role)
 
     def __init__2(self, args):
         # INPUT args: [role]

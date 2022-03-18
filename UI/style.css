@@ -95,7 +95,7 @@ tr:nth-child(even) {
 #illustration_will_appear{
     position: absolute;
     left: 800px;
-    bottom: 300px;
+    bottom: 350px;
     width: 150px;
     height: 150px;
     border: 3px solid #772929;
