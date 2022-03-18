@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 
 HOST_NAME = '127.0.0.1'
-PORT_NUMBER = 5000
+PORT_NUMBER = 4500
 
 
 class ServerHandler(BaseHTTPRequestHandler):
@@ -57,6 +57,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<input type="number" name="width" id="width" value="30"><br>
 						<label for="height">Height: </label><br>
 						<input type="number" name="height" id="height" value="30"><br>
+						<label for="energy">Energy consumption: </label><br>
+						<input type="number" name="energy" id="energy" value="60000"><br>
 						<label for="description">Description: </label><br>
 						<input type="text" name="description" id="description" value="desk"><br>
 						<div id="submit">
@@ -206,10 +208,11 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<fieldset>
 					<legend>Review input</legend>
 					This is your input for space, you can still modify... <br>
-					Lenght: <br><input type="Number" name="lenght" value=\""""+argument_list[0]+"""\""> <br>
-					Width: <br><input type="Number" name="width" value=\""""+argument_list[1]+"""\"><br>
-					Height: 	<br><input type="Number" name="height" value=\""""+argument_list[2]+"""\"><br>
-					Description: <br><input type="text" name="description" value=\""""+argument_list[3]+"""\"><br>
+					Lenght: 			<br><input type="Number" name="lenght" value=\""""+argument_list[0]+"""\""> <br>
+					Width: 				<br><input type="Number" name="width" value=\""""+argument_list[1]+"""\"><br>
+					Height: 			<br><input type="Number" name="height" value=\""""+argument_list[2]+"""\"><br>
+					Energy efficiency: 	<br><input type="Number" name="energy" value=\""""+argument_list[3]+"""\"><br>
+					Description: 		<br><input type="text" name="description" value=\""""+argument_list[4]+"""\"><br>
 					<input id= "submit" type="submit" value="OK">
 					<div id="illustration_will_appear">
 								Maybe an illustration of your space will appear here some day?
@@ -415,7 +418,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 					You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
 					Here are the arguments used (for troubleshooting pew pew): 
 					</p>"""
-			out += str(argument_pairs)+footer
+			out += str(argument_pairs)
+			out += "</section><a href=/><button>Go back</button></a></body>"+footer
+			
 			s.wfile.write(bytes(out, "utf-8"))
 
 		else:

@@ -25,10 +25,7 @@ class IDGenerator():
 
     def create_space_prototype_ID(self):
         '''
-        Returns ID with todays year month day hour minute second, and a random number (0,9) at the end.
+        Returns "type_role", role is unique
         '''
-        # RANDOM NUMBERS NEEDED IF MULTIPLE USERS ADD SPACE PROTOTYPES AT SAME SECOND
-        r1 = str(random.randint(0, 9)) 
-        time_now_str = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-        return self.type + time_now_str + "_" + r1       
+        return self.type+"_"+self.role 
 

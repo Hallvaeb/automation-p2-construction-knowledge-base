@@ -1,4 +1,3 @@
-#create og add to knowledge abse
 from Zones.Site import Site
 from Zones.Building import Building
 from Zones.Storey import Storey
