@@ -29,13 +29,13 @@ class Space(Zone):
         
         i = 1
         role = role_core + str(i)
-        while(Space.isRoleInKB(role)):
+        while(Space.is_role_in_KB(role)):
             i += 1
             role = role_core + str(i)
         self.role = role
         self.space_id = IDGenerator.create_space_prototype_ID(self)
 
-        self.addToKB()
+        self.add_to_KB()
         return self
         
 
@@ -46,7 +46,7 @@ class Space(Zone):
         # INPUT args: [role]
         self.type = "space"
         role = args[0]
-        if not Space.isRoleInKB(role):
+        if not Space.is_role_in_KB(role):
             return -1 
         self.space_id = IDGenerator.create_space_prototype_ID(self)
         # TODO: get arguments of space with role
