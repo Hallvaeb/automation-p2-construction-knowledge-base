@@ -131,6 +131,62 @@ class ServerHandler(BaseHTTPRequestHandler):
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
+		elif path.find("/construct_storey") != -1:
+			s.send_reponse_html()
+
+			site_length = 2000
+			site_width = 3000
+			site_num_of_buildings = 5
+			site_all_buildings_identical = True
+			building_all_storeys_identical = True
+			building_length = 200
+			building_width = 150
+			building_height = 20
+			building_energy_consumption = 60005
+			building_number_of_storeys = 10
+
+			out = head + """
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					Here you can create buildings automatically! <br>
+					Does it require specific blocks not in the knowledge base? <br>
+					Contact an engineer or add it through the 'add space' option.<br>
+					</p>
+					<div id="explanation_construct_storey">
+						<p>
+						Specify which spaces you'd like to have for each storey.<br>
+						Must be singular form.<br>
+						Examples:<br>
+						1. flat<br>
+						2. kitchen, bedroom, bathroom, living room<br>
+						</p>
+					</div>
+				</section>
+				<form action="/construct_construction" method="post">
+					<input type="hidden" name="site_length" value=\""""+site_length+"""\">
+					<input type="hidden" name="site_width" value=\""""+site_width+"""\">
+					<input type="hidden" name="site_num_of_buildings" value=\""""+site_num_of_buildings+"""\">
+					<input type="hidden" name="site_all_buildings_identical" value=\""""+str(site_all_buildings_identical)+"""\">
+					<input type="hidden" name="building_length" value=\""""+building_length+"""\">
+					<input type="hidden" name="building_width" value=\""""+building_width+"""\">
+					<input type="hidden" name="building_height" value=\""""+building_height+"""\">
+					<input type="hidden" name="building_energy_consumption" value=\""""+building_energy_consumption+"""\">
+					<input type="hidden" name="building_number_of_storeys" value=\""""+building_number_of_storeys+"""\">
+					<input type="hidden" name="building_all_storeys_identical" value=\""""+str(building_all_storeys_identical)+"""\">
+					<fieldset>
+					<legend> Types of spaces</legend>
+					<input size="55" type="text" name="spaces" id="spaces" value="kitchen_1">
+					<input type="submit" value="Next" id="submit">
+					</fieldset>
+				</form>
+				<a href=/><button>Cancel</button></a>
+			</section>
+			</body>
+			"""+footer
+			s.wfile.write(bytes(out, 'utf-8'))
+
 		elif path.find("/image.jpg") != -1:
 			
 			# Make right headers
@@ -376,7 +432,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<input type="hidden" name="building_all_storeys_identical" value=\""""+str(building_all_storeys_identical)+"""\">
 					<fieldset>
 					<legend> Types of spaces</legend>
-					<input size="55" type="text" name="spaces" id="spaces" value="kitchen, bedroom">
+					<input size="55" type="text" name="spaces" id="spaces" value="kitchen_1">
 					<input type="submit" value="Next" id="submit">
 					</fieldset>
 				</form>
