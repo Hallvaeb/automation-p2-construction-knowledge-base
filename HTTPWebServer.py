@@ -62,7 +62,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<label for="energy">Energy consumption: </label><br>
 						<input type="number" name="energy" id="energy" value="60000"><br>
 						<label for="role">Role: </label><br>
-						<input type="text" name="role" id="role" value="desk"><br>
+						<input type="text" name="role" id="role" value="Hallway"><br>
 						<div id="submit">
 							<input type="submit" value="Add Space" id="submit">
 						</div>
