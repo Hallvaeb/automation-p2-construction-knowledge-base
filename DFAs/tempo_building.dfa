@@ -1,8 +1,6 @@
-#! NX/KF 4.0
-DefClass: order_12 (ug_base_part);
-    (number parameter) my_height: 150; 
-    (number parameter) my_width: 200;
-    (number parameter) my_length: 400; 
+    (number parameter) my_height: 200; 
+    (number parameter) my_width: 150;
+    (number parameter) my_length: 300; 
 
 
 (child) block1: 

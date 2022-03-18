@@ -1,5 +1,3 @@
-#! NX/KF 4.0
-DefClass: <ID> (ug_base_part);
     (number parameter) my_height: <HEIGHT>;
     (number parameter) my_width: <WIDTH>;
     (number parameter) my_length: <LENGTH>; 
