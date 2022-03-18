@@ -6,6 +6,8 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Space(Zone):
 
+
+
     def __init__(self, args):
         if (len(args) == 1):
             self.__init__2(args)
@@ -13,31 +15,33 @@ class Space(Zone):
             self.__init__1(args)
     
     def __init__1(self, args):
-        # INPUT args: [length, width, height, energyEfficiency, role, adjacentZones[]]
+        # INPUT args: [length, width, height, energyEfficiency, role]
         self.type = "space"
         self.length = args[0]
         self.width = args[1]
         self.height = args[2]
         self.energyEfficiency = args[3]
         self.role = args[4]
-        self.adjacentZones = args[5]
+        # self.adjacentZones = args[5]
 
         self.space_id = IDGenerator.create_ID(self.type)
-        self.adjacent_space_id = IDGenerator.create_ID(self.type)
+        # self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
         self.isRoleInKB(self.role)
 
     def __init__2(self, args):
         # INPUT args: [role]
         self.type = "space"
-        self.role = args[0]
+        role = args[0]
+        i = 0
+        while(Space.isRoleInKB(role)):
+            i += 1
+            role = role+"_"+str(i)
+        self.role = role
+        self.space_id = IDGenerator.create_space_prototype_ID(self)
 
-        self.space_id = IDGenerator.create_ID(self.type)
-        self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
-        self.isRoleInKB(self.role)
-
-    def isRoleInKB(self, role):
+    def isRoleInKB(role):
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
 		SELECT ?role 
