@@ -1,8 +1,7 @@
-from numpy import array
-from Zone import Zone
+from IDGenerator import IDGenerator
+from Zones.Zone import Zone
 import requests
-# from IDGenerator import IDGenerator
-from Site import Site
+from Zones.Site import Site
 
 
 
@@ -24,7 +23,7 @@ class Building(Zone):
         self.height = args[3]
         self.hasStoreys = args[-1]
 
-        self.building_id = "building_20" #IDGenerator.create_id(self.type) #building_0
+        self.building_id = IDGenerator.create_ID(self) 
 
     def addToKB(self, args):
         
@@ -181,29 +180,29 @@ class Building(Zone):
 
 
 
-### ----- Tester ----- ###
+# ### ----- Tester ----- ###
 
-site_args1 = ['site', 500000, 500000, 0,[]]
-site = Site(site_args1)
-# site.create(site_args1)
-print(site.addToKB(site_args1))
+# site_args1 = ['site', 500000, 500000, 0,[]]
+# site = Site(site_args1)
+# # site.create(site_args1)
+# print(site.addToKB(site_args1))
 
 
-args1 = ['building', 7000, 90000, 10000, ['Storey_21', 'Storey_22', 'Storey_23']]
-args2 = ['building', 7000, 90000, 10000, ['Storey_1']]
+# args1 = ['building', 7000, 90000, 10000, ['Storey_21', 'Storey_22', 'Storey_23']]
+# args2 = ['building', 7000, 90000, 10000, ['Storey_1']]
 
-building = Building(args1)
-print(building.addToKB(args1))
+# building = Building(args1)
+# print(building.addToKB(args1))
 
-building2 = Building(args2)
-print(building2.addToKB(args2))
+# building2 = Building(args2)
+# print(building2.addToKB(args2))
 
-# print(Building.remove(args4))
-print("added zone:",site.addZone(building.building_id),site.addZone(building2.building_id))
-print(site.getID(),"sine bygg: ", site.getZones())
-print(building.building_id,"is places at", building.getSite())
-# print("Er den fjernet:",site.remove(site_args1))
-print(building2.building_id,"is placed at", building2.getSite())
-print(site.getID(),"sine bygg: ", site.getZones())
+# # print(Building.remove(args4))
+# print("added zone:",site.addZone(building.building_id),site.addZone(building2.building_id))
+# print(site.getID(),"sine bygg: ", site.getZones())
+# print(building.building_id,"is places at", building.getSite())
+# # print("Er den fjernet:",site.remove(site_args1))
+# print(building2.building_id,"is placed at", building2.getSite())
+# print(site.getID(),"sine bygg: ", site.getZones())
 
 

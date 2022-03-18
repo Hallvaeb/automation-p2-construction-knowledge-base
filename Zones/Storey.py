@@ -6,15 +6,15 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Storey(Zone):
 
-    # building_id = NOE
+
     def __init__(self, args):
     # INPUT args: [type, length, width, height, hasSpaces[]]
-        self.type = args[0]
+        self.type = "storey"
         self.length = args[1]
         self.width = args[2]
         self.height = args[3]
         self.hasSpaces = args[-1]
-        self.storey_id = IDGenerator.create_id(self.type) #storey_0
+        self.storey_id = IDGenerator.create_ID(self) 
 
     def addToKB(self, args):
         # hasSpaces is a list containing ids for the spaces in this storey. 

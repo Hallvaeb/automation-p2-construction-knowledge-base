@@ -1,7 +1,6 @@
 from Zone import Zone
-# from IDGenerator import IDGenerator
+from IDGenerator import IDGenerator
 import requests
-# from Zones.Storey import Storey
 
 URL = "http://127.0.0.1:3030/bot"
 
@@ -24,8 +23,8 @@ class Space(Zone):
         self.role = role
         self.adjacentZones = adjacentZones
 
-        self.space_id = "space6" #IDGenerator.createID(self.type)
-        # self.adjacent_space_id = IDGenerator.createID(self.type)
+        self.space_id = IDGenerator.create_ID(self.type)
+        self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
         # self.isRoleInKB(self.role)
 

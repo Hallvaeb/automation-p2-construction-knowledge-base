@@ -1,7 +1,4 @@
-from datetime import date
-import http
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from sqlite3 import Date
 import time
 
 HOST_NAME = '127.0.0.1'
@@ -23,13 +20,13 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.send_reponse_html()
 
 			out = head+"""<body>
-				<section>
 					<h1>Welcome to</h1>
-					<h2>AUTOMATED BUILDING!</h2>
-					<p> This is a construction knowledge base application for creating a building
-						several buildings from a set of building blocks in a knowledge base. </p>
-					<a href=/add_space><button>Add Space</button></a>
-					<a href=/construct_site><button>Construct!</button></a>
+					<img src="/image.jpg" alt= "Logo not found." width="600" height="282">	
+				<section>
+						<p> This is a construction knowledge base application for creating a building
+							several buildings from a set of building blocks in a knowledge base. </p>
+						<a href=/add_space><button>Add Space</button></a>
+						<a href=/construct_site><button>Construct!</button></a>
 				</section>
 			</body>
 			"""+footer
@@ -66,8 +63,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 							<input type="submit" value="Add Space" id="submit">
 						</div>
 					</fieldset>
-					</form></section>
-				<br><a href=/><button>Go back</button></a>
+				</form>
+				<a href=/><button>Go back</button></a>
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
@@ -130,15 +127,15 @@ class ServerHandler(BaseHTTPRequestHandler):
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
-		elif path.find("/image.png") != -1:
+		elif path.find("/image.jpg") != -1:
 			
 			# Make right headers
 			s.send_response(200)
-			s.send_header("Content-type", "image/png")
+			s.send_header("Content-type", "image/jpg")
 			s.end_headers()
 			try:
 				# Read the file
-				bReader = open("UI/logo.png", "rb")
+				bReader = open("UI/automated_building_logo_scandic.jpg", "rb")
 				s.wfile.write(bReader.read())
 			except:
 				# File not found
@@ -298,9 +295,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 					else: number_unique_buildings = int(site_num_of_buildings)
 					for i in range(0, number_unique_buildings):
 							out += """	
-								<input type="hidden" name="id" value=building_"""+str(i)+""">
 								<tr>
-									<td>""" + str(i) + """</td>
+									<td>""" + str(i+1) + """</td>
 									<td><input type="number" name="length" id="length" value="40"></td>
 									<td><input type="number" name="width" id="width" value="30"></td>
 									<td><input type="number" name="height" id="height" value="30"></td>
@@ -333,13 +329,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 			building_all_storeys_identical = True
 
 			if(site_all_buildings_identical):
-				building_id = args[4]
-				building_length = args[5]
-				building_width = args[6]
-				building_height = args[7]
-				building_energy_consumption = args[8]
-				building_number_of_storeys = args[9] 
-				# building_all_storeys_identical = args[10] 
+				building_length = args[4]
+				building_width = args[5]
+				building_height = args[6]
+				building_energy_consumption = args[7]
+				building_number_of_storeys = args[8] 
+				# building_all_storeys_identical = args[9] 
 			else:
 				print("ALL BUILDINGS NOT IDENTICAL IS NOT YET SUPPORTED.")
 
@@ -368,7 +363,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<input type="hidden" name="site_width" value=\""""+site_width+"""\">
 					<input type="hidden" name="site_num_of_buildings" value=\""""+site_num_of_buildings+"""\">
 					<input type="hidden" name="site_all_buildings_identical" value=\""""+str(site_all_buildings_identical)+"""\">
-					<input type="hidden" name="building_id" value=\""""+str(building_id)+"""\">
 					<input type="hidden" name="building_length" value=\""""+building_length+"""\">
 					<input type="hidden" name="building_width" value=\""""+building_width+"""\">
 					<input type="hidden" name="building_height" value=\""""+building_height+"""\">
@@ -377,7 +371,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<input type="hidden" name="building_all_storeys_identical" value=\""""+str(building_all_storeys_identical)+"""\">
 					<fieldset>
 					<legend> Types of spaces</legend>
-					<input size="55" type="text" name="spaces" id="spaces" value="flat">
+					<input size="55" type="text" name="spaces" id="spaces" value="kitchen, bedroom">
 					<input type="submit" value="Next" id="submit">
 					</fieldset>
 				</form>
@@ -395,18 +389,18 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+			# Constructor.recieveFromUser
 			site_length = args[0]
 			site_width = args[1]
 			site_num_of_buildings = args[2]
 			site_all_buildings_identical = True
-			building_id = args[4]
-			building_length = args[5]
-			building_width = args[6]
-			building_height = args[7]
-			building_energy_consumption = args[8]
-			building_number_of_storeys = args[9] 
+			building_length = args[4]
+			building_width = args[5]
+			building_height = args[6]
+			building_energy_consumption = args[7]
+			building_number_of_storeys = args[8] 
 			building_all_storeys_identical = True
-			storey_space_types = args[11]
+			storey_space_roles = args[10]
 
 			[print("arg: "+ argument_pairs[i]+"\n") for i in range(len(args))]
 			
