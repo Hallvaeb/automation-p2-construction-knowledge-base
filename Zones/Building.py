@@ -3,8 +3,6 @@ from Zones.Zone import Zone
 import requests
 from Zones.Site import Site
 
-
-
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
 #   kall java -jar fuseki-server.jar
@@ -14,20 +12,17 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Building(Zone):
 
-    # site_id = None
-
     def __init__(self, args):
-        self.type = args[0]
-        self.length = args[1]
-        self.width = args[2]
-        self.height = args[3]
+        # INPUT args: [length, width, height, hasStoreys[]]
+        self.type = "building"
+        self.length = args[0]
+        self.width = args[1]
+        self.height = args[2]
         self.hasStoreys = args[-1]
 
         self.building_id = IDGenerator.create_ID(self) 
 
-    def addToKB(self, args):
-        
-        # INPUT args: [type, length, width, height, hasStoreys[]]
+    def addToKB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
  	 	# return 1 (true) when added
 

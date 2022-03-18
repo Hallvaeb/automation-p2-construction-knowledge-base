@@ -1,4 +1,4 @@
-from Zone import Zone
+from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
 

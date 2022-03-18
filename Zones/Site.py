@@ -1,24 +1,23 @@
-from Zone import Zone
 import requests
-# from IDGenerator import IDGenerator
+from Zones.Zone import Zone
+from IDGenerator import IDGenerator
 
 URL = "http://127.0.0.1:3030/bot"
 
 
 class Site(Zone):
-    # site_id = "site_140"
-    # hasBuildings = []
     
     def __init__(self, args):
-        self.type = args[0]           
-        self.length = args[1]
-        self.width = args[2]
-        self.height = args[3]
+        # INPUT args: [length, width, height, hasBuildings[]]
+        self.type = "site"          
+        self.length = args[0]
+        self.width = args[1]
+        self.height = args[2]
         self.hasBuildings = args[-1]   #List
-        self.site_id = "site_20" #IDGenerator.createID(type)         
         
-    def addToKB(self, args):
-         # INPUT order_list: [type, length, width, height, hasBuildings[]]
+        self.site_id = IDGenerator.create_ID(type)         
+        
+    def addToKB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
  	 	# return 1 (true) when added
 
@@ -27,14 +26,14 @@ class Site(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.site_id) + ''' a bot:Site.
-                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             '''
             )   
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasBuildings)):
                 UPDATE += ('''
-                bot:''' + str(args) + ''' bot:hasBuilding bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(self.hasBuildings[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -54,24 +53,24 @@ class Site(Zone):
             PREFIX bot:<https://w3id.org/bot#>
 			DELETE {
                 bot:''' + str(self.site_id) + ''' a bot:Site.
-                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasBuildings)):
                 UPDATE += ('''
-                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(self.hasBuildings[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
                 bot:''' + str(self.site_id) + ''' a bot:Site.
-                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasBuildings)):
                 UPDATE += ('''
-                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(self.hasBuildings[i]) + '''.
                     ''')
             UPDATE += ('''}''')
             

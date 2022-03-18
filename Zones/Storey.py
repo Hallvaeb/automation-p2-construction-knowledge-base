@@ -1,4 +1,4 @@
-from Zone import Zone
+from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
 
@@ -8,15 +8,16 @@ class Storey(Zone):
 
 
     def __init__(self, args):
-    # INPUT args: [type, length, width, height, hasSpaces[]]
+        # INPUT args: [length, width, height, hasSpaces[]]
         self.type = "storey"
-        self.length = args[1]
-        self.width = args[2]
-        self.height = args[3]
+        self.length = args[0]
+        self.width = args[1]
+        self.height = args[2]
         self.hasSpaces = args[-1]
+        
         self.storey_id = IDGenerator.create_ID(self) 
 
-    def addToKB(self, args):
+    def addToKB(self):
         # hasSpaces is a list containing ids for the spaces in this storey. 
  	 	# return 1 (true) when added
 
@@ -25,14 +26,14 @@ class Storey(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.storey_id) + ''' a bot:Storey.
-                bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             '''
             )   
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasSpaces)):
                 UPDATE += ('''
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(self.hasSpaces[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -45,31 +46,31 @@ class Storey(Zone):
         except:
             return 0
 
-    def remove(self, args):
+    def remove(self):
         
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
 			DELETE {
                     bot:''' + str(self.storey_id) + ''' a bot:Storey.
-                    bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                    bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                    bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasSpaces)):
                 UPDATE += ('''
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(self.hasSpaces[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
             bot:''' + str(self.storey_id) + ''' a bot:Storey.
-                    bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                    bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                    bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasSpaces)):
                 UPDATE += ('''
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(self.hasSpaces[i]) + '''.
                     ''')
             UPDATE += ('''}''')
             
