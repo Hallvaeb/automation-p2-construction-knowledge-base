@@ -60,7 +60,7 @@ class Space(Zone):
         return 1
         
 
-    def addToKB(self, args):
+    def addToKB(self):
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
