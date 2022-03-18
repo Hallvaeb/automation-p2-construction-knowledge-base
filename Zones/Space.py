@@ -6,35 +6,34 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Space(Zone):
 
-    #storey_id = NOE
-
     def __init__(self, args):
-        if len(args) == 1:
-            self.__init__2(args[1])
+        if (len(args) == 1):
+            self.__init__2(args)
+        else:
+            self.__init__1(args)
     
-    def __init__1(self, length, width, height, energyEfficiency, role, adjacentZones):
-        # INPUT args: [type, length, width, height, energyEfficiency, role, adjacentZones[]]
-
-        self.type = type
-        self.length = length
-        self.width = width
-        self.height = height
-        self.energyEfficiency = energyEfficiency
-        self.role = role
-        self.adjacentZones = adjacentZones
+    def __init__1(self, args):
+        # INPUT args: [length, width, height, energyEfficiency, role, adjacentZones[]]
+        self.type = "space"
+        self.length = args[0]
+        self.width = args[1]
+        self.height = args[2]
+        self.energyEfficiency = args[3]
+        self.role = args[4]
+        self.adjacentZones = args[5]
 
         self.space_id = IDGenerator.create_ID(self.type)
         self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
-        # self.isRoleInKB(self.role)
+        self.isRoleInKB(self.role)
 
-    def __init__1(self, type, role):
-        # INPUT args: [type, role]
-        self.type = type
-        self.role = role
+    def __init__2(self, args):
+        # INPUT args: [role]
+        self.type = "space"
+        self.role = args[0]
 
-        # self.space_id = IDGenerator.createID(self.type)
-        # self.adjacent_space_id = IDGenerator.createID(self.type)
+        self.space_id = IDGenerator.create_ID(self.type)
+        self.adjacent_space_id = IDGenerator.create_ID(self.type)
 
         self.isRoleInKB(self.role)
 
@@ -52,7 +51,6 @@ class Space(Zone):
         r = requests.get(url = URL, params = PARAMS) 
         data = r.json()
 		
-        print(data)
         if (len(data['results']['bindings']) == 0 ):
             return 0
         return 1
@@ -80,7 +78,6 @@ class Space(Zone):
             WHERE {
             }
             ''')
-            print(UPDATE)
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
     
@@ -174,9 +171,4 @@ class Space(Zone):
     def getEnergyEfficiency(self):
         return self.energyEfficiency
 
-##############
-
-space = Space('space', 2100, 4300, 2100, 60, 'Hallway',['space7'])
-print("added:",space.addToKB('space','Hallway'))
-# print("1 means yes it is in database:", space.isRoleInKB(space.role))
 
