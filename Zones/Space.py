@@ -24,12 +24,14 @@ class Space(Zone):
         self.width = args[1]
         self.height = args[2]
         self.energyEfficiency = args[3]
-        role = args[4]
-
-        i = 0
+        
+        # Finding unique role:
+        role = args[4]+"_"
+        i = 1
+        role+=str(i)
         while(Space.isRoleInKB(role)):
             i += 1
-            role = role+"_"+str(i)
+            role = role+str(i)
         self.role = role
         self.space_id = IDGenerator.create_space_prototype_ID(self)
 

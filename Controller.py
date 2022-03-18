@@ -25,6 +25,7 @@ class Controller():
 		print(storey_space_role_list)
 		space_ids = []
 		for role in storey_space_role_list:
+			role = role.lower()
 			space_ids.append(Space(["space", role]))
 		
 		storey_id = Storey(["storey", building_length, building_width, building_height, space_ids])
