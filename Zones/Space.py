@@ -1,6 +1,8 @@
 from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
+import json
+
 
 URL = "http://127.0.0.1:3030/bot"
 
@@ -147,8 +149,10 @@ class Space(Zone):
         except:
             return 0
 
-    def get_args_from_KB(self):
-        
+    def getArgsFromKB(self):
+        """
+        Returns args
+        """
         QUERY = ('''
         SELECT *
         WHERE {
@@ -164,11 +168,10 @@ class Space(Zone):
 
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS) 
-        data = r.json()
-		
-        if (len(data['results']['bindings']) == 0 ):
-            return 0
-        return 1
+        data = json.load(r.json())
+        print("DATAAAAA___----------------------------", data)
+	    
+        
         
         
         pass
