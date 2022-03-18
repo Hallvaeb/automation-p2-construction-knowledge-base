@@ -88,17 +88,20 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
                 bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+                }
             WHERE {
             }
             ''')
             print(UPDATE)
             PARAMS = {"update": UPDATE}
+            print('Kom du deg hit?')
             r = requests.post(url = URL+"/update", data = PARAMS) 
+            print('Eller kanskje hit?')
             return 1
         except:
             return 0
     
-    def remove(self, args):
+    def remove(self):
 
         try:
             UPDATE = ('''
@@ -110,12 +113,7 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
                 bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
-            ''') 
-            for i in range(len(self.adjacentZones)):
-                UPDATE += ('''
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(self.adjacentZones[i]) + '''.
-                    ''')
-            UPDATE += ('''}
+                }
             WHERE {
             bot:''' + str(self.space_id) + ''' a bot:Space.
             bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
@@ -123,12 +121,7 @@ class Space(Zone):
             bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
-            ''') 
-            for i in range(len(self.adjacentZones)):
-                UPDATE += ('''
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(self.adjacentZones[i]) + '''.
-                    ''')
-            UPDATE += ('''}''')
+                }''')
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
