@@ -15,9 +15,9 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Building(Zone):
 
-    site_id = None
+    # site_id = None
 
-    def create(self, args):
+    def __init__(self, args):
         self.type = args[0]
         self.length = args[1]
         self.width = args[2]
@@ -184,27 +184,25 @@ class Building(Zone):
 ### ----- Tester ----- ###
 
 site_args1 = ['site', 500000, 500000, 0,[]]
-site = Site()
-site.create(site_args1)
+site = Site(site_args1)
+# site.create(site_args1)
 print(site.addToKB(site_args1))
 
 
 args1 = ['building', 7000, 90000, 10000, ['Storey_21', 'Storey_22', 'Storey_23']]
 args2 = ['building', 7000, 90000, 10000, ['Storey_1']]
 
-building = Building()
-building.create(args1)
+building = Building(args1)
 print(building.addToKB(args1))
 
-building2 = Building()
-building2.create(args2)
+building2 = Building(args2)
 print(building2.addToKB(args2))
 
 # print(Building.remove(args4))
 print("added zone:",site.addZone(building.building_id),site.addZone(building2.building_id))
 print(site.getID(),"sine bygg: ", site.getZones())
 print(building.building_id,"is places at", building.getSite())
-print("Er den fjernet:",site.remove(site_args1))
+# print("Er den fjernet:",site.remove(site_args1))
 print(building2.building_id,"is placed at", building2.getSite())
 print(site.getID(),"sine bygg: ", site.getZones())
 
