@@ -31,14 +31,14 @@ class Building(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.building_id) + ''' a bot:Building.
-                bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             '''
             )   
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasStoreys)):
                 UPDATE += ('''
-                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(self.hasStoreys[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -51,31 +51,31 @@ class Building(Zone):
         except:
             return 0
 
-    def remove(self, args):
+    def remove(self):
         
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
 			DELETE {
                     bot:''' + str(self.building_id) + ''' a bot:Building.
-                    bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                    bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                    bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                    bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                    bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                    bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasStoreys)):
                 UPDATE += ('''
-                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(self.hasStoreys[i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
                 bot:''' + str(self.building_id) + ''' a bot:Building.
-                bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
-                bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
-                bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.building_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
             ''') 
-            for i in range(len(args[-1])):
+            for i in range(len(self.hasStoreys)):
                 UPDATE += ('''
-                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(args[-1][i]) + '''.
+                bot:''' + str(self.building_id) + ''' bot:hasStorey bot:''' + str(self.hasStoreys[i]) + '''.
                     ''')
             UPDATE += ('''}''')
             
@@ -145,10 +145,7 @@ class Building(Zone):
             site = str(data['results']['bindings']).replace("]","").replace("}","").replace("'","").replace('"','').split('#')[-1]
             return site
         except:
-            return "This building is not placed at any site"
-
-        # fungerer nå, men det er et problem dersom flere sites har bygg med samme id 
-        # på sitt område. Dette må diskuteres!
+            return 0 #"This building is not placed at any site"
 
     def getZones(self):
         return self.hasStoreys
@@ -170,34 +167,3 @@ class Building(Zone):
 
     def getVolume(self):
         return self.length*self.width*self.height
-
-
-
-
-
-# ### ----- Tester ----- ###
-
-# site_args1 = ['site', 500000, 500000, 0,[]]
-# site = Site(site_args1)
-# # site.create(site_args1)
-# print(site.addToKB(site_args1))
-
-
-# args1 = ['building', 7000, 90000, 10000, ['Storey_21', 'Storey_22', 'Storey_23']]
-# args2 = ['building', 7000, 90000, 10000, ['Storey_1']]
-
-# building = Building(args1)
-# print(building.addToKB(args1))
-
-# building2 = Building(args2)
-# print(building2.addToKB(args2))
-
-# # print(Building.remove(args4))
-# print("added zone:",site.addZone(building.building_id),site.addZone(building2.building_id))
-# print(site.getID(),"sine bygg: ", site.getZones())
-# print(building.building_id,"is places at", building.getSite())
-# # print("Er den fjernet:",site.remove(site_args1))
-# print(building2.building_id,"is placed at", building2.getSite())
-# print(site.getID(),"sine bygg: ", site.getZones())
-
-
