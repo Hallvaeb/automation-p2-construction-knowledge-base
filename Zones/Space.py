@@ -26,12 +26,13 @@ class Space(Zone):
         self.energyEfficiency = args[3]
         
         # Finding unique role:
-        role = args[4]+"_"
+        role_core = args[4]+"_"
+        
         i = 1
-        role+=str(i)
+        role = role_core + str(i)
         while(Space.isRoleInKB(role)):
             i += 1
-            role = role+str(i)
+            role = role_core + str(i)
         self.role = role
         self.space_id = IDGenerator.create_space_prototype_ID(self)
 
