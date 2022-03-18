@@ -1,8 +1,8 @@
 #! NX/KF 4.0
-DefClass: <ID> (ug_base_part);
-    (number parameter) my_height: <HEIGHT>; 
-    (number parameter) my_width: <WIDTH>;
-    (number parameter) my_length: <LENGTH>; 
+DefClass: building_12 (ug_base_part);
+    (number parameter) my_height: 50; 
+    (number parameter) my_width: 50;
+    (number parameter) my_length: 50; 
 
 
 (child) block1: 
