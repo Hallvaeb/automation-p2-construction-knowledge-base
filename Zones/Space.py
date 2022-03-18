@@ -1,21 +1,19 @@
 from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
-import json
 
 
 URL = "http://127.0.0.1:3030/bot"
 
 class Space(Zone):
 
-
     def __init__(self, args):
-        if (len(args) == 1):
-            self.__init__2(args)
+        if (len(args) < 3):
+            Space.init_construction(self, args)
         else:
-            self.__init__1(args)
+            Space.init_prototype(self, args)
     
-    def __init__1(self, args):
+    def init_prototype(self, args):
         """
             Adds prototype space to KB
         """
@@ -25,7 +23,6 @@ class Space(Zone):
         self.width = args[1]
         self.height = args[2]
         self.energyEfficiency = args[3]
-        
         # Finding unique role:
         role_core = args[4]+"_"
         
@@ -38,20 +35,21 @@ class Space(Zone):
         self.space_id = IDGenerator.create_space_prototype_ID(self)
 
         self.add_to_KB()
-        return self
         
 
-    def __init__2(self, args):
+    def init_construction(self, args):
         """
             Space is being used and created in construction
         """
         # INPUT args: [role]
         self.type = "space"
-        role = args[0]
-        if not Space.is_role_in_KB(role):
+        self.role = args[0]
+        if not Space.is_role_in_KB(self.role):
             return -1 
-        self.space_id = IDGenerator.create_space_prototype_ID(self)
+
+        space_id = IDGenerator.create_space_prototype_ID(self)
         # TODO: get arguments of space with role
+        Space.get_args_from_KB(space_id)
         # space_args = get_arguments_of_space_prototype(self.space_id)
         # self.length = space_args[0]
         # self.width = space_args[1]
@@ -144,31 +142,34 @@ class Space(Zone):
             r = requests.post(url = URL+"/update", data = PARAMS) 
             
             #add the adjacent zone to the list of adjacent zones to this space.
-            self.adjacentZones.append(str(adjacent_space_id))
+            # self.adjacentZones.append(str(adjacent_space_id))
             return 1
         except:
             return 0
 
-    def getArgsFromKB(self):
+    def get_args_from_KB(space_id):
+        liste = space_id.split('_')
+        print("ER DETTE SPACE?????",space_id)
+        role = liste[1]+"_"+liste[2]
         """
         Returns args
         """
         QUERY = ('''
-        SELECT *
+        SELECT ?length ?width ?height ?energyEfficiency ?role
         WHERE {
 	        ?space a bot:Space.
             ?space bot:hasLength ?length.
             ?space bot:hasWidth ?width.
             ?space bot:hasHeight ?height.
             ?space bot:energyEfficiency ?energyEfficiency.
-            ?space bot:hasRole ?role
-	        FILTER (EXISTS { ?space bot:hasRole "'''+str(self.role)+'''"})
+            ?space bot:hasRole ?role.
+	        FILTER (EXISTS { ?space bot:hasRole "'''+str(role)+'''"})
 }
         ''')
-
+        print(QUERY)
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS) 
-        data = json.load(r.json())
+        data = r.json()
         print("DATAAAAA___----------------------------", data)
 	    
         

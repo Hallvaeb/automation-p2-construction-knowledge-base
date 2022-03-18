@@ -3,7 +3,7 @@ from Zones.Site import Site
 from Zones.Building import Building
 from Zones.Storey import Storey
 from Zones.Space import Space
-
+import urllib.parse
 
 class Controller():
 
@@ -21,15 +21,18 @@ class Controller():
 		building_energy_consumption = args[7]
 		building_number_of_storeys = args[8]
 		building_all_storeys_identical = True
-		space_roles = args[10]
+		space_roles = urllib.parse.unquote_plus(args[10])
 
-		space_roles_list = space_roles.split(", ")
+		space_roles_list = str(space_roles).split(",")
+
 		space_ids = []
 		for role in space_roles_list:
 			role = role.lower()
 			space_ids.append(Space([role]))
+
 		
-		Space.getArgsFromKB(space_ids[-1])
+		print("DETTE ER SPACEN VI JOBBER MED",space_ids[-1])
+		Space.get_args_from_KB(space_ids[-1])
 
 		storey_id = Storey([building_length, building_width, building_height, space_ids])
 		building_id = Building([building_length, building_width, building_height, [storey_id]])
