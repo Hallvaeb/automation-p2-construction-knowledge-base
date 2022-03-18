@@ -1,6 +1,7 @@
 import requests
 
 
+
 class DFABuilder():
 
 
@@ -9,7 +10,7 @@ class DFABuilder():
     def makeDFA(height, width, length):
         
         #Read current temp file
-        f = open("FILE", "r")
+        f = open("C:\Users\sigve\OneDrive\Dokumenter\NTNU\V2022\Automatisering prosjekt\kbe-a2\DFAs\building.dfa", "r")
         txt = f.read()
         txt_replaced = txt.replace("<HEIGTH>", str(height))
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
