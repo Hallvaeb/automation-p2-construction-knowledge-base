@@ -9,7 +9,7 @@ class Site(Zone):
     # site_id = "site_140"
     # hasBuildings = []
     
-    def create(self, args):
+    def __init__(self, args):
         self.type = args[0]           
         self.length = args[1]
         self.width = args[2]

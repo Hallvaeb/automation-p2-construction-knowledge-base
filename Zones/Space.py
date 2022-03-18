@@ -9,7 +9,7 @@ class Space(Zone):
 
     #storey_id = NOE
 
-    def create(self, args):
+    def __init__(self, args):
         # INPUT args: [type, length, width, height, role, adjacentZones[]]
 
         self.type = args[0]

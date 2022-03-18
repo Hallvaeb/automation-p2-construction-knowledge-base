@@ -7,7 +7,7 @@ URL = "http://127.0.0.1:3030/bot"
 class Storey(Zone):
 
     # building_id = NOE
-    def create(self, args):
+    def __init__(self, args):
     # INPUT args: [type, length, width, height, hasSpaces[]]
         self.type = args[0]
         self.length = args[1]

@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 class Zone(ABC):
 
     @abstractmethod
-    def create():
+    def __init__():
         pass
 
     @abstractmethod
