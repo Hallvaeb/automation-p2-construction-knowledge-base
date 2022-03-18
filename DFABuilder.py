@@ -1,6 +1,4 @@
-#import requests
 from IDGenerator import IDGenerator
-
 
 
 class DFABuilder():
@@ -67,9 +65,6 @@ class DFABuilder():
         elif type == "storey":
             DFABuilder.makeDFA("storey", height, width, length)
             
-    
-
-
 
     def extractDFAfile(path):
         pass

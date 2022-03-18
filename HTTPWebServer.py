@@ -217,9 +217,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 					Role: 		<br><input type="text" name="role" value=\""""+argument_list[4]+"""\"><br>
 					<input id= "submit" type="submit" value="OK">
 					<div id="illustration_will_appear">
-								Maybe an illustration of your space will appear here some day?
+						Maybe an illustration of your space will appear here some day?
 					</div>
-					</fieldset>
+				</fieldset>
 				</form>
 			</section>
 			<a href="/cancel_space"> <button>CANCEL</button> </a> 

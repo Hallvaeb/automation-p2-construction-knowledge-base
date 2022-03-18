@@ -1,4 +1,3 @@
-import datetime
 import random
 
 
@@ -8,7 +7,6 @@ class IDGenerator():
         """
         Returns "type_rrrrrrrrr" where r = random(0,9) 
         """
-
         r1 = str(random.randint(0, 9))
         r2 = str(random.randint(0, 9))
         r3 = str(random.randint(0, 9))
