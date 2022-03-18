@@ -44,7 +44,9 @@ class Controller():
 		energyEfficiency = args[3]
 		role = args[4]
 
-		Space([length, width, height, energyEfficiency, role])
+		space = Space([length, width, height, energyEfficiency, role])
+
+		addToKB(space)
 
 # site_length=500
 # site_width=400

@@ -15,6 +15,9 @@ class Space(Zone):
             self.__init__1(args)
     
     def __init__1(self, args):
+        """
+            Adds prototype space to KB
+        """
         # INPUT args: [length, width, height, energyEfficiency, role]
         self.type = "space"
         self.length = args[0]
@@ -22,23 +25,36 @@ class Space(Zone):
         self.height = args[2]
         self.energyEfficiency = args[3]
         self.role = args[4]
-        # self.adjacentZones = args[5]
 
-        self.space_id = IDGenerator.create_ID(self)
-        # self.adjacent_space_id = IDGenerator.create_ID(self.type)
-
-        Space.isRoleInKB(self.role)
-
-    def __init__2(self, args):
-        # INPUT args: [role]
-        self.type = "space"
-        role = args[0]
         i = 0
         while(Space.isRoleInKB(role)):
             i += 1
             role = role+"_"+str(i)
         self.role = role
         self.space_id = IDGenerator.create_space_prototype_ID(self)
+
+        self.addToKB()
+        return self.space_id
+        
+
+    def __init__2(self, args):
+        """
+            Space is being used and created in construction
+        """
+        # INPUT args: [role]
+        self.type = "space"
+        role = args[0]
+        if not Space.isRoleInKB(role):
+            return -1 
+        self.space_id = IDGenerator.create_space_prototype_ID(self)
+        # TODO: get arguments of space with role
+        space_args = get_arguments_of_space_prototype(self.space_id)
+        self.length = space_args[0]
+        self.width = space_args[1]
+        self.height = space_args[2]
+        self.energyEfficiency = space_args[3]
+        self.role = space_args[4]
+
 
 
     def isRoleInKB(role):
