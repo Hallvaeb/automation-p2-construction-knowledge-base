@@ -22,7 +22,7 @@ class Building(Zone):
 
         self.building_id = IDGenerator.create_ID(self) 
 
-    def addToKB(self):
+    def add_to_KB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
  	 	# return 1 (true) when added
 
@@ -85,7 +85,7 @@ class Building(Zone):
         except:
             return 0
 
-    def addZone(self, storey_id): #adds zones (here storeys) to the builing as well as the list hasStoreys
+    def add_zone(self, storey_id): #adds zones (here storeys) to the builing as well as the list hasStoreys
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -125,7 +125,7 @@ class Building(Zone):
     #     except:
     #         return 0
 
-    def getSite(self):
+    def get_site(self):
         
         try:
             QUERY = ('''
@@ -147,23 +147,23 @@ class Building(Zone):
         except:
             return 0 #"This building is not placed at any site"
 
-    def getZones(self):
+    def get_zones(self):
         return self.hasStoreys
 
-    def getID(self):
+    def get_ID(self):
         return self.building_id
 
-    def getType(self):
+    def get_type(self):
         return self.type
     
-    def getHeight(self):
+    def get_height(self):
         return self.height
 
-    def getWidth(self):
+    def get_width(self):
         return self.width
     
-    def getLength(self):
+    def get_length(self):
         return self.length
 
-    def getVolume(self):
+    def get_volume(self):
         return self.length*self.width*self.height

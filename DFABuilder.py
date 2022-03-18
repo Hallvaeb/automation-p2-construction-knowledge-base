@@ -4,7 +4,7 @@ from IDGenerator import IDGenerator
 class DFABuilder():
 
     
-    def makeDFA(type, height, width, length):
+    def make_DFA(type, height, width, length):
         id = IDGenerator.create_ID(type)
         #Read current temp file
         f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/" + type +".dfa", "r")
@@ -35,7 +35,7 @@ class DFABuilder():
         #else:
         #    print("Please Upload again !")
 
-    def makeDesignTemplate(): #Should take some form of ID for the order, def makeDesignTemplate(key):
+    def make_design_template(): #Should take some form of ID for the order, def makeDesignTemplate(key):
         #Design
         f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/design.dfa", "r")
         txt = f.read()
@@ -51,25 +51,25 @@ class DFABuilder():
         f.write(txt)
         f.close
 
-    def generateDFA(type, height, width, length):
+    def generate_DFA(type, height, width, length):
 
         if type == "building":
-            DFABuilder.makeDFA("building", height, width, length)
+            DFABuilder.make_DFA("building", height, width, length)
 
         elif type == "site":
-            DFABuilder.makeDFA("site", height, width, length)
+            DFABuilder.make_DFA("site", height, width, length)
             
         elif type == "space":
-            DFABuilder.makeDFA("space", height, width, length)
+            DFABuilder.make_DFA("space", height, width, length)
             
         elif type == "storey":
-            DFABuilder.makeDFA("storey", height, width, length)
+            DFABuilder.make_DFA("storey", height, width, length)
             
 
-    def extractDFAfile(path):
+    def extract_DFA_file(path):
         pass
 
 
 
-DFABuilder.generateDFA("site", 0.2, 300, 500, id)
-DFABuilder.generateDFA("building", 200, 150, 300, id)
+DFABuilder.generate_DFA("site", 0.2, 300, 500, id)
+DFABuilder.generate_DFA("building", 200, 150, 300, id)

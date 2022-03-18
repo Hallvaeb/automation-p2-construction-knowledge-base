@@ -1,4 +1,3 @@
-from readline import parse_and_bind
 from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
@@ -6,7 +5,6 @@ import requests
 URL = "http://127.0.0.1:3030/bot"
 
 class Space(Zone):
-
 
 
     def __init__(self, args):
@@ -61,7 +59,7 @@ class Space(Zone):
 
 
 
-    def isRoleInKB(role):
+    def is_role_in_KB(role):
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
 		SELECT ?role 
@@ -80,7 +78,7 @@ class Space(Zone):
         return 1
         
 
-    def addToKB(self):
+    def add_to_KB(self):
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -129,7 +127,7 @@ class Space(Zone):
         except:
             return 0
 
-    def addZone(self, adjacent_space_id): #adds zones (here adjacent spaces) to the space as well as the list adjacentZones
+    def add_zone(self, adjacent_space_id): #adds zones (here adjacent spaces) to the space as well as the list adjacentZones
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -149,7 +147,7 @@ class Space(Zone):
         except:
             return 0
 
-    def getArgsFromKB(self):
+    def get_args_from_KB(self):
         
         QUERY = ('''
         SELECT *
@@ -175,32 +173,35 @@ class Space(Zone):
         
         pass
 
-    def getStorey(self):
+    def get_storey(self):
         pass
         #Må her inn i KB
 
-    def getZones(self):
+    def get_zones(self):
         return self.adjacentZones
 
-    def getID(self):
+    def get_ID(self):
         return self.space_id
 
-    def getType(self):
+    def get_type(self):
         return self.type
     
-    def getHeight(self):
+    def get_height(self):
         return self.height
 
-    def getWidth(self):
+    def get_width(self):
         return self.width
     
-    def getLength(self):
+    def get_length(self):
         return self.length
 
-    def getVolume(self):
+    def get_area(self):
+        return self.length*self.width
+
+    def get_volume(self):
         return self.length*self.width*self.height
 
-    def getEnergyEfficiency(self):
+    def get_energyEfficiency(self):
         return self.energyEfficiency
 
 

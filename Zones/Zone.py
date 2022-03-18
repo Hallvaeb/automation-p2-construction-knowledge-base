@@ -10,7 +10,7 @@ class Zone(ABC):
         pass
 
     @abstractmethod
-    def addToKB():
+    def add_to_KB():
         pass
 
     @abstractmethod
@@ -18,34 +18,34 @@ class Zone(ABC):
         pass
 
     @abstractmethod
-    def addZone():
+    def add_zone():
         pass
     @abstractmethod
-    def getZones():
-        pass
-
-    @abstractmethod
-    def getID():
+    def get_zones():
         pass
 
     @abstractmethod
-    def getType():
+    def get_ID():
         pass
 
     @abstractmethod
-    def getHeight():
+    def get_type():
         pass
 
     @abstractmethod
-    def getWidth():
+    def get_height():
         pass
 
     @abstractmethod
-    def getLength():
+    def get_width():
         pass
 
     @abstractmethod
-    def getVolume():
+    def get_length():
+        pass
+
+    @abstractmethod
+    def get_volume():
         pass
         
 

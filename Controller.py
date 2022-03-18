@@ -29,6 +29,8 @@ class Controller():
 			role = role.lower()
 			space_ids.append(Space([role]))
 		
+		Space.getArgsFromKB(space_ids[-1])
+
 		storey_id = Storey([building_length, building_width, building_height, space_ids])
 		building_id = Building([building_length, building_width, building_height, [storey_id]])
 		site_id = Site([site_length, site_width, building_height, [building_id]])
@@ -46,4 +48,4 @@ class Controller():
 		role = args[4].lower()
 
 		space = Space([length, width, height, energyEfficiency, role])
-		space.addToKB()
+		space.add_to_KB()

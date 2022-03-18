@@ -17,7 +17,7 @@ class Storey(Zone):
         
         self.storey_id = IDGenerator.create_ID(self) 
 
-    def addToKB(self):
+    def add_to_KB(self):
         # hasSpaces is a list containing ids for the spaces in this storey. 
  	 	# return 1 (true) when added
 
@@ -80,7 +80,7 @@ class Storey(Zone):
         except:
             return 0
 
-    def addZone(self, space_id): #adds zones (here space) to the storey as well as the list hasSpaces
+    def add_zone(self, space_id): #adds zones (here space) to the storey as well as the list hasSpaces
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -99,32 +99,35 @@ class Storey(Zone):
         except:
             return 0
 
-    def getBuilding(self):
+    def get_building(self):
         pass
 
-    def getFloorNumber(self):
+    def get_floorNumber(self):
         pass
 
-    def fillStorey(self):
+    def fill_storey(self):
         pass
     
-    def getZones(self):
+    def get_zones(self):
         return self.hasSpaces
 
-    def getID(self):
+    def get_ID(self):
         return self.storey_id
 
-    def getType(self):
+    def get_type(self):
         return self.type
     
-    def getHeight(self):
+    def get_height(self):
         return self.height
 
-    def getWidth(self):
+    def get_width(self):
         return self.width
     
-    def getLength(self):
+    def get_length(self):
         return self.length
 
-    def getVolume(self):
+    def get_area(self):
+        return self.length*self.width
+
+    def get_volume(self):
         return self.length*self.width*self.height

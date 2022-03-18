@@ -4,7 +4,7 @@ import time
 from Controller import Controller
 
 HOST_NAME = '127.0.0.1'
-PORT_NUMBER = 4500
+PORT_NUMBER = 4300
 
 
 class ServerHandler(BaseHTTPRequestHandler):
@@ -394,7 +394,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
-			# Constructor.recieveFromUser
+			
+			Controller.construct(args)
+
 			site_length = args[0]
 			site_width = args[1]
 			site_num_of_buildings = args[2]
