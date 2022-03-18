@@ -43,7 +43,7 @@ class Controller():
 		width = args[1]
 		height = args[2]
 		energyEfficiency = args[3]
-		role = args[4]
+		role = args[4].lower()
 
 		space = Space([length, width, height, energyEfficiency, role])
 		print("før vi prøver å adde")
