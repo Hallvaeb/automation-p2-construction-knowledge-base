@@ -1,3 +1,4 @@
+from readline import parse_and_bind
 from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
@@ -80,7 +81,6 @@ class Space(Zone):
         
 
     def addToKB(self):
-        print(str(self.space_id))
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -95,11 +95,8 @@ class Space(Zone):
             WHERE {
             }
             ''')
-            print(UPDATE)
             PARAMS = {"update": UPDATE}
-            print('Kom du deg hit?')
             r = requests.post(url = URL+"/update", data = PARAMS) 
-            print('Eller kanskje hit?')
             return 1
         except:
             return 0
@@ -151,6 +148,32 @@ class Space(Zone):
             return 1
         except:
             return 0
+
+    def getArgsFromKB(self):
+        
+        QUERY = ('''
+        SELECT *
+        WHERE {
+	        ?space a bot:Space.
+            ?space bot:hasLength ?length.
+            ?space bot:hasWidth ?width.
+            ?space bot:hasHeight ?height.
+            ?space bot:energyEfficiency ?energyEfficiency.
+            ?space bot:hasRole ?role
+	        FILTER (EXISTS { ?space bot:hasRole "'''+str(self.role)+'''"})
+}
+        ''')
+
+        PARAMS = {"query": QUERY}
+        r = requests.get(url = URL, params = PARAMS) 
+        data = r.json()
+		
+        if (len(data['results']['bindings']) == 0 ):
+            return 0
+        return 1
+        
+        
+        pass
 
     def getStorey(self):
         pass
