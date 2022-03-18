@@ -118,7 +118,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 		elif path.find("/cancel_space") != -1:
 
 			s.send_reponse_html()
-			out = head+"""
+			out = head + """
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -134,16 +134,16 @@ class ServerHandler(BaseHTTPRequestHandler):
 		elif path.find("/construct_storey") != -1:
 			s.send_reponse_html()
 
-			site_length = 2000
-			site_width = 3000
-			site_num_of_buildings = 5
+			site_length = "2000"
+			site_width = "3000"
+			site_num_of_buildings = "5"
 			site_all_buildings_identical = True
 			building_all_storeys_identical = True
-			building_length = 200
-			building_width = 150
-			building_height = 20
-			building_energy_consumption = 60005
-			building_number_of_storeys = 10
+			building_length = "200"
+			building_width = "150"
+			building_height = "20"
+			building_energy_consumption = "60005"
+			building_number_of_storeys = "10"
 
 			out = head + """
 			<body>
