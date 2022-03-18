@@ -10,17 +10,48 @@ class Space(Zone):
     #storey_id = NOE
 
     def __init__(self, args):
-        # INPUT args: [type, length, width, height, role, adjacentZones[]]
+        # INPUT args: [type, length, width, height, energyEfficiency, role, adjacentZones[]]
 
         self.type = args[0]
         self.length = args[1]
         self.width = args[2]
         self.height = args[3]
-        self.role = args[4]
+        self.energyEfficiency = args[4]
+        self.role = args[5]
         self.adjacentZones = args[-1]
 
         self.space_id = IDGenerator.createID(self.type)
         self.adjacent_space_id = IDGenerator.createID(self.type)
+
+        self.isRoleInKB(self.role)
+
+    def __init__(self, args):
+        # INPUT args: [type, role]
+        self.type = args[0]
+        self.role = args[1]
+
+        self.space_id = IDGenerator.createID(self.type)
+        self.adjacent_space_id = IDGenerator.createID(self.type)
+
+        self.isRoleInKB(self.role)
+
+    # def isRoleInKB(self, role):
+    #     QUERY = ('''
+	# 	PREFIX PREFIX bot:<https://w3id.org/bot#>
+	# 	SELECT ?role 
+	# 	WHERE {
+	# 		?space bot:hasRole ?role.
+	# 	FILTER ( EXISTS { ?space bot:hasRole "''' + str(role) + '''"} )
+	# 	}
+	# 	''')
+	# 	PARAMS = {"query": QUERY}
+	# 	r = requests.get(url = URL, params = PARAMS) 
+	# 	data = r.json()
+		
+	# 	if (len(data['results']['bindings']) == 0 ):
+	# 		return 0
+	# 	return 1
+    #     pass
 
     def addToKB(self, args):
 
@@ -32,7 +63,8 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
+                bot:''' + str(self.space_id) + ''' bot:energyEfficiency bot:''' + str(self.energyEfficiency) + '''.
+                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[5]) + '''.
             '''
             )   
             for i in range(len(args[-1])):
@@ -61,7 +93,8 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
+                bot:''' + str(self.space_id) + ''' bot:energyEfficiency bot:''' + str(self.energyEfficiency) + '''.
+                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(self.role) + '''.
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
@@ -73,7 +106,8 @@ class Space(Zone):
             bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
-            bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
+            bot:''' + str(self.space_id) + ''' bot:energyEfficiency bot:''' + str(self.energyEfficiency) + '''.
+            bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(self.role) + '''.
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
@@ -131,3 +165,6 @@ class Space(Zone):
 
     def getVolume(self):
         return self.length*self.width*self.height
+
+    def getEnergyEfficiency(self):
+        return self.energyEfficiency
