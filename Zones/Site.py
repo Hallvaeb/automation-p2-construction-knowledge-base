@@ -6,15 +6,16 @@ URL = "http://127.0.0.1:3030/bot"
 
 
 class Site(Zone):
-    site_id = "site_140"
-    hasBuildings = []
+    # site_id = "site_140"
+    # hasBuildings = []
+    
     def create(self, args):
         self.type = args[0]           
         self.length = args[1]
         self.width = args[2]
         self.height = args[3]
         self.hasBuildings = args[-1]   #List
-        self.site_id = "site_140" #IDGenerator.createID(type)         
+        self.site_id = "site_20" #IDGenerator.createID(type)         
         
     def addToKB(self, args):
          # INPUT order_list: [type, length, width, height, hasBuildings[]]
@@ -33,13 +34,12 @@ class Site(Zone):
             )   
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(args) + ''' bot:hasBuilding "''' + str(args[-1][i]) + '''".
+                bot:''' + str(args) + ''' bot:hasBuilding bot:''' + str(args[-1][i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
             }
             ''')
-            print(UPDATE)
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
     
@@ -64,12 +64,20 @@ class Site(Zone):
                     ''')
             UPDATE += ('''}
             WHERE {
-            }
-            ''')
-            print(UPDATE)
+                bot:''' + str(self.site_id) + ''' a bot:Site.
+                bot:''' + str(self.site_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                bot:''' + str(self.site_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+            ''') 
+            for i in range(len(args[-1])):
+                UPDATE += ('''
+                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(args[-1][i]) + '''.
+                    ''')
+            UPDATE += ('''}''')
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
+            print(UPDATE)
             return 1
         except:
             return 0
@@ -80,7 +88,7 @@ class Site(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.site_id) + ''' a bot:Site.
-                  bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(building_id) + '''.
+                bot:''' + str(self.site_id) + ''' bot:hasBuilding bot:''' + str(building_id) + '''.
 
                 }
             WHERE {
@@ -116,11 +124,9 @@ class Site(Zone):
             r = requests.get(url = URL, params = PARAMS) 
             data = r.json()
             data_splitted = str(data['results']['bindings']).split('}, {')
-            print('data_splitted:',data_splitted)
             zones = []
             for i in range(len(data_splitted)):
                 data_splitted2 = data_splitted[i].split(',')
-                print('data_splitted2',data_splitted2)
                 data_splitted3=data_splitted2[-1].split(':')
                 zone = str(data_splitted3[-1].split('#')[-1]).replace("}",'').replace("]",'').replace("'",'').replace(" ",'')
                 zones.append(zone)
@@ -128,7 +134,7 @@ class Site(Zone):
         except:
             return 0 #"This site does not have any buildings"
         
-        return self.hasBuildings
+        # return self.hasBuildings
 
     def getID(self):
         return self.site_id

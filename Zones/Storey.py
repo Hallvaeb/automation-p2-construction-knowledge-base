@@ -6,6 +6,7 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Storey(Zone):
 
+    # building_id = NOE
     def create(self, args):
     # INPUT args: [type, length, width, height, hasSpaces[]]
         self.type = args[0]
@@ -31,7 +32,7 @@ class Storey(Zone):
             )   
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -57,12 +58,20 @@ class Storey(Zone):
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
-            }
-            ''')
+            bot:''' + str(self.storey_id) + ''' a bot:Storey.
+                    bot:''' + str(self.storey_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+                    bot:''' + str(self.storey_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+            ''') 
+            for i in range(len(args[-1])):
+                UPDATE += ('''
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(args[-1][i]) + '''.
+                    ''')
+            UPDATE += ('''}''')
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
@@ -76,7 +85,7 @@ class Storey(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.storey_id) + ''' a bot:Storey.
-                bot:''' + str(self.storey_id) + ''' bot:hasSpace "''' + str(space_id) + '''".
+                bot:''' + str(self.storey_id) + ''' bot:hasSpace bot:''' + str(space_id) + '''.
                 }
             WHERE {
             }
@@ -89,6 +98,15 @@ class Storey(Zone):
         except:
             return 0
 
+    def getBuilding(self):
+        pass
+
+    def getFloorNumber(self):
+        pass
+
+    def fillStorey(self):
+        pass
+    
     def getZones(self):
         return self.hasSpaces
 

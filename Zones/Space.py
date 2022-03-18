@@ -7,6 +7,8 @@ URL = "http://127.0.0.1:3030/bot"
 
 class Space(Zone):
 
+    #storey_id = NOE
+
     def create(self, args):
         # INPUT args: [type, length, width, height, role, adjacentZones[]]
 
@@ -30,12 +32,12 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(args[4]) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
             '''
             )   
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(args[-1][i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
@@ -59,16 +61,25 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(args[4]) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
             ''') 
             for i in range(len(args[-1])):
                 UPDATE += ('''
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone "''' + str(args[-1][i]) + '''".
+                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(args[-1][i]) + '''.
                     ''')
             UPDATE += ('''}
             WHERE {
-            }
-            ''')
+            bot:''' + str(self.space_id) + ''' a bot:Space.
+            bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(args[1]) + '''".
+            bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(args[2]) + '''".
+            bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(args[3]) + '''".
+            bot:''' + str(self.space_id) + ''' bot:hasRole bot:''' + str(args[4]) + '''.
+            ''') 
+            for i in range(len(args[-1])):
+                UPDATE += ('''
+                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(args[-1][i]) + '''.
+                    ''')
+            UPDATE += ('''}''')
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
@@ -82,7 +93,7 @@ class Space(Zone):
             PREFIX bot:<https://w3id.org/bot#>
             INSERT {
                 bot:''' + str(self.space_id) + ''' a bot:Space.
-                bot:''' + str(self.space_id) + ''' bot:adjacentZone "''' + str(adjacent_space_id) + '''".
+                bot:''' + str(self.space_id) + ''' bot:adjacentZone bot:''' + str(adjacent_space_id) + '''.
                 }
             WHERE {
             }
