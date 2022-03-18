@@ -1,5 +1,35 @@
 #! NX/KF 4.0
 DefClass: order_13 (ug_base_part);
+    (number parameter) my_height: 0;
+    (number parameter) my_width: 300;
+    (number parameter) my_length: 500;  
+
+
+(child) block1: 
+    {
+        class, ug_block;
+        length, my_length:;
+        width, my_width:;
+        height, my_height:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {block1:};  
+  Layer, 1; 
+  color, ug_askClosestColor(PALE_WEAK_GREEN);  
+};
+
+# Methods of the class
+(Method Number) getVolume:(Number $length, Number $width, Number $height) 
+  @{
+     $length * $width * $height;
+  };
+
+#! NX/KF 4.0
+DefClass: order_13 (ug_base_part);
     (number parameter) my_height: 0.2;
     (number parameter) my_width: 300;
     (number parameter) my_length: 500;  
