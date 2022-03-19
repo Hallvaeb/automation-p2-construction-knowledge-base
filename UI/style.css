@@ -92,10 +92,14 @@ tr:nth-child(even) {
     height: 160px;
 }
 
+#fieldset_containing_illustration{
+    position: relative;
+}
+
 #illustration_will_appear{
     position: absolute;
-    left: 800px;
-    bottom: 350px;
+    right: 10%;
+    bottom: 25%;
     width: 150px;
     height: 150px;
     border: 3px solid #772929;

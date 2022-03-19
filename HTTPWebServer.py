@@ -263,6 +263,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 				</section>
 				<section>
 				<form action = "/space_added" method="post">
+				<div id="fieldset_containing_illustration">
 				<fieldset>
 					<legend>Review input</legend>
 					This is your input for space, you can still modify... <br>
@@ -276,6 +277,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 						Maybe an illustration of your space will appear here some day?
 					</div>
 				</fieldset>
+				</div>
 				</form>
 			</section>
 			<a href="/cancel_space"> <button>CANCEL</button> </a> 
