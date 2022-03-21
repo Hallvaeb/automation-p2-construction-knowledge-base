@@ -1,18 +1,18 @@
-from IDGenerator import IDGenerator
+from IDgenerator import IDGenerator
 
 
 class DFABuilder():
 
     
     def make_DFA(type, height, width, length):
-        id = IDGenerator.create_ID(type)
+        id = IDGenerator.create_ID()
         #Read current temp file
         f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/" + type +".dfa", "r")
         txt = f.read()
         txt_replaced = txt.replace("<HEIGHT>", str(height))
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
         txt_replaced = txt_replaced.replace("<LENGTH>", str(length))
-        txt_replaced = txt_replaced.replace("(child) block1", str(id)) #TODO automize the ID part
+        txt_replaced = txt_replaced.replace("block1", str(id)) 
         f.close()
 
         #Make new DFA file
@@ -20,33 +20,24 @@ class DFABuilder():
         f.write(txt_replaced)
         f.close
 
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_13" + ".dfa", "a")
+        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_17" + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt_replaced)
         f.close
 
 
-        #Upload DFA file to URL
-        #f = open("FILE", "r")
-        #uploaded = requests.post("URL", files = {"form_field_name": f})
-        #if uploaded.ok:
-        #   print("File uploaded successfully !")
-        #    print(uploaded.text)
-        #else:
-        #    print("Please Upload again !")
-
     def make_design_template(): #Should take some form of ID for the order, def makeDesignTemplate(key):
         #Design
         f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/design.dfa", "r")
         txt = f.read()
-        txt = txt.replace("<ID>", "order_13") #TODO replace order 13 with automated id.
+        txt = txt.replace("<ID>", "order_17") #TODO replace order 13 with automated id.
         f.close()
         #Design
         f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/tempo_design.dfa", "w")
         f.write(txt)
         f.close
         #Design
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_13" + ".dfa", "a")
+        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_17" + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt)
         f.close
@@ -70,6 +61,7 @@ class DFABuilder():
         pass
 
 
-
-DFABuilder.generate_DFA("site", 0.2, 300, 500, id)
-DFABuilder.generate_DFA("building", 200, 150, 300, id)
+DFABuilder.make_design_template()
+DFABuilder.generate_DFA("site", 0.2, 300, 500)
+DFABuilder.generate_DFA("building", 200, 150, 300)
+DFABuilder.generate_DFA("space", 2, 11, 14)
