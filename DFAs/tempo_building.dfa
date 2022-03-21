@@ -1,21 +1,21 @@
-    (number parameter) my_height: 200; 
-    (number parameter) my_width: 150;
-    (number parameter) my_length: 300; 
+    (number parameter) my_height_b: 200; 
+    (number parameter) my_width_b: 150;
+    (number parameter) my_length_b: 300; 
 
 
-(child) block1: 
+(child) zone589136014: 
     {
         class, ug_block;
-        length, my_length:;
-        width, my_width:;
-        height, my_height:;
+        length, my_length_b:;
+        width, my_width_b:;
+        height, my_height_b:;
     };
 
 # Body colored depending on the volume of the block
 (Child) body_colored: 
 { 
   Class, ug_body; 
-  Feature, {block1:};  
+  Feature, {zone589136014:};  
   Layer, 1; 
   color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
 };

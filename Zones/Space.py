@@ -149,12 +149,12 @@ class Space(Zone):
 
     def get_args_from_KB(space_id):
         liste = space_id.split('_')
-        print("ER DETTE SPACE?????",space_id)
         role = liste[1]+"_"+liste[2]
         """
         Returns args
         """
         QUERY = ('''
+        PREFIX bot:<https://w3id.org/bot#>
         SELECT ?length ?width ?height ?energyEfficiency ?role
         WHERE {
 	        ?space a bot:Space.
@@ -166,16 +166,11 @@ class Space(Zone):
 	        FILTER (EXISTS { ?space bot:hasRole "'''+str(role)+'''"})
 }
         ''')
-        print(QUERY)
         PARAMS = {"query": QUERY}
-        r = requests.get(url = URL, params = PARAMS) 
+        r = requests.get(url = URL, params = PARAMS)
         data = r.json()
-        print("DATAAAAA___----------------------------", data)
-	    
-        
-        
-        
-        pass
+	    #TODO: Må få ut rett info fra data, men vanskelig å gjøre uten å fikse opp i det andre problemet(i Controller når vi kaller på Space()) først..
+
 
     def get_storey(self):
         pass

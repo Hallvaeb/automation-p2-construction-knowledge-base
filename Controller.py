@@ -28,8 +28,8 @@ class Controller():
 		space_ids = []
 		for role in space_roles_list:
 			role = role.lower()
-			space_ids.append(Space([role]))
-
+			space_ids.append(Space([role])) #TODO: Denne fungerer ikke!! 
+				#Vet ikke hvordan jeg skal få den til å returnere space_id.
 		
 		print("DETTE ER SPACEN VI JOBBER MED",space_ids[-1])
 		Space.get_args_from_KB(space_ids[-1])
