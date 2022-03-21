@@ -15,7 +15,7 @@ class Storey(Zone):
         self.height = args[2]
         self.hasSpaces = args[-1]
         
-        self.storey_id = IDGenerator.create_ID(self) 
+        self.storey_id = IDGenerator.create_ID() 
 
     def add_to_KB(self):
         # hasSpaces is a list containing ids for the spaces in this storey. 

@@ -1,4 +1,4 @@
-from IDgenerator import IDGenerator
+from IDGenerator import IDGenerator
 
 #Prototype of the class works. Currently every dfa made will be named "order_17", but a methid to automize this is easily implemented. 
 class DFABuilder():

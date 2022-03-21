@@ -48,8 +48,10 @@ class Space(Zone):
             return -1 
 
         space_id = IDGenerator.create_space_prototype_ID(self)
-        # TODO: get arguments of space with role
-        Space.get_args_from_KB(space_id)
+        # TODO: get arguments of space with role.
+        #   PROBLEM here: __init__ can't return any values!
+        
+        # Space.get_args_from_KB(space_id)
         # space_args = get_arguments_of_space_prototype(self.space_id)
         # self.length = space_args[0]
         # self.width = space_args[1]
@@ -148,11 +150,13 @@ class Space(Zone):
             return 0
 
     def get_args_from_KB(space_id):
+        ''' 
+        returns values = [space_id, length, width, height, energyEfficiency, role]
+
+        '''
         liste = space_id.split('_')
         role = liste[1]+"_"+liste[2]
-        """
-        Returns args
-        """
+
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
         SELECT ?length ?width ?height ?energyEfficiency ?role
@@ -164,12 +168,18 @@ class Space(Zone):
             ?space bot:energyEfficiency ?energyEfficiency.
             ?space bot:hasRole ?role.
 	        FILTER (EXISTS { ?space bot:hasRole "'''+str(role)+'''"})
-}
+            }
         ''')
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
-	    #TODO: Må få ut rett info fra data, men vanskelig å gjøre uten å fikse opp i det andre problemet(i Controller når vi kaller på Space()) først..
+        
+        list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        values = [space_id]
+        for i in range(4,len(list_data),5):
+            values.append(str(list_data[i]).strip().strip("'"))
+
+        return values
 
 
     def get_storey(self):
@@ -177,7 +187,7 @@ class Space(Zone):
         #Må her inn i KB
 
     def get_zones(self):
-        return self.adjacentZones
+        pass
 
     def get_ID(self):
         return self.space_id

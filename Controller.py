@@ -22,6 +22,7 @@ class Controller():
 		building_number_of_storeys = args[8]
 		building_all_storeys_identical = True
 		space_roles = urllib.parse.unquote_plus(args[10])
+		# print(space_roles)
 
 		space_roles_list = str(space_roles).split(",")
 
@@ -30,9 +31,12 @@ class Controller():
 			role = role.lower()
 			space_ids.append(Space([role])) #TODO: Denne fungerer ikke!! 
 				#Vet ikke hvordan jeg skal få den til å returnere space_id.
-		
-		print("DETTE ER SPACEN VI JOBBER MED",space_ids[-1])
-		Space.get_args_from_KB(space_ids[-1])
+		# print("DETTE ER SPACEN VI JOBBER MED",space_ids[-1])
+		for id in space_ids:
+			Space.get_args_from_KB(id)
+			# This for-loop returns len(space_id) lists of args from the database. 
+			# The values belongs to a space_id which is the first value in each list
+			
 
 		storey_id = Storey([building_length, building_width, building_height, space_ids])
 		building_id = Building([building_length, building_width, building_height, [storey_id]])
