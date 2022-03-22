@@ -64,11 +64,13 @@ class DFABuilder():
 #Currently works if these methods are called. 
 # make_design_template() has to be called before generate_DFA, and this method must be called
 #for each zone you want to add to the .dfa-file. 
-# 
-# Current issues:
-# - Colour only appears on the last added zone
-# - Still not implemented a way to select placement of the zones, which probably will mean a big change in the current module. 
+
 DFABuilder.make_design_template()
 DFABuilder.generate_DFA("site", 0.2, 300, 500)
 DFABuilder.generate_DFA("building", 200, 150, 300)
 DFABuilder.generate_DFA("space", 2, 11, 14)
+
+# Current issues:
+# - Colour only appears on the last added zone
+# - Still not implemented a way to select placement of the zones, which probably will mean a big change in the current module. 
+

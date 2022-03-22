@@ -15,7 +15,7 @@ class Site(Zone):
         self.height = args[2]
         self.hasBuildings = args[-1]   #List
         
-        self.site_id = IDGenerator.create_ID(self)         
+        self.site_id = IDGenerator.create_ID()         
         
     def add_to_KB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
@@ -76,7 +76,6 @@ class Site(Zone):
             
             PARAMS = {"update": UPDATE}
             r = requests.post(url = URL+"/update", data = PARAMS) 
-            print(UPDATE)
             return 1
         except:
             return 0
