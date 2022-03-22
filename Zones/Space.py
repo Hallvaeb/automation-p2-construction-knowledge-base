@@ -9,7 +9,12 @@ class Space(Zone):
 
     def __init__(self, args):
         if (len(args) < 3):
-            Space.init_construction(self, args)
+            if Space.is_role_in_KB(args[0]):
+                self.type = "space"
+                self.role = args[0]
+
+                self.space_id = IDGenerator.create_space_prototype_ID(self)
+            print("Vi feilet i __init__ Space(17)")
         else:
             Space.init_prototype(self, args)
     
@@ -47,7 +52,7 @@ class Space(Zone):
         if not Space.is_role_in_KB(self.role):
             return -1 
 
-        space_id = IDGenerator.create_space_prototype_ID(self)
+        self.space_id = IDGenerator.create_space_prototype_ID(self)
         # TODO: get arguments of space with role.
         #   PROBLEM here: __init__ can't return any values!
         

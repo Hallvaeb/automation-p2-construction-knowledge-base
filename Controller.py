@@ -29,9 +29,10 @@ class Controller():
 		space_ids = []
 		for role in space_roles_list:
 			role = role.lower()
-			space_ids.append(Space([role])) #TODO: Denne fungerer ikke!! 
+			print("Kommer vi hit?")
+			space_ids.append(Space([role]).space_id) #TODO: Denne fungerer ikke!! 
 				#Vet ikke hvordan jeg skal få den til å returnere space_id.
-		# print("DETTE ER SPACEN VI JOBBER MED",space_ids[-1])
+		print("DETTE ER SPACEN VI JOBBER MED",space_ids)
 		for id in space_ids:
 			Space.get_args_from_KB(id)
 			# This for-loop returns len(space_id) lists of args from the database. 
