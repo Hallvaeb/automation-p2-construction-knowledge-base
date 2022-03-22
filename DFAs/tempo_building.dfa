@@ -3,7 +3,7 @@
     (number parameter) my_length_b: 300; 
 
 
-(child) zone589136014: 
+(child) zone893712507: 
     {
         class, ug_block;
         length, my_length_b:;
@@ -15,7 +15,7 @@
 (Child) body_colored: 
 { 
   Class, ug_body; 
-  Feature, {zone589136014:};  
+  Feature, {zone893712507:};  
   Layer, 1; 
   color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
 };
