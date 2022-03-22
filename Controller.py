@@ -1,4 +1,4 @@
-# from DFABuilder import DFABuilder
+from DFABuilder import DFABuilder
 from Zones.Site import Site
 from Zones.Building import Building
 from Zones.Storey import Storey
@@ -39,8 +39,8 @@ class Controller():
 		site_id = Site([site_length, site_width, building_height, [building_id]])
 		
 
-		# DFABuilder.getDFA([site_id, building_id, storey_id, space_ids])
-
+		# DFABuilder.create_([site_id, building_id, storey_id, space_ids])
+		# I dream only input should be a list of ids
 	
 	def add_space_prototype(args):
 		print("add_space_prototype: " + str(args))

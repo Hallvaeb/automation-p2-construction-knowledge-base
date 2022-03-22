@@ -4,8 +4,8 @@ import requests
 
 URL = "http://127.0.0.1:3030/bot"
 
-class Storey(Zone):
 
+class Storey(Zone):
 
     def __init__(self, args):
         # INPUT args: [length, width, height, hasSpaces[]]

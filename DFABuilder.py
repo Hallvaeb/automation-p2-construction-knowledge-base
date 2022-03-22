@@ -1,13 +1,15 @@
-from IDgenerator import IDGenerator
+from IDGenerator import IDGenerator
 
-#Prototype of the class works. Currently every dfa made will be named "order_17", but a methid to automize this is easily implemented. 
+path_to_dfa_folder = "C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/"
+
+#First draft of the class works. Currently every dfa made will be named "order_17", but a methid to automize this is easily implemented. 
 class DFABuilder():
 
     
     def make_DFA(type, height, width, length):
-        id = IDGenerator.create_ID()
+        id = IDGenerator.create_dfa_zone_ID()
         #Read current temp file
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/" + type +".dfa", "r")
+        f = open(path_to_dfa_folder + type +".dfa", "r")
         txt = f.read()
         txt_replaced = txt.replace("<HEIGHT>", str(height))
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
@@ -16,11 +18,11 @@ class DFABuilder():
         f.close()
 
         #Make new DFA file
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/tempo_" + type + ".dfa", "w")
+        f = open(path_to_dfa_folder + "tempo_" + type + ".dfa", "w")
         f.write(txt_replaced)
         f.close
 
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_17" + ".dfa", "a")
+        f = open(path_to_dfa_folder + "Products/" + "order_17" + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt_replaced)
         f.close
@@ -28,16 +30,17 @@ class DFABuilder():
 
     def make_design_template(): #Should take some form of ID for the order, def makeDesignTemplate(key):
         #Design
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/design.dfa", "r")
+        order_id = IDGenerator.
+        f = open(path_to_dfa_folder + "design.dfa", "r")
         txt = f.read()
         txt = txt.replace("<ID>", "order_17") #TODO replace order 13 with automated id.
         f.close()
         #Design
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/tempo_design.dfa", "w")
+        f = open(path_to_dfa_folder + "tempo_design.dfa", "w")
         f.write(txt)
         f.close
         #Design
-        f = open("C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/Products/" + "order_17" + ".dfa", "a")
+        f = open(path_to_dfa_folder + "Products/" + "order_17" + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt)
         f.close
@@ -57,11 +60,9 @@ class DFABuilder():
             DFABuilder.make_DFA("storey", height, width, length)
             
 
-    def extract_DFA_file(path):
-        pass
 
-
-#Prototype currently works if these methods are called. make_design_template() has to be called before generate_DFA, and this method must be called
+#Currently works if these methods are called. 
+# make_design_template() has to be called before generate_DFA, and this method must be called
 #for each zone you want to add to the .dfa-file. 
 # 
 # Current issues:
