@@ -64,11 +64,11 @@ class DFABuilder():
 #Currently works if these methods are called. 
 # make_design_template() has to be called before generate_DFA, and this method must be called
 #for each zone you want to add to the .dfa-file. 
-
-DFABuilder.make_design_template("order_1")
-DFABuilder.generate_DFA("site", 0.2, 300, 500, "order_1")
-DFABuilder.generate_DFA("building", 200, 150, 300, "order_1")
-DFABuilder.generate_DFA("space", 2, 11, 14, "order_1")
+order_ID = IDGenerator.create_order_ID()
+DFABuilder.make_design_template(order_ID)
+DFABuilder.generate_DFA("site", 0.2, 300, 500, order_ID)
+DFABuilder.generate_DFA("building", 200, 150, 300, order_ID)
+DFABuilder.generate_DFA("space", 2, 11, 14, order_ID)
 
 # Current issues:
 # - Colour only appears on the last added zone
