@@ -1,0 +1,84 @@
+#! NX/KF 4.0
+DefClass: order_520655893 (ug_base_part);
+    (number parameter) my_height_si: 0.2;
+    (number parameter) my_width_si: 300;
+    (number parameter) my_length_si: 500;  
+
+
+(child) zone909680958: 
+    {
+        class, ug_block;
+        length, my_length_si:;
+        width, my_width_si:;
+        height, my_height_si:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone909680958:};  
+  Layer, 1; 
+  color, ug_askClosestColor(PALE_WEAK_GREEN);  
+};
+
+# Methods of the class
+(Method Number) getVolume:(Number $length, Number $width, Number $height) 
+  @{
+     $length * $width * $height;
+  };
+
+    (number parameter) my_height_b: 200; 
+    (number parameter) my_width_b: 150;
+    (number parameter) my_length_b: 300; 
+
+
+(child) zone473713909: 
+    {
+        class, ug_block;
+        length, my_length_b:;
+        width, my_width_b:;
+        height, my_height_b:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone473713909:};  
+  Layer, 1; 
+  color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
+};
+
+# Methods of the class
+(Method Number) getVolume:(Number $length, Number $width, Number $height) 
+  @{
+     $length * $width * $height;
+  };
+    (number parameter) my_height: 2;
+    (number parameter) my_width: 11;
+    (number parameter) my_length: 14;  
+
+
+(child) zone839617378: 
+    {
+        class, ug_block;
+        length, my_length:;
+        width, my_width:;
+        height, my_height:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone839617378:};  
+  Layer, 1; 
+  color, ug_askClosestColor(DARK_AZURE_CYAN);  
+};
+
+# Methods of the class
+(Method Number) getVolume:(Number $length, Number $width, Number $height) 
+  @{
+     $length * $width * $height;
+  };
