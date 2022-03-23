@@ -11,7 +11,7 @@ path_to_dfa_folder = "C:/Users/Eier/Github/kbe-a2/DFAs/"
 class DFABuilder():
 
     
-    def make_DFA(type, height, width, length):
+    def make_DFA(type, height, width, length, order_id):
         id = IDGenerator.create_dfa_zone_ID()
         #Read current temp file
         f = open(path_to_dfa_folder + type +".dfa", "r")
@@ -27,53 +27,53 @@ class DFABuilder():
         f.write(txt_replaced)
         f.close
 
-        f = open(path_to_dfa_folder + "Products/" + "order_17" + ".dfa", "a")
+        f = open(path_to_dfa_folder + "Products/" + order_id + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt_replaced)
         f.close
 
 
-    def make_design_template(): #Should take some form of ID for the order, def makeDesignTemplate(key):
+    def make_design_template(order_id): 
         #Design
-        order_id = IDGenerator.create_order_ID
+        #order_id = IDGenerator.create_order_ID()
         f = open(path_to_dfa_folder + "design.dfa", "r")
         txt = f.read()
-        txt = txt.replace("<ID>", "order_17") #TODO replace order 13 with automated id.
+        txt = txt.replace("<ID>", order_id) #TODO replace order 13 with automated id.
         f.close()
         #Design
         f = open(path_to_dfa_folder + "tempo_design.dfa", "w")
         f.write(txt)
         f.close
         #Design
-        f = open(path_to_dfa_folder + "Products/" + "order_17" + ".dfa", "a")
+        f = open(path_to_dfa_folder + "Products/" + order_id + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt)
         f.close
 
-    def generate_DFA(type, height, width, length):
+    def generate_DFA(type, height, width, length, order_id):
 
         if type == "building":
-            DFABuilder.make_DFA("building", height, width, length)
+            DFABuilder.make_DFA("building", height, width, length, order_id)
 
         elif type == "site":
-            DFABuilder.make_DFA("site", height, width, length)
+            DFABuilder.make_DFA("site", height, width, length, order_id)
             
         elif type == "space":
-            DFABuilder.make_DFA("space", height, width, length)
+            DFABuilder.make_DFA("space", height, width, length, order_id)
             
         elif type == "storey":
-            DFABuilder.make_DFA("storey", height, width, length)
+            DFABuilder.make_DFA("storey", height, width, length, order_id)
             
 
 
 #Currently works if these methods are called. 
 # make_design_template() has to be called before generate_DFA, and this method must be called
 #for each zone you want to add to the .dfa-file. 
-
-DFABuilder.make_design_template()
-DFABuilder.generate_DFA("site", 0.2, 300, 500)
-DFABuilder.generate_DFA("building", 200, 150, 300)
-DFABuilder.generate_DFA("space", 2, 11, 14)
+order_ID = IDGenerator.create_order_ID()
+DFABuilder.make_design_template(order_ID)
+DFABuilder.generate_DFA("site", 0.2, 300, 500, order_ID)
+DFABuilder.generate_DFA("building", 200, 150, 300, order_ID)
+DFABuilder.generate_DFA("space", 2, 11, 14, order_ID)
 
 # Current issues:
 # - Colour only appears on the last added zone
