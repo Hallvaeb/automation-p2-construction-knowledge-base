@@ -4,7 +4,12 @@ from Zones.Building import Building
 from Zones.Storey import Storey
 from Zones.Space import Space
 
-path_to_dfa_folder = "C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/"
+# SIGVE
+# path_to_dfa_folder = "C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/"
+
+# HALLVARD
+path_to_dfa_folder = "C:/Users/Eier/Github/kbe-a2/DFAs/"
+
 
 #First draft of the class works. Currently every dfa made will be named "order_17", but a methid to automize this is easily implemented. 
 class DFABuilder():

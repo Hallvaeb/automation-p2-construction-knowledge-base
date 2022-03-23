@@ -5,7 +5,8 @@ class IDGenerator():
     
     def create_dfa_zone_ID():
         """
-        Returns "type_rrrrrrrrr" where r = random(0,9) 
+            Used for DFA file children names
+            Returns "zone_rrrrrrrrr" where r = random(0,9) 
         """
         r1 = str(random.randint(0, 9))
         r2 = str(random.randint(0, 9))
@@ -21,9 +22,10 @@ class IDGenerator():
         #print("ID generated for " +self.type+", id = " + id)
         return id
     
-    def create_order_ID():
+    def create_design_ID():
         """
-        Returns "type_rrrrrrrrr" where r = random(0,9) 
+            Used for DFA file names and DefClass
+            Returns "type_rrrrrrrrr" where r = random(0,9) 
         """
         r1 = str(random.randint(0, 9))
         r2 = str(random.randint(0, 9))
@@ -35,13 +37,14 @@ class IDGenerator():
         r8 = str(random.randint(0, 9))
         r9 = str(random.randint(0, 9))
         r_all = r1+r2+r3+r4+r5+r6+r7+r8+r9
-        id = "order_" + r_all
+        id = "design_" + r_all
         #print("ID generated for " +self.type+", id = " + id)
         return id
 
     def create_ID(self):
         """
-        Returns "type_rrrrrrrrr" where r = random(0,9) 
+            Used for all the zones when making ID for KB
+            Returns "type_rrrrrrrrr" where r = random(0,9) 
         """
         r1 = str(random.randint(0, 9))
         r2 = str(random.randint(0, 9))
@@ -59,7 +62,7 @@ class IDGenerator():
 
     def create_space_prototype_ID(self):
         '''
-        Returns "type_role", role is unique
+            Returns "type_role", role is unique
         '''
         return self.type+"_"+self.role 
 

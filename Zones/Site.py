@@ -15,7 +15,7 @@ class Site(Zone):
         self.height = args[2]
         self.hasBuildings = args[-1]   #List
         
-        self.site_id = IDGenerator.create_ID()         
+        self.site_id = IDGenerator.create_ID(self)         
         
     def add_to_KB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 

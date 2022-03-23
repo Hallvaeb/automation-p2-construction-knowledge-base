@@ -29,6 +29,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 							several buildings from a set of building blocks in a knowledge base. </p>
 						<a href=/add_space><button>Add Space</button></a>
 						<a href=/construct_site><button>Construct!</button></a>
+						<a href=/sparql><button>I know sparql!</button></a>
 				</section>
 			</body>
 			"""+footer
@@ -65,6 +66,31 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<input type="text" name="role" id="role" value="Hallway"><br>
 						<div id="submit">
 							<input type="submit" value="Add Space" id="submit">
+						</div>
+					</fieldset>
+				</form>
+				<a href=/><button>Go back</button></a>
+			</body>"""+footer
+			s.wfile.write(bytes(out, 'utf-8'))
+
+		elif path.find("/sparql") != -1:
+
+			s.send_reponse_html()
+
+			out = head + """
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					ASK FOR WHAT YOU WANT.
+					</p>
+				</section>
+				<form action="/sparql_given" method="post">
+					<fieldset>
+						<legend>SPARQL Query:</legend>
+						<textarea id="query" name="query" id="query" rows=6 cols=50 ></textarea>
+						<div id="submit">
+							<input type="submit" value="Ask KB" id="submit">
 						</div>
 					</fieldset>
 				</form>
@@ -307,6 +333,30 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<a href=/><button>Main menu</button></a>
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
+		
+		elif path.find("/sparql_given") != -1:
+
+			s.send_reponse_html()
+
+			# Get the arguments
+			argument_pairs = s.rfile.read(
+				int(s.headers.get('Content-Length'))).decode().split("&")
+			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+
+			# resp = Controller.ask_sparql(args)
+
+			# out = head+"""
+			# <body>
+			# 	<section>
+			# 		<h2>AUTOMATED BUILDING</h2>
+			# 		<p>
+			# 		Space added! It will now be able to appear in your construction!
+			# 		</p>
+			# 	</section>
+			# 	<a href=/add_space><button>Add another space</button></a>
+			# 	<a href=/><button>Main menu</button></a>
+			# </body>"""+footer
+			# s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/construct_building") != -1:
 
