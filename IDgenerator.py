@@ -56,7 +56,7 @@ class IDGenerator():
         r8 = str(random.randint(0, 9))
         r9 = str(random.randint(0, 9))
         r_all = r1+r2+r3+r4+r5+r6+r7+r8+r9
-        id = self.type + r_all
+        id = self.type + "_" + r_all
         #print("ID generated for " +self.type+", id = " + id)
         return id
 

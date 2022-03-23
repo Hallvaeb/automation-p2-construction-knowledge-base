@@ -342,8 +342,11 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+			print(len(args))
+			print(args)
 
-			# resp = Controller.ask_sparql(args)
+
+			resp = Controller.send_query(args)
 
 			# out = head+"""
 			# <body>

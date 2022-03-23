@@ -15,14 +15,14 @@ path_to_dfa_folder = "C:/Users/Eier/Github/kbe-a2/DFAs/"
 class DFABuilder():
 
     
-    def make_DFA(type, height, width, length, order_id):
+    def make_DFA(type, length, width, height, design_id):
         id = IDGenerator.create_dfa_zone_ID()
         #Read current temp file
         f = open(path_to_dfa_folder + type +".dfa", "r")
         txt = f.read()
-        txt_replaced = txt.replace("<HEIGHT>", str(height))
+        txt_replaced = txt.replace("<LENGTH>", str(length))
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
-        txt_replaced = txt_replaced.replace("<LENGTH>", str(length))
+        txt_replaced = txt_replaced.replace("<HEIGHT>", str(height))
         txt_replaced = txt_replaced.replace("block1", str(id)) 
         f.close()
 
@@ -31,7 +31,7 @@ class DFABuilder():
         f.write(txt_replaced)
         f.close
 
-        f = open(path_to_dfa_folder + "Products/" + order_id + ".dfa", "a")
+        f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "a")
         #TODO switch "building_12" with IDGenerator
         f.write(txt_replaced)
         f.close
@@ -39,56 +39,56 @@ class DFABuilder():
 
     def make_design_template(): 
         #Design
-        order_id = IDGenerator.create_order_ID()
+        design_id = IDGenerator.create_design_ID()
         f = open(path_to_dfa_folder + "design.dfa", "r")
         txt = f.read()
-        txt = txt.replace("<ID>", order_id) #TODO replace order 13 with automated id.
+        txt = txt.replace("<ID>", design_id) #TODO replace order 13 with automated id.
         f.close()
         #Design
-        f = open(path_to_dfa_folder + "Products/" + order_id + ".dfa", "w")
+        f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "w")
         #TODO switch "building_12" with IDGenerator
         f.write(txt)
         f.close
-        return order_id
+        return design_id
 
-    def generate_DFA(IDs):
-        order_id = DFABuilder.make_design_template()   
-        list = IDs.split("_")
-        list = IDs[::2]
-        print(list)
-        for type in list:
-            if type == "building":
-                arguments = Building.get_args_from_KB()
-                DFABuilder.make_DFA(type, arguments[2], arguments[1], arguments[0], order_id)
-            
-            elif type == "site":
-                arguments = Site.get_args_from_KB()
-                DFABuilder.make_DFA(type, arguments[2], arguments[1], arguments[0], order_id)
+    def generate_DFA(IDs_list):
+        """
+            DFABuilder.generate_DFA([site_id, building_id, storey_id, space_ids])
+        """
+        design_id = DFABuilder.make_design_template()
 
-            elif type == "space":
-                arguments = Space.get_args_from_KB()
-                DFABuilder.make_DFA(type, arguments[2], arguments[1], arguments[0], order_id)
+        site_id = IDs_list[0]
+        site_args = Site.get_args_from_KB(site_id)
+        DFABuilder.make_DFA("site", site_args[0], site_args[1], site_args[2], design_id)
+        building_id = IDs_list[1]
+        building_args = Building.get_args_from_KB(building_id)
+        DFABuilder.make_DFA("building", building_args[0], building_args[1], building_args[2], design_id)
+        storey_id = IDs_list[2]
+        storey_args = Site.get_args_from_KB(storey_id)
+        DFABuilder.make_DFA("storey", storey_args[0], storey_args[1], storey_args[2], design_id)
+        space_ids_list = IDs_list[3]
+        
+        for space_id in space_ids_list:
+            space_args = Space.get_args_from_KB(space_id)
+            DFABuilder.make_DFA("Space", space_args[0], space_args[1], space_args[2], design_id)
             
-            elif type == "storey":
-                arguments = Storey.get_args_from_KB()
-                DFABuilder.make_DFA(type, arguments[2], arguments[1], arguments[0], order_id)
         
 
 
 
-    # def generate_DFA(type, height, width, length, order_id):
+    # def generate_DFA(type, height, width, length, design_id):
 
     #     if type == "building":
-    #         DFABuilder.make_DFA("building", height, width, length, order_id)
+    #         DFABuilder.make_DFA("building", height, width, length, design_id)
 
     #     elif type == "site":
-    #         DFABuilder.make_DFA("site", height, width, length, order_id)
+    #         DFABuilder.make_DFA("site", height, width, length, design_id)
             
     #     elif type == "space":
-    #         DFABuilder.make_DFA("space", height, width, length, order_id)
+    #         DFABuilder.make_DFA("space", height, width, length, design_id)
             
     #     elif type == "storey":
-    #         DFABuilder.make_DFA("storey", height, width, length, order_id)
+    #         DFABuilder.make_DFA("storey", height, width, length, design_id)
             
 DFABuilder.generate_DFA(["building_5655", "site_323232", "storey_24232323", "building_44444"])
 
@@ -96,10 +96,10 @@ DFABuilder.generate_DFA(["building_5655", "site_323232", "storey_24232323", "bui
 # make_design_template() has to be called before generate_DFA, and this method must be called
 #for each zone you want to add to the .dfa-file. 
 
-# order_ID = DFABuilder.make_design_template()
-# DFABuilder.generate_DFA("site", 0.2, 300, 500, order_ID)
-# DFABuilder.generate_DFA("building", 200, 150, 300, order_ID)
-# DFABuilder.generate_DFA("space", 2, 11, 14, order_ID)
+# design_id = DFABuilder.make_design_template()
+# DFABuilder.generate_DFA("site", 0.2, 300, 500, design_id)
+# DFABuilder.generate_DFA("building", 200, 150, 300, design_id)
+# DFABuilder.generate_DFA("space", 2, 11, 14, design_id)
 
 # Current issues:
 # - Colour only appears on the last added zone
