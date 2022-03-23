@@ -1,6 +1,11 @@
 from IDGenerator import IDGenerator
 
-path_to_dfa_folder = "C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/"
+# SIGVE
+# path_to_dfa_folder = "C:/Users/sigve/OneDrive/Dokumenter/NTNU/V2022/Automatisering prosjekt/kbe-a2/DFAs/"
+
+# HALLVARD
+path_to_dfa_folder = "C:/Users/Eier/Github/kbe-a2/DFAs/"
+
 
 #First draft of the class works. Currently every dfa made will be named "order_17", but a methid to automize this is easily implemented. 
 class DFABuilder():
@@ -30,7 +35,7 @@ class DFABuilder():
 
     def make_design_template(): #Should take some form of ID for the order, def makeDesignTemplate(key):
         #Design
-        order_id = IDGenerator.
+        order_id = IDGenerator.create_order_ID
         f = open(path_to_dfa_folder + "design.dfa", "r")
         txt = f.read()
         txt = txt.replace("<ID>", "order_17") #TODO replace order 13 with automated id.

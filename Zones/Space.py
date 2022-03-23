@@ -8,57 +8,48 @@ URL = "http://127.0.0.1:3030/bot"
 class Space(Zone):
 
     def __init__(self, args):
+        self.type = "space"
         if (len(args) < 3):
-            Space.init_construction(self, args)
+            """
+                Space is being used and created in construction
+            """
+            role = args[0]
+            if not Space.is_role_in_KB(role):
+                raise ValueError
+            
+            # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
+            space_args = Space.get_prototype_args_from_KB(role)
+            
+            self.space_id = IDGenerator.create_ID(self)
+            self.length = space_args[0]
+            self.width = space_args[1]
+            self.height = space_args[2]
+            self.energyEfficiency = space_args[3]
+            self.role = space_args[4]
+
+            self.add_to_KB()
+
         else:
-            Space.init_prototype(self, args)
-    
-    def init_prototype(self, args):
-        """
-            Adds prototype space to KB
-        """
-        # INPUT args: [length, width, height, energyEfficiency, role]
-        self.type = "space"
-        self.length = args[0]
-        self.width = args[1]
-        self.height = args[2]
-        self.energyEfficiency = args[3]
-        # Finding unique role:
-        role_core = args[4]+"_"
-        
-        i = 1
-        role = role_core + str(i)
-        while(Space.is_role_in_KB(role)):
-            i += 1
+            """
+                Adds prototype space to KB
+            """
+            # INPUT args: [length, width, height, energyEfficiency, role]
+            self.length = args[0]
+            self.width = args[1]
+            self.height = args[2]
+            self.energyEfficiency = args[3]
+
+            # WE NEED A UNIQUE ROLE:
+            role_core = args[4]+"_"
+            i = 1
             role = role_core + str(i)
-        self.role = role
-        self.space_id = IDGenerator.create_space_prototype_ID(self)
-
-        self.add_to_KB()
-        
-
-    def init_construction(self, args):
-        """
-            Space is being used and created in construction
-        """
-        # INPUT args: [role]
-        self.type = "space"
-        self.role = args[0]
-        if not Space.is_role_in_KB(self.role):
-            return -1 
-
-        space_id = IDGenerator.create_space_prototype_ID(self)
-        # TODO: get arguments of space with role.
-        #   PROBLEM here: __init__ can't return any values!
-        
-        # Space.get_args_from_KB(space_id)
-        # space_args = get_arguments_of_space_prototype(self.space_id)
-        # self.length = space_args[0]
-        # self.width = space_args[1]
-        # self.height = space_args[2]
-        # self.energyEfficiency = space_args[3]
-        # self.role = space_args[4]
-
+            while(Space.is_role_in_KB(role)):
+                i += 1
+                role = role_core + str(i)
+            self.role = role
+            self.space_id = IDGenerator.create_space_prototype_ID(self)
+            
+            self.add_to_KB()
 
 
     def is_role_in_KB(role):
@@ -149,7 +140,7 @@ class Space(Zone):
         except:
             return 0
 
-    def get_args_from_KB(space_id):
+    def get_prototype_args_from_KB(space_id):
         ''' 
         returns values = [space_id, length, width, height, energyEfficiency, role]
 
