@@ -16,6 +16,7 @@ class Site(Zone):
         self.hasBuildings = args[-1]   #List
         
         self.site_id = IDGenerator.create_ID(self)         
+        self.add_to_KB()
         
     def add_to_KB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
@@ -133,6 +134,33 @@ class Site(Zone):
             return 0 #"This site does not have any buildings"
         
         # return self.hasBuildings
+
+    def get_args_from_KB(site_id):
+        ''' 
+        returns values = [length, width, number_of_buildings]
+
+        '''
+
+        # QUERY = ('''
+        # PREFIX bot:<https://w3id.org/bot#>
+        # SELECT ?length ?width
+        # WHERE {
+	    #     ?space a bot:Space.
+        #     ?space bot:hasLength ?length.
+        #     ?space bot:hasWidth ?width.
+	    #     FILTER (EXISTS { ?space bot:hasID "'''+str(site_id)+'''"})
+        #     }
+        # ''')
+        # PARAMS = {"query": QUERY}
+        # r = requests.get(url = URL, params = PARAMS)
+        # data = r.json()
+        
+        # list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        # values = [site_id]
+        # for i in range(4,len(list_data),5):
+        #     values.append(str(list_data[i]).strip().strip("'"))
+        values = ["500", "400", "5"]
+        return values
 
     def get_ID(self):
         return self.site_id

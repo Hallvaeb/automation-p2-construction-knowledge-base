@@ -21,6 +21,7 @@ class Building(Zone):
         self.hasStoreys = args[-1]
 
         self.building_id = IDGenerator.create_ID(self) 
+        self.add_to_KB()
 
     def add_to_KB(self):
         # hasStoryes is a list containing ids for the storeys inside this building. 
@@ -146,6 +147,35 @@ class Building(Zone):
             return site
         except:
             return 0 #"This building is not placed at any site"
+
+    def get_args_from_KB(building_id):
+        ''' 
+        returns [length, width, height, energy_consumption, number_of_storeys, all_storeys_identical] 
+        SPØRSMÅL TIL JOHANNE: Returneres alltid ID først?
+
+        '''
+
+        # QUERY = ('''
+        # PREFIX bot:<https://w3id.org/bot#>
+        # SELECT ?length ?width ?height ?energyEfficiency ?role
+        # WHERE {
+	    #     ?space a bot:Space.
+        #     ?space bot:hasLength ?length.
+        #     ?space bot:hasWidth ?width.
+        #     ?space bot:hasHeight ?height.
+	    #     FILTER (EXISTS { ?space bot:hasID "'''+str(building_id)+'''"})
+        #     }
+        # ''')
+        # PARAMS = {"query": QUERY}
+        # r = requests.get(url = URL, params = PARAMS)
+        # data = r.json()
+        
+        # list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        # values = [building_id]
+        # for i in range(4,len(list_data),5):
+        #     values.append(str(list_data[i]).strip().strip("'"))
+        values = ["40", "30", "30", "60000", "10", "True"]
+        return values
 
     def get_zones(self):
         return self.hasStoreys

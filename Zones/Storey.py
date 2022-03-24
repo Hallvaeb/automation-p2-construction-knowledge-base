@@ -100,6 +100,34 @@ class Storey(Zone):
         except:
             return 0
 
+    def get_args_from_KB(storey_id):
+        ''' 
+        returns [spaces]
+
+        '''
+
+        # QUERY = ('''
+        # PREFIX bot:<https://w3id.org/bot#>
+        # SELECT ?length ?width ?height
+        # WHERE {
+	    #     ?space a bot:Space.
+        #     ?space bot:hasLength ?length.
+        #     ?space bot:hasWidth ?width.
+        #     ?space bot:hasHeight ?height.
+	    #     FILTER (EXISTS { ?space bot:hasID "'''+str(storey_id)+'''"})
+        #     }
+        # ''')
+        # PARAMS = {"query": QUERY}
+        # r = requests.get(url = URL, params = PARAMS)
+        # data = r.json()
+        
+        # list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        # values = [storey_id]
+        # for i in range(4,len(list_data),5):
+        #     values.append(str(list_data[i]).strip().strip("'"))
+        values = ["kitchen_1"]
+        return values
+
     def get_building(self):
         pass
 

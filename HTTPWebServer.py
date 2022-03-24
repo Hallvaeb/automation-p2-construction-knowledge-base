@@ -508,17 +508,17 @@ class ServerHandler(BaseHTTPRequestHandler):
 			
 			Controller.construct(args)
 
-			site_length = args[0]
-			site_width = args[1]
-			site_num_of_buildings = args[2]
-			site_all_buildings_identical = True
-			building_length = args[4]
-			building_width = args[5]
-			building_height = args[6]
-			building_energy_consumption = args[7]
-			building_number_of_storeys = args[8] 
-			building_all_storeys_identical = True
-			storey_space_roles = args[10]
+			# site_length = args[0]
+			# site_width = args[1]
+			# site_num_of_buildings = args[2]
+			# site_all_buildings_identical = True
+			# building_length = args[4]
+			# building_width = args[5]
+			# building_height = args[6]
+			# building_energy_consumption = args[7]
+			# building_number_of_storeys = args[8] 
+			# building_all_storeys_identical = True
+			# storey_space_roles = args[10]
 
 			[print("arg: "+ argument_pairs[i]+"\n") for i in range(len(args))]
 			

@@ -166,12 +166,41 @@ class Space(Zone):
         data = r.json()
         
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
-        values = [space_id]
+        values = [space_id] # JEG FORSTÅR IKKE DENNE: SANNSYNLIGVIS FEIL I DE ANDRE
         for i in range(4,len(list_data),5):
             values.append(str(list_data[i]).strip().strip("'"))
 
         return values
 
+    def get_args_from_KB(space_id):
+        ''' 
+        returns values = [length, width, height, energyEfficiency, role]
+
+        '''
+
+        # QUERY = ('''
+        # PREFIX bot:<https://w3id.org/bot#>
+        # SELECT ?length ?width ?height ?energyEfficiency ?role
+        # WHERE {
+	    #     ?space a bot:Space.
+        #     ?space bot:hasLength ?length.
+        #     ?space bot:hasWidth ?width.
+        #     ?space bot:hasHeight ?height.
+        #     ?space bot:energyEfficiency ?energyEfficiency.
+        #     ?space bot:hasRole ?role.
+	    #     FILTER (EXISTS { ?space bot:hasID "'''+str(space_id)+'''"})
+        #     }
+        # ''')
+        # PARAMS = {"query": QUERY}
+        # r = requests.get(url = URL, params = PARAMS)
+        # data = r.json()
+        
+        # list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        # for i in range(4,len(list_data),5):
+        #     values.append(str(list_data[i]).strip().strip("'"))
+
+        values = ["20", "30", "30", "60000", "Hallway"]
+        return values
 
     def get_storey(self):
         pass

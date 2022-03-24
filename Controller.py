@@ -33,7 +33,7 @@ class Controller():
 		building_id = Building([building_length, building_width, building_height, [storey_id]])
 		site_id = Site([site_length, site_width, building_height, [building_id]])
 		
-		DFABuilder.generate_DFA([site_id, building_id, storey_id, space_ids])
+		DFABuilder.generate_DFA([[site_id], [building_id], [storey_id], [space_ids]])
 	
 	def add_space_prototype(args):
 		print("add_space_prototype: " + str(args))
@@ -47,7 +47,6 @@ class Controller():
 		space.add_to_KB()
 
 	def get_DFA(design_id):
-		
 		
 		DFABuilder.make_design_template()
 		DFABuilder.generate_DFA("site", 0.2, 300, 500)
