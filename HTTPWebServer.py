@@ -506,14 +506,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 			
-			Controller.construct(args)
+			path_to_dfa = Controller.construct(args)
 
-			# site_length = args[0]
-			# site_width = args[1]
-			# site_num_of_buildings = args[2]
-			# site_all_buildings_identical = True
-			# building_length = args[4]
-			# building_width = args[5]
+			# site_length, site_width, site_num_of_buildings, site_all_buildings_identical,
+			# building_length, building_width = args[5]
 			# building_height = args[6]
 			# building_energy_consumption = args[7]
 			# building_number_of_storeys = args[8] 
@@ -532,8 +528,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 					Wait 10 seconds for it all to load, and then press the extract solution to retrieve the OWL file for your project.<br>
 					You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
 					Here are the arguments used (for troubleshooting pew pew): 
-					</p>"""
+					"""
 			out += str(argument_pairs)
+			out += """</p><p>
+					Path to your DFA product:""" + path_to_dfa + "</p>"
 			out += "</section><a href=/><button>Go back</button></a></body>"+footer
 			
 			s.wfile.write(bytes(out, "utf-8"))
