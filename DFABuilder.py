@@ -46,6 +46,9 @@ class DFABuilder():
             DFABuilder.generate_DFA([site_id, building_id, storey_id, space_ids])
             Makes design template and adds all zones specified by their ids.
             Returns: path to produced dfa file.
+            In future: generate_DFA() takes list of ids. If given site contains more buildings
+            than what is given in the argument building_ids list, only the buildings given
+            in the argument list will be colored, while the others are grey.
         """
         design_id = DFABuilder.make_design_template()
 
@@ -73,35 +76,8 @@ class DFABuilder():
 
         return path_to_dfa_folder+"/Products/"+design_id
             
-        
+    
 
-
-
-    # def generate_DFA(type, height, width, length, design_id):
-
-    #     if type == "building":
-    #         DFABuilder.make_DFA("building", height, width, length, design_id)
-
-    #     elif type == "site":
-    #         DFABuilder.make_DFA("site", height, width, length, design_id)
-            
-    #     elif type == "space":
-    #         DFABuilder.make_DFA("space", height, width, length, design_id)
-            
-    #     elif type == "storey":
-    #         DFABuilder.make_DFA("storey", height, width, length, design_id)
-            
-# DFABuilder.generate_DFA(["building_5655", "site_323232", "storey_24232323", "building_44444"])
-
-#Currently works if these methods are called. 
-# make_design_template() has to be called before generate_DFA, and this method must be called
-#for each zone you want to add to the .dfa-file. 
-
-DFABuilder.generate_DFA([["site_id"], ["building_id"], ["storey_id"], ["space_ids"]])
-
-# DFABuilder.make_DFA("site", 0.2, 300, 500, design_id)
-# DFABuilder.make_DFA("building", 200, 150, 300, design_id)
-# DFABuilder.make_DFA("space", 2, 11, 14, design_id)
 
 # Current issues:
 # - Colour only appears on the last added zone

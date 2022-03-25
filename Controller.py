@@ -23,17 +23,19 @@ class Controller():
 		building_all_storeys_identical = True
 		space_roles = urllib.parse.unquote_plus(args[10])
 
-		space_roles_list = str(space_roles).split(",").lower()
+		space_roles_list = str(space_roles).split(",")
 		space_ids = []
 		for role in space_roles_list:
+			role = role.lower()
 			space = Space([role])
 			space_ids.append(space.get_ID())
 			
-		storey_id = Storey([building_length, building_width, building_height, space_ids])
-		building_id = Building([building_length, building_width, building_height, [storey_id]])
-		site_id = Site([site_length, site_width, building_height, [building_id]])
+		storey_id = Storey([building_length, building_width, building_height, space_ids]).get_ID()
+		building_id = Building([building_length, building_width, building_height, [storey_id]]).get_ID()
+		site_id = Site([site_length, site_width, building_height, [building_id]]).get_ID()
 		
 		DFABuilder.generate_DFA([[site_id], [building_id], [storey_id], [space_ids]])
+
 	
 	def add_space_prototype(args):
 		print("add_space_prototype: " + str(args))
