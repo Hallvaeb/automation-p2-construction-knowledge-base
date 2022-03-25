@@ -150,7 +150,7 @@ class Building(Zone):
 
     def get_args_from_KB(building_id):
         ''' 
-        returns [length, width, height, energy_consumption, number_of_storeys, all_storeys_identical] 
+        returns [building_id, length, width, height, energy_consumption, number_of_storeys, all_storeys_identical] 
         SPØRSMÅL TIL JOHANNE: Returneres alltid ID først?
 
         '''
@@ -174,7 +174,7 @@ class Building(Zone):
         # values = [building_id]
         # for i in range(4,len(list_data),5):
         #     values.append(str(list_data[i]).strip().strip("'"))
-        values = ["40", "30", "30", "60000", "10", "True"]
+        values = [building_id, "40", "30", "30", "60000", "10", "True"]
         return values
 
     def get_zones(self):

@@ -137,7 +137,7 @@ class Site(Zone):
 
     def get_args_from_KB(site_id):
         ''' 
-        returns values = [length, width, number_of_buildings]
+        returns values = [site_id, length, width, number_of_buildings]
 
         '''
 
@@ -159,7 +159,7 @@ class Site(Zone):
         # values = [site_id]
         # for i in range(4,len(list_data),5):
         #     values.append(str(list_data[i]).strip().strip("'"))
-        values = ["500", "400", "5"]
+        values = [site_id, "500", "400", "5"]
         return values
 
     def get_ID(self):
