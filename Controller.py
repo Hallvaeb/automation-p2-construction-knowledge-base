@@ -46,4 +46,5 @@ class Controller():
 		role = args[4].lower()
 
 		space = Space([length, width, height, energyEfficiency, role])
+		print("add_space_prototype: " + str(args))
 		space.add_to_KB()

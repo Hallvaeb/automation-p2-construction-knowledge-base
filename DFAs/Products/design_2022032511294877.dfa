@@ -1,0 +1,92 @@
+#! NX/KF 4.0
+DefClass: design_2022032511294877 (ug_base_part);
+    (number parameter) my_height_si: 1;
+    (number parameter) my_width_si: 400;
+    (number parameter) my_length_si: 500;  
+
+
+(child) zone347477199: 
+    {
+        class, ug_block;
+        length, my_length_si:;
+        width, my_width_si:;
+        height, my_height_si:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone347477199:};  
+  Layer, 1; 
+  color, ug_askClosestColor(PALE_WEAK_GREEN);  
+};
+
+
+
+    (number parameter) my_height_b: 100; 
+    (number parameter) my_width_b: 30;
+    (number parameter) my_length_b: 40; 
+
+
+(child) zone844694214: 
+    {
+        class, ug_block;
+        length, my_length_b:;
+        width, my_width_b:;
+        height, my_height_b:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone844694214:};  
+  Layer, 1; 
+  color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
+};
+
+    (number parameter) my_height: 3;
+    (number parameter) my_width: 30;
+    (number parameter) my_length: 40; 
+
+
+(child) zone281705375: 
+    {
+        class, ug_block;
+        length, my_length:;
+        width, my_width:;
+        height, my_height:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone281705375:};  
+  Layer, 1; 
+  color, ug_askClosestColor(SPRING_SPRING_YELLOW);  
+};
+
+    (number parameter) my_height: 30;
+    (number parameter) my_width: 30;
+    (number parameter) my_length: 20;  
+
+
+(child) zone754726662: 
+    {
+        class, ug_block;
+        length, my_length:;
+        width, my_width:;
+        height, my_height:;
+    };
+
+# Body colored depending on the volume of the block
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {zone754726662:};  
+  Layer, 1; 
+  color, ug_askClosestColor(DARK_AZURE_CYAN);  
+};
+

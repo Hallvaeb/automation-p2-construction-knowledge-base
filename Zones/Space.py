@@ -140,13 +140,12 @@ class Space(Zone):
         except:
             return 0
 
-    def get_prototype_args_from_KB(space_id):
+    def get_prototype_args_from_KB(role):
         ''' 
         returns values = [space_id, length, width, height, energyEfficiency, role]
 
         '''
-        liste = space_id.split('_')
-        role = liste[1]+"_"+liste[2]
+        print("role", role)
 
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
@@ -166,7 +165,7 @@ class Space(Zone):
         data = r.json()
         
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
-        values = [space_id] # JEG FORSTÅR IKKE DENNE: SANNSYNLIGVIS FEIL I DE ANDRE
+        values = []
         for i in range(4,len(list_data),5):
             values.append(str(list_data[i]).strip().strip("'"))
 
@@ -174,7 +173,7 @@ class Space(Zone):
 
     def get_args_from_KB(space_id):
         ''' 
-        returns values = [space_id, length, width, height, energyEfficiency, role]
+        returns values = [space_id, length, width, height, energyConsumption, role]
 
         '''
 

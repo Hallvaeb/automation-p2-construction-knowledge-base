@@ -7,6 +7,12 @@ HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 5000
 
 
+''' 
+Manage headers correctly.
+When doing something heavy, they might be waiting for too long.
+Use multiple iframes where I update every 0.5s and ask for url. 
+'''
+
 class ServerHandler(BaseHTTPRequestHandler):
 
 
@@ -278,8 +284,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			argument_list = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
-
-			out = head+"""
+			
+			s.wfile.write(bytes(head, 'utf-8'))
+			out = """
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -319,7 +326,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
-			Controller.add_space_prototype(args)
 
 			out = head+"""
 			<body>
@@ -333,6 +339,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<a href=/><button>Main menu</button></a>
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
+			
+			Controller.add_space_prototype(args)
 		
 		elif path.find("/sparql_given") != -1:
 
