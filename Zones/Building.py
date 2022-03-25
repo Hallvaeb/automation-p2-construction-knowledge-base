@@ -174,7 +174,7 @@ class Building(Zone):
         # values = [building_id]
         # for i in range(4,len(list_data),5):
         #     values.append(str(list_data[i]).strip().strip("'"))
-        values = [building_id, "40", "30", "30", "60000", "10", "True"]
+        values = [building_id, "40", "30", "100", "60000", "10", "True"]
         return values
 
     def get_zones(self):
