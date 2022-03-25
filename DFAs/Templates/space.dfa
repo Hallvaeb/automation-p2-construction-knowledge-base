@@ -20,8 +20,3 @@
   color, ug_askClosestColor(DARK_AZURE_CYAN);  
 };
 
-# Methods of the class
-(Method Number) getVolume:(Number $length, Number $width, Number $height) 
-  @{
-     $length * $width * $height;
-  };

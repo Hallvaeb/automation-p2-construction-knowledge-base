@@ -20,9 +20,5 @@
   color, ug_askClosestColor(PALE_WEAK_GREEN);  
 };
 
-# Methods of the class
-(Method Number) getVolume:(Number $length, Number $width, Number $height) 
-  @{
-     $length * $width * $height;
-  };
+
 
