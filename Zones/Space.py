@@ -174,7 +174,7 @@ class Space(Zone):
 
     def get_args_from_KB(space_id):
         ''' 
-        returns values = [length, width, height, energyEfficiency, role]
+        returns values = [space_id, length, width, height, energyEfficiency, role]
 
         '''
 
@@ -199,7 +199,7 @@ class Space(Zone):
         # for i in range(4,len(list_data),5):
         #     values.append(str(list_data[i]).strip().strip("'"))
 
-        values = ["20", "30", "30", "60000", "Hallway"]
+        values = [space_id, "20", "30", "30", "60000", "Hallway"]
         return values
 
     def get_storey(self):
