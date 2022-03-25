@@ -19,15 +19,36 @@ class ServerHandler(BaseHTTPRequestHandler):
 	def do_GET(s):
 		"""Respond to a GET request."""
 
-		head = ServerHandler.create_head()
-		footer = ServerHandler.create_footer()
+		head = """
+			<!DOCTYPE html>
+			<HTML lang="en"> 
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title> AUTOMATED BUILDING </title>
+				<link rel="stylesheet" href="/style.css">
+			</head>
+			"""
+		footer = """
+			<footer>
+				<h2 id='copyright'>©2022 AUTOMATED BUILDING</h2>
+				<div id="contact_info">
+					<h2>AUTOMATED BUILDING</h2>
+					<h2>Verkstedteknisk, 213, Gløshaugen, Richard Birkelands vei 2b</h2>
+					<h2>7034 Trondheim</h2>
+					<h2>E-post: automatedbuilding@ntnu.no</h2>
+				</div>
+			</footer>"""
 		path = s.path
 
 		if path.find("/") != -1 and len(path) == 1:
 			
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
-			out = head+"""<body>
+			out = """<body>
 					<h1>Welcome to</h1>
 					<img src="/image.jpg" alt= "Logo not found." width="600" height="282">	
 				<section>
@@ -44,9 +65,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/add_space") != -1:
 
-			s.send_reponse_html()
-
-			out = head + """
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = """
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -81,9 +105,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/sparql") != -1:
 
-			s.send_reponse_html()
-
-			out = head + """
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -106,9 +133,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/construct_site") != -1:
 
-			s.send_reponse_html()
-
-			out = head + """
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -149,8 +179,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/cancel_space") != -1:
 
-			s.send_reponse_html()
-			out = head + """
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -164,7 +198,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/construct_storey") != -1:
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
 			site_length = "2000"
 			site_width = "3000"
@@ -176,8 +213,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 			building_height = "20"
 			building_energy_consumption = "60005"
 			building_number_of_storeys = "10"
-
-			out = head + """
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -247,7 +284,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/favicon.ico") != -1:
 
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/ico")
+			s.end_headers()
 
 			# Read the file
 			# Write file.
@@ -256,10 +295,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.wfile.write(theImg)
 
 		else:
+			s.send_response(200)
+			s.send_header("Content-type", "text/text")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 			
-			s.send_reponse_html()
-
-			out = head+"""
+			out = """<body>
 			<body>
 				<p>
 					The path: " """ + path + """ "
@@ -272,20 +313,40 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 	def do_POST(s):
 
-		head = ServerHandler.create_head()
-		footer = ServerHandler.create_footer()
+		head = """
+			<!DOCTYPE html>
+			<HTML lang="en"> 
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title> AUTOMATED BUILDING </title>
+				<link rel="stylesheet" href="/style.css">
+			</head>
+			"""
+		footer = """
+			<footer>
+				<h2 id='copyright'>©2022 AUTOMATED BUILDING</h2>
+				<div id="contact_info">
+					<h2>AUTOMATED BUILDING</h2>
+					<h2>Verkstedteknisk, 213, Gløshaugen, Richard Birkelands vei 2b</h2>
+					<h2>7034 Trondheim</h2>
+					<h2>E-post: automatedbuilding@ntnu.no</h2>
+				</div>
+			</footer>"""
 		path = s.path
 
 		if path.find("/confirm_space") != -1:
 
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/text")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
 			# Get the arguments
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			argument_list = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 			
-			s.wfile.write(bytes(head, 'utf-8'))
 			out = """
 			<body>
 				<section>
@@ -319,15 +380,18 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/space_added") != -1:
 
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
 			# Get the arguments
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
-
-			out = head+"""
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -344,8 +408,11 @@ class ServerHandler(BaseHTTPRequestHandler):
 		
 		elif path.find("/sparql_given") != -1:
 
-			s.send_reponse_html()
-
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
 			# Get the arguments
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
@@ -371,7 +438,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/construct_building") != -1:
 
-					s.send_reponse_html()
+					s.send_response(200)
+					s.send_header("Content-type", "text/html")
+					s.end_headers()
+					s.wfile.write(bytes(head, 'utf-8'))
 
 					# Get the arguments
 					argument_pairs = s.rfile.read(
@@ -383,7 +453,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 					site_all_buildings_identical = True
 					# if(len(args) == 4): site_all_buildings_identical = True
 					# else: site_all_buildings_identical = False
-					out = head + """
+			
+					out = """<body>
 					<body>
 						<section>
 							<h2>AUTOMATED BUILDING</h2>
@@ -440,7 +511,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/construct_storey") != -1:
 
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
 			# Get the arguments
 			argument_pairs = s.rfile.read(
@@ -461,9 +535,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 				# building_all_storeys_identical = args[9] 
 			else:
 				print("ALL BUILDINGS NOT IDENTICAL IS NOT YET SUPPORTED.")
-
-			# Declare first row header
-			out = head + """
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -507,7 +580,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		elif path.find("/construct_construction") != -1:
 
-			s.send_reponse_html()
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
 
 			# Get the arguments
 			argument_pairs = s.rfile.read(
@@ -527,7 +603,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 			[print("arg: "+ argument_pairs[i]+"\n") for i in range(len(args))]
 			
 			print(argument_pairs)
-			out = head + """
+			
+			out = """<body>
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -540,50 +617,24 @@ class ServerHandler(BaseHTTPRequestHandler):
 			out += str(argument_pairs)
 			out += """</p><p>
 					Path to your DFA product:""" + path_to_dfa + "</p>"
+			out += """<p>
+				<a href="""+path_to_dfa+"> Open DFA! </a></p>"
 			out += "</section><a href=/><button>Go back</button></a></body>"+footer
 			
 			s.wfile.write(bytes(out, "utf-8"))
 
 		else:
-			s.send_reponse_html()
-
-			out = head + "<body><p>The path: " + path + """ 
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = "<body><p>The path: " + path + """ 
 				has not been implemented as a POST method.
 				Start from start page!</p> <a href="/"><button>Go back</button></a><br><br>
 				</body></html>"""+footer
 
 			s.wfile.write(bytes(out, "utf-8"))
-
-	def send_reponse_html(s):
-		s.send_response(200)
-		s.send_header("Content-type", "text/html")
-		s.end_headers()
-
-	def create_head():
-		return """
-			<!DOCTYPE html>
-			<HTML lang="en"> 
-			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<title> AUTOMATED BUILDING </title>
-				<link rel="stylesheet" href="/style.css">
-			</head>
-			"""
-
-	def create_footer():
-		footer = """
-			<footer>
-				<h2 id='copyright'>©2022 AUTOMATED BUILDING</h2>
-				<div id="contact_info">
-					<h2>AUTOMATED BUILDING</h2>
-					<h2>Verkstedteknisk, 213, Gløshaugen, Richard Birkelands vei 2b</h2>
-					<h2>7034 Trondheim</h2>
-					<h2>E-post: automatedbuilding@ntnu.no</h2>
-				</div>
-			</footer>"""
-		return footer
-
 
 if __name__ == '__main__':
 	server_class = HTTPServer
