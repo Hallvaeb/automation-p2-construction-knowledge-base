@@ -4,7 +4,7 @@ import time
 from Controller import Controller
 
 HOST_NAME = '127.0.0.1'
-PORT_NUMBER = 4300
+PORT_NUMBER = 5000
 
 
 class ServerHandler(BaseHTTPRequestHandler):
@@ -293,10 +293,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<fieldset>
 					<legend>Review input</legend>
 					This is your input for space, you can still modify... <br>
-					Lenght: 			<br><input type="Number" name="lenght" value=\""""+argument_list[0]+"""\""> <br>
-					Width: 				<br><input type="Number" name="width" value=\""""+argument_list[1]+"""\"><br>
-					Height: 			<br><input type="Number" name="height" value=\""""+argument_list[2]+"""\"><br>
-					Energy efficiency: 	<br><input type="Number" name="energy" value=\""""+argument_list[3]+"""\"><br>
+					Lenght: 			<br><input type="Number" name="lenght" value="""+argument_list[0]+"""> <br>
+					Width: 				<br><input type="Number" name="width" value="""+argument_list[1]+"""><br>
+					Height: 			<br><input type="Number" name="height" value="""+argument_list[2]+"""><br>
+					Energy efficiency: 	<br><input type="Number" name="energy" value="""+argument_list[3]+"""><br>
 					Role: 		<br><input type="text" name="role" value=\""""+argument_list[4]+"""\"><br>
 					<input id= "submit" type="submit" value="OK">
 					<div id="illustration_will_appear">

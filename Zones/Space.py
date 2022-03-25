@@ -15,7 +15,7 @@ class Space(Zone):
             """
             role = args[0]
             if not Space.is_role_in_KB(role):
-                raise ValueError
+                raise ValueError("The given space role was not found in KB!")
             
             # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
             space_args = Space.get_prototype_args_from_KB(role)
