@@ -6,7 +6,7 @@ from Zones.Site import Site
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
 #   kall java -jar fuseki-server.jar
-# Gjøre onsdag: lage IDGeneratorklasse
+
 
 URL = "http://127.0.0.1:3030/bot"
 
