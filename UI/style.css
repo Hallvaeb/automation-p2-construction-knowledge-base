@@ -96,9 +96,9 @@ tr:nth-child(even) {
     height: 160px;
 }
 
-#fieldset_containing_illustration{
+/* #fieldset_containing_illustration{
     position: relative;
-}
+} */
 
 #illustration_will_appear{
     position: absolute;

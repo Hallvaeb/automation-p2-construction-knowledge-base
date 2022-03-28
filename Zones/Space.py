@@ -15,20 +15,20 @@ class Space(Zone):
             """
             role = args[0]
             if not Space.is_role_in_KB(role):
-                raise ValueError("The given space role was not found in KB!")
-            
-            # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
-            print("Role: ", role)
-            space_args = Space.get_prototype_args_from_KB(role)
-            # space_args = [space_id, length, width, height, energy_consumption, role]
-            self.space_id = IDGenerator.create_ID(self)
-            self.length = space_args[1]
-            self.width = space_args[2]
-            self.height = space_args[3]
-            self.energy_consumption = space_args[4]
-            self.role = space_args[5]
+                self.type = "The given space role was not found in KB!"
+            else:
+                # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
+                space_args = Space.get_prototype_args_from_KB(role)
+                print("Gone past the test.")
+                
+                self.space_id = IDGenerator.create_ID(self)
+                self.length = space_args[0]
+                self.width = space_args[1]
+                self.height = space_args[2]
+                self.energyEfficiency = space_args[3]
+                self.role = space_args[4]
 
-            self.add_to_KB()
+                self.add_to_KB()
 
         else:
             """
@@ -65,6 +65,8 @@ class Space(Zone):
 
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS) 
+        if r.status_code == 404:
+            return 0
         data = r.json()
 		
         if (len(data['results']['bindings']) == 0 ):

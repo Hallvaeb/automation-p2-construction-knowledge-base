@@ -9,3 +9,5 @@ test.py
 
 DFAs/tempo*.dfa
 tempo*.dfa
+Products/
+Templates/

@@ -3,7 +3,7 @@ import time
 
 from Controller import Controller
 
-HOST_NAME = '127.0.0.1'
+HOST_NAME = '10.24.106.205'
 PORT_NUMBER = 5000
 
 
@@ -38,7 +38,8 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>7034 Trondheim</h2>
 					<h2>E-post: automatedbuilding@ntnu.no</h2>
 				</div>
-			</footer>"""
+			</footer>
+			</html>"""
 		path = s.path
 
 		if path.find("/") != -1 and len(path) == 1:
@@ -70,7 +71,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 			s.end_headers()
 			s.wfile.write(bytes(head, 'utf-8'))
 			
-			out = """
+			out ="""
 			<body>
 				<section>
 					<h2>AUTOMATED BUILDING</h2>
@@ -338,7 +339,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 		if path.find("/confirm_space") != -1:
 
 			s.send_response(200)
-			s.send_header("Content-type", "text/text")
+			s.send_header("Content-type", "text/html")
 			s.end_headers()
 			s.wfile.write(bytes(head, 'utf-8'))
 
@@ -361,15 +362,12 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<fieldset>
 					<legend>Review input</legend>
 					This is your input for space, you can still modify... <br>
-					Lenght: 			<br><input type="Number" name="lenght" value="""+argument_list[0]+"""> <br>
-					Width: 				<br><input type="Number" name="width" value="""+argument_list[1]+"""><br>
-					Height: 			<br><input type="Number" name="height" value="""+argument_list[2]+"""><br>
-					Energy efficiency: 	<br><input type="Number" name="energy" value="""+argument_list[3]+"""><br>
+					Lenght: 			<br><input type="Number" name="lenght" value='"""+argument_list[0]+"""'> <br>
+					Width: 				<br><input type="Number" name="width" value='"""+argument_list[1]+"""'><br>
+					Height: 			<br><input type="Number" name="height" value='"""+argument_list[2]+"""'><br>
+					Energy efficiency: 	<br><input type="Number" name="energy" value='"""+argument_list[3]+"""'><br>
 					Role: 		<br><input type="text" name="role" value=\""""+argument_list[4]+"""\"><br>
 					<input id= "submit" type="submit" value="OK">
-					<div id="illustration_will_appear">
-						Maybe an illustration of your space will appear here some day?
-					</div>
 				</fieldset>
 				</div>
 				</form>
@@ -377,6 +375,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 			<a href="/cancel_space"> <button>CANCEL</button> </a> 
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
+
+			# <div id="illustration_will_appear">
+			# 			Maybe an illustration of your space will appear here some day?
+			# 		</div>
 
 		elif path.find("/space_added") != -1:
 
@@ -591,36 +593,24 @@ class ServerHandler(BaseHTTPRequestHandler):
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 			
 			path_to_dfa = Controller.construct(args)
-
-			# site_length, site_width, site_num_of_buildings, site_all_buildings_identical,
-			# building_length, building_width = args[5]
-			# building_height = args[6]
-			# building_energy_consumption = args[7]
-			# building_number_of_storeys = args[8] 
-			# building_all_storeys_identical = True
-			# storey_space_roles = args[10]
-
-			[print("arg: "+ argument_pairs[i]+"\n") for i in range(len(args))]
+			if path_to_dfa.find("design") != -1:
+				out = """<body>
+					<section>
+						<h2>AUTOMATED BUILDING</h2>
+						<p>
+							Congratulations! Everything is done and a construction is being created...<br>
+							Wait 10 seconds for it all to load, and then press the extract solution to retrieve the OWL file for your project.<br>
+							You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
+						</p>
+						<p>
+							Path to your DFA product:""" + path_to_dfa + "</p>"
+				out += """<p>
+					<a href="""+path_to_dfa+"> Open DFA! </a></p>"
+			else: 
+				out = "<body><section>"+path_to_dfa
 			
-			print(argument_pairs)
-			
-			out = """<body>
-			<body>
-				<section>
-					<h2>AUTOMATED BUILDING</h2>
-					<p>
-					Congratulations! Everything is done and a construction is being created...<br>
-					Wait 10 seconds for it all to load, and then press the extract solution to retrieve the OWL file for your project.<br>
-					You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
-					Here are the arguments used (for troubleshooting pew pew): 
-					"""
-			out += str(argument_pairs)
-			out += """</p><p>
-					Path to your DFA product:""" + path_to_dfa + "</p>"
-			out += """<p>
-				<a href="""+path_to_dfa+"> Open DFA! </a></p>"
 			out += "</section><a href=/><button>Go back</button></a></body>"+footer
-			
+
 			s.wfile.write(bytes(out, "utf-8"))
 
 		else:
