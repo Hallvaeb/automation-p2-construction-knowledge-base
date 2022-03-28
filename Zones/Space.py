@@ -15,7 +15,7 @@ class Space(Zone):
             """
             role = args[0]
             if not Space.is_role_in_KB(role):
-                raise ValueError
+                raise ValueError("The given space role was not found in KB!")
             
             # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
             print("Role: ", role)
@@ -151,7 +151,7 @@ class Space(Zone):
         returns values = [space_id, length, width, height, energy_consumption, role]
         uses the role to filter out wanted space.
         '''
-        
+        print("role", role)
 
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>

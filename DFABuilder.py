@@ -5,8 +5,7 @@ from Zones.Storey import Storey
 from Zones.Space import Space
 import pathlib
 
-path_to_dfa_folder = str(pathlib.Path().absolute())+"/DFAs/"
-
+path_to_dfa_folder = str(pathlib.Path().absolute().as_posix())+"/DFAs/"
 
 class DFABuilder():
 
@@ -30,7 +29,7 @@ class DFABuilder():
     def make_design_template(): 
         #Design
         design_id = IDGenerator.create_design_ID()
-        f = open(path_to_dfa_folder + "/Templates/design.dfa", "r")
+        f = open(path_to_dfa_folder + "Templates/design.dfa", "r")
         txt = f.read()
         txt = txt.replace("<ID>", design_id) #TODO replace order 13 with automated id.
         f.close()
@@ -74,7 +73,7 @@ class DFABuilder():
             space_args = Space.get_args_from_KB(space_id)
             DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3])
 
-        return path_to_dfa_folder+"/Products/"+design_id
+        return path_to_dfa_folder+"Products/"+design_id+".dfa"
             
     
 
