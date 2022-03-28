@@ -1,8 +1,6 @@
 from IDGenerator import IDGenerator
 from Zones.Zone import Zone
 from Zones.Site import Site
-# from Zone import Zone
-# from Site import Site
 import requests
 
 ### Comments for Johanne:
@@ -161,8 +159,6 @@ class Building(Zone):
             return 0 #"This building is not placed at any site"
 
     def get_args_from_KB(building_id):
-        # TODO: Find out how to count the number of storeys in a building.
-
         ''' 
         returns [building_id, length, width, height, energy_consumption, number_of_storeys, all_storeys_identical] 
         '''
@@ -190,7 +186,7 @@ class Building(Zone):
         values = []
         for i in range(4,len(list_data),5):
             values.append(str(list_data[i]).strip().strip("'"))
-        # values = [building_id, "40", "30", "30", "60000", "10", "True"]
+        values.append(Building.get_number_of_storeys(building_id))
         return values
 
     def get_zones(self):
@@ -220,7 +216,7 @@ class Building(Zone):
                 ?building a bot:Building.
                 ?building bot:hasID ?building_id.
                 ?building bot:hasStorey ?storey
-	        FILTER (EXISTS { ?building bot:hasID "'''+building_id+'''"})
+	        FILTER (EXISTS { ?building bot:hasID "'''+ building_id +'''"})
             }
 			Group by ?building_id
             ''')
@@ -228,7 +224,8 @@ class Building(Zone):
             PARAMS = {"query": QUERY}
             r = requests.get(url = URL, params = PARAMS) 
             data = r.json()
-            print("DATA: ",data)
+            list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').replace("'","").replace(" ","").split(",")
+            return list_data[-1]
         except:
             return 0
             
@@ -287,9 +284,3 @@ class Building(Zone):
             return float(values[0])*float(values[1])*float(values[2])
         except:
             return 0
-
-
-# args9 = [90000, 99000, 9000, 9999, ['storey_91', 'storey_92', 'storey_93', 'storey_94', 'storey_95']]
-# building_9 = Building(args9)
-# building_9.get_area()
-# building_9.get_number_of_storeys()
