@@ -234,10 +234,55 @@ class Space(Zone):
         return self.length
 
     def get_area(self):
-        return self.length*self.width
+        try:
+            QUERY = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+            SELECT ?length ?width
+            WHERE {
+                ?space a bot:Space.
+                ?space bot:hasLength ?length.
+                ?building bot:hasWidth ?width.
+                FILTER ( EXISTS { ?space bot:hasID "'''+ str(self.space_id) +'''"}
+            )
+            }
+            ''')
+
+            PARAMS = {"query": QUERY}
+            r = requests.get(url = URL, params = PARAMS) 
+            data = r.json()
+            list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+            values = []
+            for i in range(4,len(list_data),5):
+                values.append(str(list_data[i]).strip().strip("'"))
+            return float(values[0])*float(values[1])
+        except:
+            return 0
 
     def get_volume(self):
-        return self.length*self.width*self.height
+        try:
+            QUERY = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+            SELECT ?length ?width ?height
+            WHERE {
+                ?space a bot:Space.
+                ?space bot:hasLength ?length.
+                ?space bot:hasWidth ?width.
+                ?space bot:hasHeight ?height.
+                FILTER ( EXISTS { ?space bot:hasID "'''+ str(self.space_id) +'''"}
+            )
+            }
+            ''')
+
+            PARAMS = {"query": QUERY}
+            r = requests.get(url = URL, params = PARAMS) 
+            data = r.json()
+            list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+            values = []
+            for i in range(4,len(list_data),5):
+                values.append(str(list_data[i]).strip().strip("'"))
+            return float(values[0])*float(values[1])*float(values[2])
+        except:
+            return 0
 
     def get_energy_consumption(self):
         return self.energy_consumption
