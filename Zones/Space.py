@@ -22,11 +22,11 @@ class Space(Zone):
                 space_args = Space.get_prototype_args_from_KB(role)
                 print(len(space_args))
                 self.space_id = IDGenerator.create_ID(self)
-                self.length = space_args[0]
-                self.width = space_args[1]
-                self.height = space_args[2]
-                self.energy_consumption = space_args[3]
-                self.role = space_args[4]
+                self.length = space_args[1]
+                self.width = space_args[2]
+                self.height = space_args[3]
+                self.energy_consumption = space_args[4]
+                self.role = space_args[5]
 
                 self.add_to_KB()
 
