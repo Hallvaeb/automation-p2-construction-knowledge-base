@@ -1,7 +1,9 @@
 from IDGenerator import IDGenerator
 from Zones.Zone import Zone
-import requests
 from Zones.Site import Site
+# from Zone import Zone
+# from Site import Site
+import requests
 
 ### Comments for Johanne:
 #   mappe C:\Users\Johanne\Downloads\apache-jena-fuseki-4.2.0\apache-jena-fuseki-4.2.0
@@ -185,7 +187,7 @@ class Building(Zone):
         data = r.json()
         
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
-        values = [building_id]
+        values = []
         for i in range(4,len(list_data),5):
             values.append(str(list_data[i]).strip().strip("'"))
         # values = [building_id, "40", "30", "30", "60000", "10", "True"]
@@ -209,6 +211,27 @@ class Building(Zone):
     def get_length(self):
         return self.length
 
+    def get_number_of_storeys(building_id):
+        try:
+            QUERY = ('''
+            PREFIX bot:<https://w3id.org/bot#>
+            SELECT (count(?storey) as ?number_of_storeys)
+            WHERE {
+                ?building a bot:Building.
+                ?building bot:hasID ?building_id.
+                ?building bot:hasStorey ?storey
+	        FILTER (EXISTS { ?building bot:hasID "'''+building_id+'''"})
+            }
+			Group by ?building_id
+            ''')
+
+            PARAMS = {"query": QUERY}
+            r = requests.get(url = URL, params = PARAMS) 
+            data = r.json()
+            print("DATA: ",data)
+        except:
+            return 0
+            
     def get_area(self):
         try:
             QUERY = ('''
@@ -266,6 +289,7 @@ class Building(Zone):
             return 0
 
 
-# args1 = [7000, 7000, 7000, 7000, []]
-# building_1 = Building(args1)
-# building_1.get_area()
+# args9 = [90000, 99000, 9000, 9999, ['storey_91', 'storey_92', 'storey_93', 'storey_94', 'storey_95']]
+# building_9 = Building(args9)
+# building_9.get_area()
+# building_9.get_number_of_storeys()

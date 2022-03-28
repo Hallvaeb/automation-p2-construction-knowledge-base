@@ -1,5 +1,6 @@
 import requests
 from Zones.Zone import Zone
+# from Zone import Zone
 from IDGenerator import IDGenerator
 
 URL = "http://127.0.0.1:3030/bot"

@@ -33,7 +33,7 @@ class Controller():
 			else:
 				return "The given space role '"+str(role)+"' was not found in KB!"
 		storey_id = Storey([building_length, building_width, building_height, space_ids]).get_ID()
-		building_id = Building([building_length, building_width, building_height, [storey_id]]).get_ID()
+		building_id = Building([building_length, building_width, building_height, building_energy_consumption, [storey_id]]).get_ID()
 		site_id = Site([site_length, site_width, building_height, [building_id]]).get_ID()
 		
 		return DFABuilder.generate_DFA([[site_id], [building_id], [storey_id], [space_ids]])
