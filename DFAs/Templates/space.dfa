@@ -1,14 +1,14 @@
-    (number parameter) my_height: <HEIGHT>;
-    (number parameter) my_width: <WIDTH>;
-    (number parameter) my_length: <LENGTH>;  
+    (number parameter) my_height_sp: <HEIGHT>;
+    (number parameter) my_width_sp: <WIDTH>;
+    (number parameter) my_length_sp: <LENGTH>;  
 
 
 (child) block1: 
     {
         class, ug_block;
-        length, my_length:;
-        width, my_width:;
-        height, my_height:;
+        length, my_length_sp:;
+        width, my_width_sp:;
+        height, my_height_sp:;
     };
 
 # Body colored depending on the volume of the block
