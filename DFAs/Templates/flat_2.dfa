@@ -1,14 +1,12 @@
-#! NX/KF 4.0
-DefClass: flat_2 (ug_base_part);
-    (number parameter) my_height_st: 2;
-    (number parameter) my_width_st: 5;
-    (number parameter) my_length_st: 7.5; 
+    (number parameter) my_height_st: 3;
+    (number parameter) my_width_st: 10;
+    (number parameter) my_length_st: 15; 
 
 
-(child) bedroom1: 
+(child) bedroom1_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(0,0,0);
+        referenceFrame, framexy(point(0,0,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st:/2.5;
@@ -17,18 +15,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_I: 
+(Child) body_colored_I_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {bedroom1:};  
+  Feature, {bedroom1_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(SPRING_SPRING_YELLOW);  
 };
 
-(child) bedroom2: 
+(child) bedroom2_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(my_length_st:/2.5,0,0);
+        referenceFrame, framexy(point(my_length_st:/2.5,0,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st:/2.5;
@@ -37,18 +35,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_II: 
+(Child) body_colored_II_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {bedroom2:};  
+  Feature, {bedroom2_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(SPRING_SPRING_YELLOW);  
 };
 
-(child) bedroom3: 
+(child) bedroom3_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(2*my_length_st:/2.5,0,0);
+        referenceFrame, framexy(point(2*my_length_st:/2.5,0,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st: - 2*my_length_st:/2.5;
@@ -57,18 +55,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_VI: 
+(Child) body_colored_VI_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {bedroom3:};  
+  Feature, {bedroom3_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(SPRING_SPRING_YELLOW);  
 };
 
-(child) kitchen: 
+(child) kitchen_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(0, 2*my_width_st:/3, 0);
+        referenceFrame, framexy(point(0, 2*my_width_st:/3,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st:/3.5;
@@ -77,18 +75,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_III: 
+(Child) body_colored_III_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {kitchen:};  
+  Feature, {kitchen_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(DARK_AZURE_CYAN);  
 };
 
-(child) livingroom: 
+(child) livingroom_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(my_length_st:/3.5, my_width_st:/3, 0);
+        referenceFrame, framexy(point(my_length_st:/3.5, my_width_st:/3, <HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st:/5;
@@ -97,18 +95,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_IV: 
+(Child) body_colored_IV_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {livingroom:};  
+  Feature, {livingroom_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
 };
 
-(child) livingroom_ex1: 
+(child) livingroom_ex1_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(0, my_width_st:/3, 0);
+        referenceFrame, framexy(point(0, my_width_st:/3, <HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st:/3.5;
@@ -117,18 +115,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_VII: 
+(Child) body_colored_VII_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {livingroom_ex1:};  
+  Feature, {livingroom_ex1_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
 };
 
-(child) livingroom_ex2: 
+(child) livingroom_ex2_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(my_length_st:/5 + my_length_st:/3.5, my_width_st:/3 ,0);
+        referenceFrame, framexy(point(my_length_st:/5 + my_length_st:/3.5, my_width_st:/3 ,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st: - (my_length_st: - 2*my_length_st:/2.5) - (my_length_st:/5 + my_length_st:/3.5);
@@ -137,18 +135,18 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_VIII: 
+(Child) body_colored_VIII_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {livingroom_ex2:};  
+  Feature, {livingroom_ex2_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(MEDIUM_TEAL_CYAN);  
 };
 
-(child) bathroom: 
+(child) bathroom_<UQ>: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(my_length_st:/5 + my_length_st:/3.5, my_width_st:/1.5 ,0);
+        referenceFrame, framexy(point(my_length_st:/5 + my_length_st:/3.5, my_width_st:/1.5 ,<HEIGHT>);
         vector(1,0,0);
 	    vector(0,1,0));
         length, my_length_st: - (my_length_st: - 2*my_length_st:/2.5) - (my_length_st:/5 + my_length_st:/3.5);
@@ -157,10 +155,10 @@ DefClass: flat_2 (ug_base_part);
     };
 
 # Body colored depending on the volume of the block
-(Child) body_colored_V: 
+(Child) body_colored_V_<UQ>: 
 { 
   Class, ug_body; 
-  Feature, {bathroom:};  
+  Feature, {bathroom_<UQ>:};  
   Layer, 1; 
   color, ug_askClosestColor(RED);  
 };

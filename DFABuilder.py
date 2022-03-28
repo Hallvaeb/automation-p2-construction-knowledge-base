@@ -4,6 +4,7 @@ from Zones.Building import Building
 from Zones.Storey import Storey
 from Zones.Space import Space
 import pathlib
+import random
 
 path_to_dfa_folder = str(pathlib.Path().absolute().as_posix())+"/DFAs/"
 
@@ -82,10 +83,25 @@ class DFABuilder():
 
         return path_to_dfa_folder+"Products/"+design_id+".dfa"
             
-    
+    def generate_DFA_with_existing_flats(floors):
+        design_id = DFABuilder.make_design_template()
+        for i in range(0, floors):
+            DFABuilder.append_existing_flat_to_design(i, random.randint(1, 3), design_id)
+        
 
+    def append_existing_flat_to_design(floornumber, flatnumber, design_id): #floornumber starts at zero
+        height = 3*floornumber
+        uniqe = IDGenerator.create_dfa_zone_ID()
+        f = open(path_to_dfa_folder + "/Templates/flat_" + str(flatnumber) +".dfa", "r")
+        txt = f.read()
+        txt = txt.replace("<HEIGHT>", str(height))
+        txt = txt.replace("<UQ>", str(uniqe))
+        f.close()
 
-# Current issues:
-# - Colour only appears on the last added zone
-# - Still not implemented a way to select placement of the zones, which probably will mean a big change in the current module. 
+        f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "a")
+        f.write(txt)
+        f.close        
+
+DFABuilder.generate_DFA_with_existing_flats(60)
+
 
