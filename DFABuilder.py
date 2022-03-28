@@ -10,7 +10,7 @@ path_to_dfa_folder = str(pathlib.Path().absolute().as_posix())+"/DFAs/"
 class DFABuilder():
 
     
-    def append_to_design_DFA(design_id, type, length, width, height):
+    def append_to_design_DFA(design_id, type, length, width, height, x, y):
         # zone_id is for the children blocks added:
         zone_id = IDGenerator.create_dfa_zone_ID()
         
@@ -20,7 +20,9 @@ class DFABuilder():
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
         txt_replaced = txt_replaced.replace("<HEIGHT>", str(height))
         txt_replaced = txt_replaced.replace("block1", str(zone_id))
-        txt_replaced = txt_replaced.replace("block2", str(zone_id) + "_X") 
+        txt_replaced = txt_replaced.replace("block2", str(zone_id) + "_X")
+        txt_replaced = txt_replaced.replace("<X>", str(x))
+        txt_replaced = txt_replaced.replace("<Y>", str(y))
         f.close()
 
         f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "a")
@@ -60,7 +62,7 @@ class DFABuilder():
         building_id_list = IDs_list[1]
         for id in building_id_list:
             building_args = Building.get_args_from_KB(id)
-            DFABuilder.append_to_design_DFA(design_id, "building", building_args[1], building_args[2], building_args[3])
+            DFABuilder.append_to_design_DFA(design_id, "building", building_args[1], building_args[2], building_args[3], site_args[1]/2, site_args[2]/2)
         
         # Logical flaw... need to make sure these storey heights are applied to the right buildings
         print("building args:", building_args[0], building_args[1], building_args[2], building_args[3], building_args[4])
@@ -68,7 +70,7 @@ class DFABuilder():
         storey_id_list = IDs_list[2]
         for id in storey_id_list:        
             storey_args = Storey.get_args_from_KB(id)
-            DFABuilder.append_to_design_DFA(design_id, "storey", building_args[1], building_args[2], height_of_storey)
+            DFABuilder.append_to_design_DFA(design_id, "storey", building_args[1], building_args[2], height_of_storey, site_args[1]/2, site_args[2]/2)
         
         space_id_list = IDs_list[3]
         for space_id in space_id_list:
@@ -76,7 +78,7 @@ class DFABuilder():
             space_args = Space.get_args_from_KB(space_id)
             print(len(space_args))
             print(space_args[0], space_args[1], space_args[2])
-            DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3])
+            DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3], site_args[1]/2, site_args[2]/2)
 
         return path_to_dfa_folder+"Products/"+design_id+".dfa"
             
