@@ -28,15 +28,16 @@ class Controller():
 		for role in space_roles_list:
 			role = role.lower().strip()
 			if Space.is_role_in_KB(role):
-				space = Space([role])
-				space_ids.append(space.get_ID())
+				space_id = Space([role]).get_ID()
+				space_ids.append(space_id)
+				print(space_id, " is what is added SPACEID HEEH")
 			else:
 				return "The given space role '"+str(role)+"' was not found in KB!"
 		storey_id = Storey([building_length, building_width, building_height, space_ids]).get_ID()
 		building_id = Building([building_length, building_width, building_height, building_energy_consumption, [storey_id]]).get_ID()
 		site_id = Site([site_length, site_width, building_height, [building_id]]).get_ID()
 		
-		return DFABuilder.generate_DFA([[site_id], [building_id], [storey_id], [space_ids]])
+		return DFABuilder.generate_DFA([[site_id], [building_id], [storey_id], space_ids])
 
 	
 	def add_space_prototype(args):

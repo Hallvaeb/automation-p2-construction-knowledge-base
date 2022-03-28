@@ -27,7 +27,6 @@ class Space(Zone):
                 self.role = space_args[5]
 
                 self.add_to_KB()
-
         else:
             """
                 Adds prototype space to KB
@@ -190,7 +189,6 @@ class Space(Zone):
         returns values = [space_id, length, width, height, energy_consumption, role]
 
         '''
-        print(space_id, "space_id")
 
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
@@ -227,6 +225,7 @@ class Space(Zone):
         pass
 
     def get_ID(self):
+        print("Space ID is getting gotten", self.space_id)
         return self.space_id
 
     def get_type(self):
