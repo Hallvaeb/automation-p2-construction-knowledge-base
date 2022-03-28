@@ -18,14 +18,15 @@ class Space(Zone):
                 raise ValueError
             
             # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
+            print("Role: ", role)
             space_args = Space.get_prototype_args_from_KB(role)
-            
+            # space_args = [space_id, length, width, height, energy_consumption, role]
             self.space_id = IDGenerator.create_ID(self)
-            self.length = space_args[0]
-            self.width = space_args[1]
-            self.height = space_args[2]
-            self.energyEfficiency = space_args[3]
-            self.role = space_args[4]
+            self.length = space_args[1]
+            self.width = space_args[2]
+            self.height = space_args[3]
+            self.energy_consumption = space_args[4]
+            self.role = space_args[5]
 
             self.add_to_KB()
 
@@ -33,11 +34,11 @@ class Space(Zone):
             """
                 Adds prototype space to KB
             """
-            # INPUT args: [length, width, height, energyEfficiency, role]
+            # INPUT args: [length, width, height, energyConsumption, role]
             self.length = args[0]
             self.width = args[1]
             self.height = args[2]
-            self.energyEfficiency = args[3]
+            self.energy_consumption = args[3]
 
             # WE NEED A UNIQUE ROLE:
             role_core = args[4]+"_"
@@ -80,8 +81,10 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
-                bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
+                bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''".
+
                 }
             WHERE {
             }
@@ -102,16 +105,19 @@ class Space(Zone):
                 bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
-                bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
+                bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
                 bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''".
                 }
             WHERE {
             bot:''' + str(self.space_id) + ''' a bot:Space.
             bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
-            bot:''' + str(self.space_id) + ''' bot:energyEfficiency "''' + str(self.energyEfficiency) + '''".
+            bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
             bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+            bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''".
+
                 }''')
             
             PARAMS = {"update": UPDATE}
@@ -140,33 +146,33 @@ class Space(Zone):
         except:
             return 0
 
-    def get_prototype_args_from_KB(space_id):
+    def get_prototype_args_from_KB(role):
         ''' 
-        returns values = [space_id, length, width, height, energyEfficiency, role]
-
+        returns values = [space_id, length, width, height, energy_consumption, role]
+        uses the role to filter out wanted space.
         '''
-        liste = space_id.split('_')
-        role = liste[1]+"_"+liste[2]
+        
 
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
-        SELECT ?length ?width ?height ?energyEfficiency ?role
+        SELECT ?space_id ?length ?width ?height ?energy_consumption ?role
         WHERE {
 	        ?space a bot:Space.
             ?space bot:hasLength ?length.
             ?space bot:hasWidth ?width.
             ?space bot:hasHeight ?height.
-            ?space bot:energyEfficiency ?energyEfficiency.
+            ?space bot:energyConsumption ?energy_consumption.
             ?space bot:hasRole ?role.
+            ?space bot:hasID ?space_id.
 	        FILTER (EXISTS { ?space bot:hasRole "'''+str(role)+'''"})
             }
         ''')
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
-        
+        print("Data: ",data)
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
-        values = [space_id] # JEG FORSTÅR IKKE DENNE: SANNSYNLIGVIS FEIL I DE ANDRE
+        values = []
         for i in range(4,len(list_data),5):
             values.append(str(list_data[i]).strip().strip("'"))
 
@@ -174,32 +180,33 @@ class Space(Zone):
 
     def get_args_from_KB(space_id):
         ''' 
-        returns values = [space_id, length, width, height, energyEfficiency, role]
+        returns values = [space_id, length, width, height, energy_consumption, role]
 
         '''
 
-        # QUERY = ('''
-        # PREFIX bot:<https://w3id.org/bot#>
-        # SELECT ?length ?width ?height ?energyEfficiency ?role
-        # WHERE {
-	    #     ?space a bot:Space.
-        #     ?space bot:hasLength ?length.
-        #     ?space bot:hasWidth ?width.
-        #     ?space bot:hasHeight ?height.
-        #     ?space bot:energyEfficiency ?energyEfficiency.
-        #     ?space bot:hasRole ?role.
-	    #     FILTER (EXISTS { ?space bot:hasID "'''+str(space_id)+'''"})
-        #     }
-        # ''')
-        # PARAMS = {"query": QUERY}
-        # r = requests.get(url = URL, params = PARAMS)
-        # data = r.json()
+        QUERY = ('''
+        PREFIX bot:<https://w3id.org/bot#>
+        SELECT ?space_id ?length ?width ?height ?energy_consumption ?role
+        WHERE {
+	        ?space a bot:Space.
+            ?space bot:hasLength ?length.
+            ?space bot:hasWidth ?width.
+            ?space bot:hasHeight ?height.
+            ?space bot:energyConsumption ?energy_consumption.
+            ?space bot:hasRole ?role.
+            ?space bot:hasID ?space_id.
+	        FILTER (EXISTS { ?space bot:hasID "'''+str(space_id)+'''"})
+            }
+        ''')
+        PARAMS = {"query": QUERY}
+        r = requests.get(url = URL, params = PARAMS)
+        data = r.json()
         
-        # list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
-        # for i in range(4,len(list_data),5):
-        #     values.append(str(list_data[i]).strip().strip("'"))
+        values = []
+        list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        for i in range(4,len(list_data),5):
+            values.append(str(list_data[i]).strip().strip("'"))
 
-        values = [space_id, "20", "30", "30", "60000", "Hallway"]
         return values
 
     def get_storey(self):
@@ -230,7 +237,7 @@ class Space(Zone):
     def get_volume(self):
         return self.length*self.width*self.height
 
-    def get_energyEfficiency(self):
-        return self.energyEfficiency
+    def get_energy_consumption(self):
+        return self.energy_consumption
 
 
