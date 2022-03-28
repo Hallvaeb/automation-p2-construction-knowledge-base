@@ -254,18 +254,18 @@ class Building(Zone):
             return 0
 
     def calculate_energy_efficiency(self):
-        energy_efficientcy = self.energy_consumption / self.get_area() * Building.get_number_of_storeys(self.building_id)
-        if energy_efficientcy <= 85:
+        energy_efficiency = self.energy_consumption / self.get_area() * Building.get_number_of_storeys(self.building_id)
+        if energy_efficiency <= 85:
             return "A"
-        elif energy_efficientcy <= 95:
+        elif energy_efficiency <= 95:
             return "B"
-        elif energy_efficientcy <= 110:
+        elif energy_efficiency <= 110:
             return "C"
-        elif energy_efficientcy <= 135:
+        elif energy_efficiency <= 135:
             return "D"
-        elif energy_efficientcy <= 160:
+        elif energy_efficiency <= 160:
             return "E"
-        elif energy_efficientcy <= 200:
+        elif energy_efficiency <= 200:
             return "F"
         else:
             return "G"
