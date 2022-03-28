@@ -14,13 +14,11 @@ class Space(Zone):
                 Space is being used and created in construction
             """
             role = args[0]
-            print(role)
             if not Space.is_role_in_KB(role):
                 self.type = "The given space role was not found in KB!"
             else:
-                print("role printed above was found")
                 space_args = Space.get_prototype_args_from_KB(role)
-                print(len(space_args))
+                # GIVE IT A NEW ID BUT COPY ALL OTHER VALUES
                 self.space_id = IDGenerator.create_ID(self)
                 self.length = space_args[1]
                 self.width = space_args[2]
@@ -75,6 +73,14 @@ class Space(Zone):
         
 
     def add_to_KB(self):
+        print("INSERT {"
+                'bot:''' + str(self.space_id) + ''' a bot:Space.
+                bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
+                bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+                bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''"''')
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>
@@ -153,8 +159,6 @@ class Space(Zone):
         returns values = [space_id, length, width, height, energy_consumption, role]
         uses the role to filter out wanted space.
         '''
-        print("role", role)
-
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
         SELECT ?space_id ?length ?width ?height ?energy_consumption ?role
@@ -166,13 +170,14 @@ class Space(Zone):
             ?space bot:energyConsumption ?energy_consumption.
             ?space bot:hasRole ?role.
             ?space bot:hasID ?space_id.
+
 	        FILTER (EXISTS { ?space bot:hasRole "'''+str(role)+'''"})
             }
         ''')
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
-        print("Data: ",data)
+
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
         values = []
         for i in range(4,len(list_data),5):
@@ -185,6 +190,7 @@ class Space(Zone):
         returns values = [space_id, length, width, height, energy_consumption, role]
 
         '''
+        print(space_id, "space_id")
 
         QUERY = ('''
         PREFIX bot:<https://w3id.org/bot#>
@@ -203,11 +209,13 @@ class Space(Zone):
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
-        
-        values = []
+        print("DATA------------------------------\n", data)
         list_data = str(data['results']['bindings']).replace('{','').replace('[','').replace('}','').replace(']','').replace(':',',').split(",")
+        values = []
         for i in range(4,len(list_data),5):
-            values.append(str(list_data[i]).strip().strip("'"))
+            x = str(list_data[i]).strip().strip("'")
+            print(x)
+            values.append(x)
 
         return values
 

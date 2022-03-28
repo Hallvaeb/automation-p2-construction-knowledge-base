@@ -3,7 +3,7 @@ import time
 
 from Controller import Controller
 
-HOST_NAME = '10.24.106.205'
+HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 5000
 
 
