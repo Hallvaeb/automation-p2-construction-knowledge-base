@@ -62,7 +62,8 @@ class DFABuilder():
             DFABuilder.append_to_design_DFA(design_id, "building", building_args[1], building_args[2], building_args[3])
         
         # Logical flaw... need to make sure these storey heights are applied to the right buildings
-        height_of_storey = int(float(building_args[2])/float(building_args[5]))
+        print("building args:", building_args[0], building_args[1], building_args[2], building_args[3], building_args[4])
+        height_of_storey = int(float(building_args[3])/float(building_args[5]))
         storey_id_list = IDs_list[2]
         for id in storey_id_list:        
             storey_args = Storey.get_args_from_KB(id)
@@ -70,7 +71,10 @@ class DFABuilder():
         
         space_id_list = IDs_list[3]
         for space_id in space_id_list:
+            print(space_id)
             space_args = Space.get_args_from_KB(space_id)
+            print(len(space_args))
+            print(space_args[0], space_args[1], space_args[2])
             DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3])
 
         return path_to_dfa_folder+"Products/"+design_id+".dfa"

@@ -177,7 +177,6 @@ class Building(Zone):
 	        FILTER (EXISTS { ?building bot:hasID "'''+str(building_id)+'''"})
             }
         ''')
-        print("Det var det jeg trodde")
         PARAMS = {"query": QUERY}
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
@@ -255,7 +254,6 @@ class Building(Zone):
             return 0
 
     def calculate_energy_efficiency(self):
-        # deler kHw på area, ganger med number of storeys.
         energy_efficientcy = self.energy_consumption / self.get_area() * Building.get_number_of_storeys(self.building_id)
         if energy_efficientcy <= 85:
             return "A"
