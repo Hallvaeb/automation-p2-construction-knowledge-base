@@ -26,7 +26,7 @@ class Controller():
 		space_roles_list = str(space_roles).split(",")
 		space_ids = []
 		for role in space_roles_list:
-			role = role.lower()
+			role = role.lower().strip()
 			if Space.is_role_in_KB(role):
 				space = Space([role])
 				space_ids.append(space.get_ID())

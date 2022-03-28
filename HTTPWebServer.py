@@ -297,7 +297,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 
 		else:
 			s.send_response(200)
-			s.send_header("Content-type", "text/text")
+			s.send_header("Content-type", "text/html")
 			s.end_headers()
 			s.wfile.write(bytes(head, 'utf-8'))
 			

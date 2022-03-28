@@ -14,13 +14,13 @@ class Space(Zone):
                 Space is being used and created in construction
             """
             role = args[0]
+            print(role)
             if not Space.is_role_in_KB(role):
                 self.type = "The given space role was not found in KB!"
             else:
-                # HERE WE ASK KB WHAT A SPACE OF THIS ROLE HAS
+                print("role printed above was found")
                 space_args = Space.get_prototype_args_from_KB(role)
-                print("Gone past the test.")
-                
+                print(len(space_args))
                 self.space_id = IDGenerator.create_ID(self)
                 self.length = space_args[0]
                 self.width = space_args[1]
@@ -34,11 +34,11 @@ class Space(Zone):
             """
                 Adds prototype space to KB
             """
-            # INPUT args: [length, width, height, energyConsumption, role]
+            # INPUT args: [length, width, height, energy_consumption, role]
             self.length = args[0]
             self.width = args[1]
             self.height = args[2]
-            self.energy_consumption = args[3]
+            self.energyEfficiency = args[3]
 
             # WE NEED A UNIQUE ROLE:
             role_core = args[4]+"_"
