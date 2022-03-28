@@ -236,8 +236,6 @@ class Building(Zone):
 
     def calculate_energy_efficiency(self):
         # Har et areal * antall etasjer, får ut et stort tall, må finne ut hvilken bokstav det inngår i. bruk tabellen fra Sigve.
-
-        
         
         pass
 

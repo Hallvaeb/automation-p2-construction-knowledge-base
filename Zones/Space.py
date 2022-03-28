@@ -25,7 +25,7 @@ class Space(Zone):
                 self.length = space_args[0]
                 self.width = space_args[1]
                 self.height = space_args[2]
-                self.energyEfficiency = space_args[3]
+                self.energy_consumption = space_args[3]
                 self.role = space_args[4]
 
                 self.add_to_KB()
@@ -38,7 +38,7 @@ class Space(Zone):
             self.length = args[0]
             self.width = args[1]
             self.height = args[2]
-            self.energyEfficiency = args[3]
+            self.energy_consumption = args[3]
 
             # WE NEED A UNIQUE ROLE:
             role_core = args[4]+"_"
