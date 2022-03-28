@@ -19,7 +19,8 @@ class DFABuilder():
         txt_replaced = txt.replace("<LENGTH>", str(length))
         txt_replaced = txt_replaced.replace("<WIDTH>", str(width))
         txt_replaced = txt_replaced.replace("<HEIGHT>", str(height))
-        txt_replaced = txt_replaced.replace("block1", str(zone_id)) 
+        txt_replaced = txt_replaced.replace("block1", str(zone_id))
+        txt_replaced = txt_replaced.replace("block2", str(zone_id) + "_X") 
         f.close()
 
         f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "a")
