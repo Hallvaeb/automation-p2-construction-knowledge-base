@@ -55,10 +55,10 @@ class Controller():
 		print("add_space_prototype: " + str(args))
 		space.add_to_KB()
 
-	def send_query(query):
-		params = {"query": query}
-		print("PARAMS:", params)
-		r = requests.get(URL, params) 
+	def send_query(QUERY):
+		PARAMS = {"query": QUERY}
+		print("PARAMS:", PARAMS)
+		r = requests.get(url = URL, params = PARAMS) 
 		print(r)
 		if r.status_code == 404:
 			return 0
