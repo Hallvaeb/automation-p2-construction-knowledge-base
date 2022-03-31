@@ -292,6 +292,19 @@ class Space(Zone):
             return 0
 
     def get_energy_consumption(self):
-        return self.energy_consumption
-
+        energy_efficiency = self.energy_consumption / self.get_area()
+        if energy_efficiency <= 85:
+            return "A"
+        elif energy_efficiency <= 95:
+            return "B"
+        elif energy_efficiency <= 110:
+            return "C"
+        elif energy_efficiency <= 135:
+            return "D"
+        elif energy_efficiency <= 160:
+            return "E"
+        elif energy_efficiency <= 200:
+            return "F"
+        else:
+            return "G"
 
