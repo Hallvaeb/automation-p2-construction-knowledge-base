@@ -58,12 +58,12 @@ class DFABuilder():
         site_id_list = IDs_list[0]
         for id in site_id_list:
             site_args = Site.get_args_from_KB(id)
-            DFABuilder.append_to_design_DFA(design_id, "site", site_args[1], site_args[2], 1)
+            DFABuilder.append_to_design_DFA(design_id, "site", site_args[1], site_args[2], 1,0,0)
 
         building_id_list = IDs_list[1]
         for id in building_id_list:
             building_args = Building.get_args_from_KB(id)
-            DFABuilder.append_to_design_DFA(design_id, "building", building_args[1], building_args[2], building_args[3], site_args[1]/2, site_args[2]/2)
+            DFABuilder.append_to_design_DFA(design_id, "building", building_args[1], building_args[2], building_args[3], int(site_args[1])/2, int(site_args[2])/2)
         
         # Logical flaw... need to make sure these storey heights are applied to the right buildings
         print("building args:", building_args[0], building_args[1], building_args[2], building_args[3], building_args[4])
@@ -71,7 +71,7 @@ class DFABuilder():
         storey_id_list = IDs_list[2]
         for id in storey_id_list:        
             storey_args = Storey.get_args_from_KB(id)
-            DFABuilder.append_to_design_DFA(design_id, "storey", building_args[1], building_args[2], height_of_storey, site_args[1]/2, site_args[2]/2)
+            DFABuilder.append_to_design_DFA(design_id, "storey", building_args[1], building_args[2], height_of_storey, int(site_args[1])/2, int(site_args[2])/2)
         
         space_id_list = IDs_list[3]
         for space_id in space_id_list:
@@ -79,7 +79,7 @@ class DFABuilder():
             space_args = Space.get_args_from_KB(space_id)
             print(len(space_args))
             print(space_args[0], space_args[1], space_args[2])
-            DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3], site_args[1]/2, site_args[2]/2)
+            DFABuilder.append_to_design_DFA(design_id, "Space", space_args[1], space_args[2], space_args[3], int(site_args[1])/2, int(site_args[2])/2)
 
         return path_to_dfa_folder+"Products/"+design_id+".dfa"
             
@@ -101,7 +101,3 @@ class DFABuilder():
         f = open(path_to_dfa_folder + "Products/" + design_id + ".dfa", "a")
         f.write(txt)
         f.close        
-
-DFABuilder.generate_DFA_with_existing_flats(60)
-
-
