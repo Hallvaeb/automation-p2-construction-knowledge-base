@@ -10,7 +10,7 @@ body {
 
 /* Footer */
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
@@ -88,7 +88,8 @@ tr:nth-child(even) {
 
 #license{
     color: red;
-    position: absolute;
+    position: relative;
+    top: 100px;
     bottom: 0;
     left: 0;
     right: 0;

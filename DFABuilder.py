@@ -85,7 +85,7 @@ class DFABuilder():
             
     def generate_DFA_with_existing_flats(floors):
         design_id = DFABuilder.make_design_template()
-        for i in range(0, floors):
+        for i in range(0, int(floors)):
             DFABuilder.append_existing_flat_to_design(i, random.randint(1, 3), design_id)
         return path_to_dfa_folder+"Products/"+design_id+".dfa"
         

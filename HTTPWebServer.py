@@ -54,9 +54,14 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<img src="/image.jpg" alt= "Logo not found." width="600" height="282">	
 				<section>
 						<p> This is a construction knowledge base application for creating a building
-							several buildings from a set of building blocks in a knowledge base. </p>
+							several buildings from a set of building blocks in a knowledge base.<br>
+							Add space: allows you to add spaces to the database which will then be used.<br>
+							to create the building in construct.<br>
+							Construct site: make a site with building.<br>
+							Autogenerate: Make building with selected number of storeys with random flats.<br></p>
 						<a href=/add_space><button>Add Space</button></a>
 						<a href=/construct_site><button>Construct!</button></a>
+						<a href=/autogenerate><button>Autogenerate!</button></a>
 						<a href=/sparql><button>I know sparql!</button></a>
 				</section>
 			</body>
@@ -117,12 +122,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
 					Here you can create buildings automatically! <br>
-					Does it require specificblocks not in the knowledge base? <br>
-					Contact an engineer or add it through the 'add space' option. <br><br>
-					
-					<div id="license">
-						License: "paid version" detected: all buildings will be identical.<br>
-					</div>
 					</p>
 				</section>
 				<form action="/autogenerate_posted" method="post">
@@ -144,6 +143,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 					</fieldset>
 					</form></section>
 				<a href=/><button>Cancel</button></a>
+				<div id="license">
+					License: "paid version" detected: all buildings will be identical.<br>
+				</div>
 			</body>
 			"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
@@ -189,12 +191,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>AUTOMATED BUILDING</h2>
 					<p>
 					Here you can create buildings automatically! <br>
-					Does it require specificblocks not in the knowledge base? <br>
+					Does it require specific spaces not in the knowledge base? <br>
 					Contact an engineer or add it through the 'add space' option. <br><br>
 					
-					<div id="license">
-						License: "free version" detected: all buildings will be identical.<br>
-					</div>
+					
 					</p>
 				</section>
 				<form action="/construct_building" method="post">
@@ -218,6 +218,9 @@ class ServerHandler(BaseHTTPRequestHandler):
 					</fieldset>
 					</form></section>
 				<a href=/><button>Cancel</button></a>
+				<div id="license">
+						License: "free version" detected: all buildings will be identical.<br>
+					</div>
 			</body>
 			"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
@@ -567,7 +570,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					site_width = args[1]
 					num_of_storeys = args[2]
 
-					path_to_DFA = Controller.autogenerate(num_of_storeys)
+					path_to_dfa = Controller.autogenerate(num_of_storeys)
 			
 					if path_to_dfa.find("design") != -1:
 						out = """<body>
@@ -579,20 +582,11 @@ class ServerHandler(BaseHTTPRequestHandler):
 									You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
 								</p>
 								<p>
-									Path to your DFA product:""" + path_to_dfa + "</p>"
+									Path to your DFA product:<br><strong>""" + path_to_dfa + "</strong></p>"
 					else: 
 						out = "<body><section> Something went wrong :( Printing the path to dfa:"+path_to_dfa
 					
 					out += "</section><a href=/><button>Go back</button></a></body>"+footer
-
-					s.wfile.write(bytes(out, "utf-8"))
-
-					
-					out = """<body><section>
-						<a href=/><button>Cancel</button></a>
-					</section>
-					</body>
-					"""+footer
 					s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/construct_storey") != -1:
@@ -687,7 +681,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 							You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
 						</p>
 						<p>
-							Path to your DFA product:""" + path_to_dfa + "</p>"
+							Path to your DFA product:<br><strong>""" + path_to_dfa + "</strong></p>"
 				out += """<p>
 					<a href="""+path_to_dfa+"> Open DFA! </a></p>"
 			else: 
