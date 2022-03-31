@@ -65,4 +65,4 @@ class Controller():
 		return r.json()
 
 	def autogenerate(num_of_storeys):
-		DFABuilder.generate_DFA_(num_of_storeys)
+		return DFABuilder.generate_DFA_with_existing_flats(num_of_storeys)

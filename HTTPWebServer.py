@@ -567,8 +567,27 @@ class ServerHandler(BaseHTTPRequestHandler):
 					site_width = args[1]
 					num_of_storeys = args[2]
 
-					Controller.autogenerate(num_of_storeys)
+					path_to_DFA = Controller.autogenerate(num_of_storeys)
 			
+					if path_to_dfa.find("design") != -1:
+						out = """<body>
+							<section>
+								<h2>AUTOMATED BUILDING</h2>
+								<p>
+									Congratulations! Everything is done and a construction is being created...<br>
+									Wait 10 seconds for it all to load, and then press the extract solution to retrieve the OWL file for your project.<br>
+									You may then upload the OWL file in NX to have your construction visualized! <br><br><br>
+								</p>
+								<p>
+									Path to your DFA product:""" + path_to_dfa + "</p>"
+					else: 
+						out = "<body><section> Something went wrong :( Printing the path to dfa:"+path_to_dfa
+					
+					out += "</section><a href=/><button>Go back</button></a></body>"+footer
+
+					s.wfile.write(bytes(out, "utf-8"))
+
+					
 					out = """<body><section>
 						<a href=/><button>Cancel</button></a>
 					</section>
