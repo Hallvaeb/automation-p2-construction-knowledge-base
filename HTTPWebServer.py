@@ -437,22 +437,28 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
-
 			
-			out = """<body>
-			<body>
-				<section>
-					<h2>AUTOMATED BUILDING</h2>
-					<p>
-					Space added! It will now be able to appear in your construction!
-					</p>
-				</section>
-				<a href=/add_space><button>Add another space</button></a>
-				<a href=/><button>Main menu</button></a>
-			</body>"""+footer
+			res = Controller.add_space_prototype(args)
+			if res == 0: #if if returns 0, enter. Write out to user that space was not added.  
+				msg = "Something went wrong, the space was not added! Pleace try again."
+				btn = "Try again"
+			
+			else:
+				msg = "Space added! It will now be able to appear in your construction!"
+				btn = "Add another space"
+			out = """
+				<body>
+					<section>
+						<h2>AUTOMATED BUILDING</h2>
+						<p>"""+msg+"""						
+						</p>
+					</section>
+					<a href=/add_space><button>"""+btn+"""</button></a>
+					<a href=/><button>Main menu</button></a>
+				</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 			
-			Controller.add_space_prototype(args)
+			
 		
 		elif path.find("/sparql_given") != -1:
 
