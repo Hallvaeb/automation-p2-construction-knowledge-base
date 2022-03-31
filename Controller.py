@@ -4,6 +4,9 @@ from Zones.Building import Building
 from Zones.Storey import Storey
 from Zones.Space import Space
 import urllib.parse
+import requests
+
+URL = "http://127.0.0.1:3030/bot"
 
 class Controller():
 
@@ -51,3 +54,15 @@ class Controller():
 		space = Space([length, width, height, energy_consumption, role])
 		print("add_space_prototype: " + str(args))
 		space.add_to_KB()
+
+	def send_query(query):
+		params = {"query": query}
+		print("PARAMS:", params)
+		r = requests.get(URL, params) 
+		print(r)
+		if r.status_code == 404:
+			return 0
+		return r.json()
+
+	def autogenerate(num_of_storeys):
+		DFABuilder.generate_DFA_(num_of_storeys)

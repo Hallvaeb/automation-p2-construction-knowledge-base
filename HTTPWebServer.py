@@ -104,6 +104,50 @@ class ServerHandler(BaseHTTPRequestHandler):
 			</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
+		elif path.find("/autogenerate") != -1:
+
+			s.send_response(200)
+			s.send_header("Content-type", "text/html")
+			s.end_headers()
+			s.wfile.write(bytes(head, 'utf-8'))
+			
+			out = """<body>
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+					Here you can create buildings automatically! <br>
+					Does it require specificblocks not in the knowledge base? <br>
+					Contact an engineer or add it through the 'add space' option. <br><br>
+					
+					<div id="license">
+						License: "paid version" detected: all buildings will be identical.<br>
+					</div>
+					</p>
+				</section>
+				<form action="/autogenerate_posted" method="post">
+					<fieldset>
+						<legend>Site specifications:</legend> 
+
+						<label for="length">Site length [m]:</label><br>
+						<input type="number" name="length" id="length" value="500"><br>
+
+						<label for="width">Site width [m]:</label><br>
+						<input type="number" name="width" id="width" value="400"> <br>
+
+						<label for="number_of_storeys">Number of storeys: </label><br>
+						<input type="number" name="number_of_storeys" id="number_of_storeys" value="5"><br>
+
+						<div id="submit">
+							<input type="submit" value="Next" id="submit">
+						</div>
+					</fieldset>
+					</form></section>
+				<a href=/><button>Cancel</button></a>
+			</body>
+			"""+footer
+			s.wfile.write(bytes(out, 'utf-8'))
+
 		elif path.find("/sparql") != -1:
 
 			s.send_response(200)
@@ -418,25 +462,22 @@ class ServerHandler(BaseHTTPRequestHandler):
 			# Get the arguments
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
-			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
-			print(len(args))
-			print(args)
+			query = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
+			data = Controller.send_query(query)
 
-			resp = Controller.send_query(args)
-
-			# out = head+"""
-			# <body>
-			# 	<section>
-			# 		<h2>AUTOMATED BUILDING</h2>
-			# 		<p>
-			# 		Space added! It will now be able to appear in your construction!
-			# 		</p>
-			# 	</section>
-			# 	<a href=/add_space><button>Add another space</button></a>
-			# 	<a href=/><button>Main menu</button></a>
-			# </body>"""+footer
-			# s.wfile.write(bytes(out, 'utf-8'))
+			out = """
+			<body>
+				<section>
+					<h2>AUTOMATED BUILDING</h2>
+					<p>
+						QUERY SENT! THIS WAS THE RESULT!
+						"""+data+"""
+					</p>
+				</section>
+				<a href=/><button>Cancel</button></a>
+			</body>"""+footer
+			s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/construct_building") != -1:
 
@@ -505,6 +546,30 @@ class ServerHandler(BaseHTTPRequestHandler):
 							</table>
 							<input type="submit" value="Next" id="submit">
 						</form>
+						<a href=/><button>Cancel</button></a>
+					</section>
+					</body>
+					"""+footer
+					s.wfile.write(bytes(out, 'utf-8'))
+		
+		elif path.find("/autogenerate_posted") != -1:
+
+					s.send_response(200)
+					s.send_header("Content-type", "text/html")
+					s.end_headers()
+					s.wfile.write(bytes(head, 'utf-8'))
+
+					# Get the arguments
+					argument_pairs = s.rfile.read(
+						int(s.headers.get('Content-Length'))).decode().split("&")
+					args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
+					site_length = args[0]
+					site_width = args[1]
+					num_of_storeys = args[2]
+
+					Controller.autogenerate(num_of_storeys)
+			
+					out = """<body><section>
 						<a href=/><button>Cancel</button></a>
 					</section>
 					</body>
