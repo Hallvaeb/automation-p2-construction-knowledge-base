@@ -444,10 +444,10 @@ class ServerHandler(BaseHTTPRequestHandler):
 			argument_pairs = s.rfile.read(
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			args = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
-			
 			res = Controller.add_space_prototype(args)
+
 			if res == 0: #if if returns 0, enter. Write out to user that space was not added.  
-				msg = "Something went wrong, the space was not added! Pleace try again."
+				msg = "Something went wrong, the space has not been made. Please check the connection to your server and if your input is correct. Then try again."
 				btn = "Try again"
 			
 			else:
