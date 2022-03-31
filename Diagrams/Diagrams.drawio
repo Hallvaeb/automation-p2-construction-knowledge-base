@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-31T12:38:44.865Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="TVG8yfN19DMkRtZdVqlS" version="17.2.4" type="github" pages="9">
+<mxfile host="app.diagrams.net" modified="2022-03-31T12:43:31.652Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="H3Rf4_OEYG22UYbJ5goR" version="17.2.4" type="github" pages="9">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1278,13 +1278,24 @@
           <mxGeometry x="55" y="70" width="21.04" height="530" as="geometry" />
         </mxCell>
         <mxCell id="_Q2vFka47BPhuHWOpkWZ-18" value=":WebServer" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
-          <mxGeometry x="230" y="70" width="100" height="530" as="geometry" />
+          <mxGeometry x="230" y="70" width="100" height="570" as="geometry" />
         </mxCell>
         <mxCell id="_Q2vFka47BPhuHWOpkWZ-20" value="User" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="40" y="40" width="50" height="20" as="geometry" />
         </mxCell>
         <mxCell id="_Q2vFka47BPhuHWOpkWZ-22" value=":Controller" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
-          <mxGeometry x="430" y="70" width="100" height="530" as="geometry" />
+          <mxGeometry x="430" y="70" width="100" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="8HglLLeqr2lgq9mTnkT6-1" value="return location of .dfa-file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" parent="_Q2vFka47BPhuHWOpkWZ-22" edge="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="50" y="560" as="sourcePoint" />
+            <mxPoint x="-149.99857142857155" y="560.0000000000001" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-49.06999999999999" y="560" />
+              <mxPoint x="-99.07" y="560" />
+            </Array>
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="_Q2vFka47BPhuHWOpkWZ-26" value=":DFABuilder" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="1130" y="70" width="100" height="570" as="geometry" />
@@ -1310,36 +1321,14 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="QVzqyyeyv-tXGW0h4-y8-0" value="return 0 (success)&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-26" target="_Q2vFka47BPhuHWOpkWZ-22" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="680" y="530" as="sourcePoint" />
-            <mxPoint x="480" y="530" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1100" y="580" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="QVzqyyeyv-tXGW0h4-y8-22" value="Sequence: Construct building" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="710" y="10" width="160" height="20" as="geometry" />
         </mxCell>
         <mxCell id="6mUIf9SWyzu7cyB2bflb-0" value="Comments: Can have more specific naming, can give more specific parameters. &lt;br&gt;To push into NX. Controller will become ugly... it has too complex signatures of methods.&lt;br&gt;Can then add to Sites &quot;getBuildings&quot; &quot;get your second level floors&quot; etc. The way of outsourcing: detailed names. Instead of params, go with stories" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
-          <mxGeometry x="18" y="630" width="790" height="50" as="geometry" />
+          <mxGeometry x="18" y="690" width="790" height="50" as="geometry" />
         </mxCell>
         <mxCell id="75oJH6eNyDZfY7KdbnII-3" value=":Space" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="990" y="70" width="100" height="570" as="geometry" />
-        </mxCell>
-        <mxCell id="75oJH6eNyDZfY7KdbnII-11" value=":Storey" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="75oJH6eNyDZfY7KdbnII-3" vertex="1">
-          <mxGeometry x="-120" width="100" height="530" as="geometry" />
-        </mxCell>
-        <mxCell id="8HglLLeqr2lgq9mTnkT6-0" value="return NX-compatible .dfa file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" parent="75oJH6eNyDZfY7KdbnII-11" edge="1">
-          <mxGeometry x="0.0006" relative="1" as="geometry">
-            <mxPoint x="310.43000000000006" y="490" as="sourcePoint" />
-            <mxPoint x="-390" y="490" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="230.93000000000006" y="490" />
-            </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="_Q2vFka47BPhuHWOpkWZ-42" value="passArguments(params)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-18" target="_Q2vFka47BPhuHWOpkWZ-22" edge="1">
           <mxGeometry x="-0.0209" width="80" relative="1" as="geometry">
@@ -1353,7 +1342,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="75oJH6eNyDZfY7KdbnII-8" value=":Site" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
-          <mxGeometry x="620" y="70" width="100" height="530" as="geometry" />
+          <mxGeometry x="620" y="70" width="100" height="570" as="geometry" />
         </mxCell>
         <mxCell id="75oJH6eNyDZfY7KdbnII-17" value="add buildings to site" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="75oJH6eNyDZfY7KdbnII-8" source="_Q2vFka47BPhuHWOpkWZ-22" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
@@ -1398,8 +1387,40 @@
             <mxPoint y="-3" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="8HglLLeqr2lgq9mTnkT6-0" value="return NX-compatible .dfa file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" parent="75oJH6eNyDZfY7KdbnII-8" edge="1">
+          <mxGeometry x="0.0006" relative="1" as="geometry">
+            <mxPoint x="560.4300000000001" y="540" as="sourcePoint" />
+            <mxPoint x="-140" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="480.93000000000006" y="540" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="75oJH6eNyDZfY7KdbnII-7" value=":Building" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
-          <mxGeometry x="740" y="70" width="100" height="530" as="geometry" />
+          <mxGeometry x="740" y="70" width="100" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="yk5U4FWjYYz9TuQ-bBUS-13" value="make DFA file from knowledge base" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="75oJH6eNyDZfY7KdbnII-7">
+          <mxGeometry x="0.0021" width="80" relative="1" as="geometry">
+            <mxPoint x="-259.99647058823535" y="513" as="sourcePoint" />
+            <mxPoint x="440.18000000000006" y="513" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-139.32000000000005" y="513" />
+              <mxPoint x="-139.32000000000005" y="513" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yk5U4FWjYYz9TuQ-bBUS-11" value="Call data from KB" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="75oJH6eNyDZfY7KdbnII-7">
+          <mxGeometry x="0.0021" width="80" relative="1" as="geometry">
+            <mxPoint x="-259.99647058823535" y="450" as="sourcePoint" />
+            <mxPoint x="600" y="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="0.67999999999995" y="450" />
+              <mxPoint x="0.67999999999995" y="450" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="75oJH6eNyDZfY7KdbnII-12" value="create buildings" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-22" target="75oJH6eNyDZfY7KdbnII-7" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
@@ -1463,28 +1484,6 @@
         <mxCell id="Whl1qC0GnanRTS_MzYcW-0" value="! the zones are added to KB when their constructor is called." style="whiteSpace=wrap;html=1;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="330" y="190" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Whl1qC0GnanRTS_MzYcW-1" value="make DFA file from knowledge base" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="Sd0uoY8ExHPBHscK6wbj-1" source="_Q2vFka47BPhuHWOpkWZ-22" target="_Q2vFka47BPhuHWOpkWZ-26" edge="1">
-          <mxGeometry x="0.0021" width="80" relative="1" as="geometry">
-            <mxPoint x="489.32352941176464" y="510" as="sourcePoint" />
-            <mxPoint x="1049.5" y="510" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="600" y="540" />
-              <mxPoint x="600" y="540" />
-            </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8HglLLeqr2lgq9mTnkT6-1" value="return URL" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" edge="1">
-          <mxGeometry x="-0.0093" relative="1" as="geometry">
-            <mxPoint x="480" y="590" as="sourcePoint" />
-            <mxPoint x="280.00142857142845" y="590.0000000000001" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="380.93" y="590" />
-              <mxPoint x="330.93" y="590" />
-            </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="G7PANi1h5TD1IGbNQuGI-0" value=":Fuseki" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
           <mxGeometry x="1290" y="70" width="100" height="570" as="geometry" />
         </mxCell>
@@ -1521,23 +1520,16 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="yk5U4FWjYYz9TuQ-bBUS-11" value="Call data from KB" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
-          <mxGeometry x="0.0021" width="80" relative="1" as="geometry">
-            <mxPoint x="480.00352941176465" y="490" as="sourcePoint" />
-            <mxPoint x="1340" y="490" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="740.68" y="490" />
-              <mxPoint x="740.68" y="490" />
-            </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="75oJH6eNyDZfY7KdbnII-11" value=":Storey" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="Sd0uoY8ExHPBHscK6wbj-1" vertex="1">
+          <mxGeometry x="870" y="70" width="100" height="570" as="geometry" />
         </mxCell>
-        <mxCell id="yk5U4FWjYYz9TuQ-bBUS-12" value="return 0 (success)&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1" target="_Q2vFka47BPhuHWOpkWZ-22">
+        <mxCell id="yk5U4FWjYYz9TuQ-bBUS-14" value="return 0 (success)&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="Sd0uoY8ExHPBHscK6wbj-1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1340.18" y="509.9999999999998" as="sourcePoint" />
-            <mxPoint x="640.0035294117647" y="509.9999999999998" as="targetPoint" />
+            <mxPoint x="1340.8600000000004" y="549.9999999999998" as="sourcePoint" />
+            <mxPoint x="480.00352941176465" y="550" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1260.68" y="510" />
+              <mxPoint x="1261.3600000000001" y="550" />
+              <mxPoint x="720.68" y="550" />
             </Array>
           </mxGeometry>
         </mxCell>
