@@ -6,7 +6,7 @@
 (child) block1: 
     {
         class, ug_block;
-        referenceFrame, framexy(point(<X>,<Y>,0);
+        referenceFrame, framexy(point(<X>,<Y>,0));
         length, my_length_b:;
         width, my_width_b:;
         height, my_height_b:;
