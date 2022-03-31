@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
+from tkinter import Frame
 
 from Controller import Controller
 
@@ -82,7 +83,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<p>
 					Here you can add a space to the knowledge base skeleton for later use in a construction of the building.<br>
 					Use the role field to specify if your space is a "flat" or a specific room or object type.<br>
-					A space is, according to us, anything that can fit inside a storey of a building. <br><br>
 					A good name would be: "kitchen", "bedroom" or "chair".
 					</p>
 				</section>
@@ -167,7 +167,14 @@ class ServerHandler(BaseHTTPRequestHandler):
 				<form action="/sparql_given" method="post">
 					<fieldset>
 						<legend>SPARQL Query:</legend>
-						<textarea id="query" name="query" id="query" rows=6 cols=50 ></textarea>
+						<textarea id="query" name="query" id="query" rows=6 cols=50>'''
+        PREFIX bot:<https://w3id.org/bot#>
+		SELECT ?role 
+		WHERE {
+			?space bot:hasRole ?role.
+		FILTER ( EXISTS { ?space bot:hasRole "kitchen_1"} )
+		}
+        '''</textarea>
 						<div id="submit">
 							<input type="submit" value="Ask KB" id="submit">
 						</div>
@@ -379,7 +386,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<h2>7034 Trondheim</h2>
 					<h2>E-post: automatedbuilding@ntnu.no</h2>
 				</div>
-			</footer>"""
+			</footer></html>"""
 		path = s.path
 
 		if path.find("/confirm_space") != -1:
@@ -472,19 +479,29 @@ class ServerHandler(BaseHTTPRequestHandler):
 				int(s.headers.get('Content-Length'))).decode().split("&")
 			query = [argument_pairs[i].split("=")[1] for i in range(len(argument_pairs))]
 
-			data = Controller.send_query(query)
-
-			out = """
-			<body>
-				<section>
-					<h2>AUTOMATED BUILDING</h2>
-					<p>
-						QUERY SENT! THIS WAS THE RESULT!
-						"""+data+"""
-					</p>
-				</section>
-				<a href=/><button>Cancel</button></a>
-			</body>"""+footer
+			result = Controller.send_query(query)
+			try:
+				out = """
+				<body>
+					<section>
+						<h2>AUTOMATED BUILDING</h2>
+						<p>
+							THIS WAS THE RESULT!
+							"""+result+"""
+						</p>
+					</section>
+					<a href=/><button>Cancel</button></a>
+				</body>"""+footer
+			except:
+				out = """<body>
+					<section>
+						<h2>AUTOMATED BUILDING</h2>
+						<p>
+							QUERY SENT! But it seems something went wrong.. Try starting the server for KB.
+						</p>
+					</section>
+					<a href=/><button>Cancel</button></a>
+				</body>"""+footer
 			s.wfile.write(bytes(out, 'utf-8'))
 
 		elif path.find("/construct_building") != -1:

@@ -60,8 +60,8 @@ class Controller():
 		print("PARAMS:", PARAMS)
 		r = requests.get(url = URL, params = PARAMS) 
 		print(r)
-		if r.status_code == 404:
-			return 0
+		if r.status_code == 400 or r.status_code == 404:
+			return "Data was not found."
 		return r.json()
 
 	def autogenerate(num_of_storeys):
