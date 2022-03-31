@@ -56,7 +56,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 						<p> This is a construction knowledge base application for creating a building
 							several buildings from a set of building blocks in a knowledge base.<br>
 							Add space: allows you to add spaces to the database which will then be used.<br>
-							to create the building in construct.<br>
 							Construct site: make a site with building.<br>
 							Autogenerate: Make building with selected number of storeys with random flats.<br></p>
 						<a href=/add_space><button>Add Space</button></a>
