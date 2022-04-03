@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-03T15:02:39.418Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="5Ebr2iL4ucQ4b21DvpWQ" version="17.4.0" type="github" pages="9">
+<mxfile host="app.diagrams.net" modified="2022-04-03T15:03:03.009Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="Rb1g9KWwMq2C8d6uuv0G" version="17.4.0" type="github" pages="9">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
     <mxGraphModel dx="1489" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -920,7 +920,7 @@
           <mxGeometry y="204" width="150" height="25" as="geometry" />
         </mxCell>
         <mxCell id="tNPv1sCgkySwSs6xoAN9-0" value="setter getters are line&lt;br&gt;Diamond is owner relationsship" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="sEJaP63ClkLMVQbzM1hd-1" vertex="1">
-          <mxGeometry x="40" y="490" width="180" height="30" as="geometry" />
+          <mxGeometry x="40" y="520" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="tNPv1sCgkySwSs6xoAN9-3" value="hasBuilding" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="sEJaP63ClkLMVQbzM1hd-1" source="0D9_cMWHlRR_zlbYv-kp-12" target="0D9_cMWHlRR_zlbYv-kp-3" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -1135,9 +1135,6 @@
           <mxGeometry x="-1" relative="1" as="geometry">
             <mxPoint x="-30" as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="juyJJ584uB3ryBu2LbMq-8" value="type: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;labelBackgroundColor=none;" vertex="1" parent="sEJaP63ClkLMVQbzM1hd-1">
-          <mxGeometry x="640" y="210" width="140" height="25" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
