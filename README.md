@@ -25,3 +25,7 @@ Protege, Jena Fuseki, Github, Python
 --- 
 
 Contributors to this project: Hallvard Bjørgen, Johanne Glende, and Sigve Sjøvold. Under supervision of Andrei Lobov.
+
+---
+
+SEE REPORT IN THE report.pdf document!
