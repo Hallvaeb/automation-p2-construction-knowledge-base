@@ -67,7 +67,7 @@ class DFABuilder():
         
         # Logical flaw... need to make sure these storey heights are applied to the right buildings
         print("building args:", building_args[0], building_args[1], building_args[2], building_args[3], building_args[4])
-        height_of_storey = int(float(building_args[3])/float(building_args[5]))
+        height_of_storey = int(float(building_args[3])/float(len(building_args[5])))
         storey_id_list = IDs_list[2]
         for id in storey_id_list:        
             storey_args = Storey.get_args_from_KB(id)

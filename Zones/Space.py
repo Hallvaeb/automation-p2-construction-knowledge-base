@@ -1,3 +1,4 @@
+from tracemalloc import stop
 from Zones.Zone import Zone
 from IDGenerator import IDGenerator
 import requests
@@ -8,6 +9,7 @@ URL = "http://127.0.0.1:3030/bot"
 class Space(Zone):
 
     def __init__(self, args):
+
         self.type = "space"
         if (len(args) < 3):
             """
@@ -31,6 +33,7 @@ class Space(Zone):
             """
                 Adds prototype space to KB
             """
+
             # INPUT args: [length, width, height, energy_consumption, role]
             self.length = args[0]
             self.width = args[1]
@@ -41,13 +44,18 @@ class Space(Zone):
             role_core = args[4]+"_"
             i = 1
             role = role_core + str(i)
-            while(Space.is_role_in_KB(role)):
-                i += 1
-                role = role_core + str(i)
-            self.role = role
-            self.space_id = IDGenerator.create_space_prototype_ID(self)
-            
-            self.add_to_KB()
+
+            res = str(Space.is_role_in_KB(role)[1])
+            if "WinError 10061" in res: #error code for server not runing
+                print("Connection error retured by Space.is_role_in_KB(role)") 
+            else:
+                while(Space.is_role_in_KB(role)[0]):
+                    i += 1
+                    role = role_core + str(i)
+                self.role = role
+                self.space_id = IDGenerator.create_space_prototype_ID(self)
+                
+                self.add_to_KB()
 
 
     def is_role_in_KB(role):
@@ -59,27 +67,34 @@ class Space(Zone):
 		FILTER ( EXISTS { ?space bot:hasRole "''' + str(role) + '''"} )
 		}
         ''')
-
         PARAMS = {"query": QUERY}
-        r = requests.get(url = URL, params = PARAMS) 
-        if r.status_code == 404:
-            return 0
-        data = r.json()
+
+        try:
+            r = requests.get(url = URL, params = PARAMS) 
+
+            if r.status_code == 404:
+                return 0
+            data = r.json()
+
+            if (len(data['results']['bindings']) == 0 ):
+                return 0,0
+            return 1,0
+
+        except Exception as e:
+            return 0, e
 		
-        if (len(data['results']['bindings']) == 0 ):
-            return 0
-        return 1
+    
         
 
     def add_to_KB(self):
-        print("INSERT {"
-                'bot:''' + str(self.space_id) + ''' a bot:Space.
-                bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
-                bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
-                bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''"''')
+        # print("INSERT {"
+        #         'bot:''' + str(self.space_id) + ''' a bot:Space.
+        #         bot:''' + str(self.space_id) + ''' bot:hasLength "''' + str(self.length) + '''".
+        #         bot:''' + str(self.space_id) + ''' bot:hasWidth "''' + str(self.width) + '''".
+        #         bot:''' + str(self.space_id) + ''' bot:hasHeight "''' + str(self.height) + '''".
+        #         bot:''' + str(self.space_id) + ''' bot:energyConsumption "''' + str(self.energy_consumption) + '''".
+        #         bot:''' + str(self.space_id) + ''' bot:hasRole "''' + str(self.role) + '''".
+        #         bot:''' + str(self.space_id) + ''' bot:hasID "''' + str(self.space_id) + '''"''')
         try:
             UPDATE = ('''
             PREFIX bot:<https://w3id.org/bot#>

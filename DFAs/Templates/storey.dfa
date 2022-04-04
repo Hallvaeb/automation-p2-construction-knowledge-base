@@ -3,7 +3,7 @@
     (number parameter) my_length_st: <LENGTH>; 
 
 
-(child) block1: 
+(child) block1: #Storey: Spring Yellow
     {
         class, ug_block;
         referenceFrame, framexy(point(<X>,<Y>,0);

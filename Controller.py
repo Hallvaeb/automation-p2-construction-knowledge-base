@@ -44,15 +44,21 @@ class Controller():
 
 	
 	def add_space_prototype(args):
-		print("add_space_prototype: " + str(args))
+		# print("add_space_prototype: " + str(args))
 		length = args[0]
 		width = args[1]
 		height = args[2]
 		energy_consumption = args[3]
 		role = args[4].lower()
-
 		space = Space([length, width, height, energy_consumption, role])
-		print("add_space_prototype: " + str(args))
+		try:
+			#Checks if a space has been instantiated
+			space.space_id
+		except:
+			#the space has not been instantiated
+			return 0
+		
+		# print("add_space_prototype2: " + str(args))
 		space.add_to_KB()
 
 	def send_query(QUERY):

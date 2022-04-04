@@ -3,7 +3,7 @@
     (number parameter) my_length_sp: <LENGTH>;  
 
 
-(child) block1: 
+(child) block1: #Space: Blue   
     {
         class, ug_block;
         referenceFrame, framexy(point(<X>,<Y>,0);
