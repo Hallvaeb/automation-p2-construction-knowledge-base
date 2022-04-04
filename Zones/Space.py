@@ -55,7 +55,7 @@ class Space(Zone):
                 self.role = role
                 self.space_id = IDGenerator.create_space_prototype_ID(self)
                 
-                self.add_to_KB() ##HVORFOR ER DENNE MED?
+                self.add_to_KB()
 
 
     def is_role_in_KB(role):
