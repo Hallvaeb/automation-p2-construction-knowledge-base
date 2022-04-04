@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-04T07:42:22.446Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="x6MYXaCedO2_PazUkVq4" version="17.4.0" type="github" pages="9">
+<mxfile host="app.diagrams.net" modified="2022-04-04T09:25:46.968Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="uk8x5L0rYL1EURID3w9e" version="17.3.0" type="github" pages="10">
   <diagram id="FiaBwvFlQ11jIYUknNrv" name="Use case">
-    <mxGraphModel dx="1489" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1140,7 +1140,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="R4OU313Z5Tf02ZGI4Hzh" name="SeqAddSpace">
-    <mxGraphModel dx="1701" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="IdTPn2BuQPGr03sui5m2-0" />
         <mxCell id="IdTPn2BuQPGr03sui5m2-1" parent="IdTPn2BuQPGr03sui5m2-0" />
@@ -1400,7 +1400,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="D1OGU5lnin2fRSIAJd6G" name="SeqConstruct">
-    <mxGraphModel dx="1701" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="Sd0uoY8ExHPBHscK6wbj-0" />
         <mxCell id="Sd0uoY8ExHPBHscK6wbj-1" parent="Sd0uoY8ExHPBHscK6wbj-0" />
@@ -2445,6 +2445,102 @@
             <mxPoint x="630" y="130" as="sourcePoint" />
             <mxPoint x="750.4878048780488" y="510" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="4u34GiORHGgg38wX2Z1-" name="SeqAutoGenerate">
+    <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="REua-0AAAYpj7zxjPnzG-2" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="410" width="20" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-3" value=":HTTPWebServer" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="457.5" y="410" width="100" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-5" value="User" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="350" y="380" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-7" value=":Controller" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="745" y="410" width="100" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-10" value="Controller.generate_DFA-with_exixting_flats(floors)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1">
+          <mxGeometry x="-0.042" width="80" relative="1" as="geometry">
+            <mxPoint x="510" y="620" as="sourcePoint" />
+            <mxPoint x="794.5" y="620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="675" y="620" />
+              <mxPoint x="675" y="620" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-12" value="Sequence: Add space to KB" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="457.5" y="360" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-13" value="find(&quot;/autogenerate&quot;)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" target="REua-0AAAYpj7zxjPnzG-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="559" as="sourcePoint" />
+            <mxPoint x="374.5" y="559" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="435" y="559" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-14" value="Generate DFA-file" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1">
+          <mxGeometry x="-0.042" width="80" relative="1" as="geometry">
+            <mxPoint x="794" y="640" as="sourcePoint" />
+            <mxPoint x="974.5" y="640" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="794" y="640" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-15" value="return 0 (success)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" target="REua-0AAAYpj7zxjPnzG-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="799" y="710" as="sourcePoint" />
+            <mxPoint x="580" y="710" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="650.5999999999999" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-20" value="DFABuilder" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="925" y="410" width="100" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-21" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="975.05" y="680" as="sourcePoint" />
+            <mxPoint x="795" y="681" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-41" value="find(&quot;/autogenerate_posted&quot;)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" target="REua-0AAAYpj7zxjPnzG-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="507.75" y="760" as="sourcePoint" />
+            <mxPoint x="372.25" y="760" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="432.75" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-42" value="give number of stories, press &quot;Next&quot;" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="307.5" y="590" as="sourcePoint" />
+            <mxPoint x="505" y="590" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-43" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="520" as="sourcePoint" />
+            <mxPoint x="507.5" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="REua-0AAAYpj7zxjPnzG-44" value="press &quot;Autogenerate!&quot;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="335" y="500" width="130" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
