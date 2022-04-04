@@ -1,10 +1,9 @@
-#Space: Blue    
     (number parameter) my_height_sp: <HEIGHT>;
     (number parameter) my_width_sp: <WIDTH>;
     (number parameter) my_length_sp: <LENGTH>;  
 
 
-(child) block1: 
+(child) block1: #Space: Blue   
     {
         class, ug_block;
         referenceFrame, framexy(point(<X>,<Y>,0);
