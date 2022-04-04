@@ -168,15 +168,16 @@ class ServerHandler(BaseHTTPRequestHandler):
 					<fieldset>
 						<legend>SPARQL Query:</legend>
 						<textarea id="query" name="query" id="query" rows=6 cols=50>'''
-        PREFIX bot:<https://w3id.org/bot#>
-		SELECT ?role 
-		WHERE {
-			?space bot:hasRole ?role.
-		FILTER ( EXISTS { ?space bot:hasRole "kitchen_1"} )
-		}
-        '''</textarea>
+							PREFIX bot:<https://w3id.org/bot#>
+							SELECT ?role 
+							WHERE {
+								?space bot:hasRole ?role.
+							FILTER ( EXISTS { ?space bot:hasRole "kitchen_1"} )
+							}
+							'''
+						</textarea>
 						<div id="submit">
-							<input type="submit" value="Ask KB" id="submit">
+							<input type="submit" value="Send request" id="submit">
 						</div>
 					</fieldset>
 				</form>
