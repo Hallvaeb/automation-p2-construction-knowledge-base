@@ -11,16 +11,11 @@ Course folder: https://drive.google.com/drive/folders/1afoecYjkEUNYffElpkdefxB12
 
 Report: https://docs.google.com/document/d/1HUIwJgCMgLEU437n6r-Wp93YoNLgzMiCQMgCSR5b6Ss/edit?usp=sharing
 
-Bot turtle OWL file for input in protege: https://w3c-lbd-cg.github.io/bot/bot.ttl
+Bot turtle OWL: https://w3c-lbd-cg.github.io/bot/bot.ttl
 
-Diagram: https://app.diagrams.net/#HHallvaeb%2Fkbe-a2%2Fmaster%2FDiagrams%2FDiagrams.drawio
+Diagrams: https://app.diagrams.net/#HHallvaeb%2Fkbe-a2%2Fmaster%2FDiagrams%2FDiagrams.drawio
 
-Powerpoint: https://docs.google.com/presentation/d/1volnQZx73xrEWFnqd1DYNUQJxOoo28eUqVTO4H7nwkM/edit#slide=id.g10fd48bb818_0_0
-
----
-
-Environment:
-Protege, Jena Fuseki, Github, Python
+Lecturer powerpoint: https://docs.google.com/presentation/d/1volnQZx73xrEWFnqd1DYNUQJxOoo28eUqVTO4H7nwkM/edit#slide=id.g10fd48bb818_0_0
 
 --- 
 
